@@ -18,7 +18,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import constant.Defines;
-import model.bean.City;
+import model.bean.City;//aaaaaaaaaaaaa
 import model.bean.NganhNghe;
 import model.dao.CiTyDao;
 import model.dao.LoaiHinhDoanhNghiepDao;
