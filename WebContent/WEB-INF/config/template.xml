@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+       
+<tiles-definitions>
+ <!-- PUBLIC TEMPLATE -->
+  <definition name="public.template" template="/WEB-INF/templates/public/template.jsp">
+  	<put-attribute name="first-header" value="/WEB-INF/templates/public/first-header.jsp" />
+    <put-attribute name="header" value="" />
+    <put-attribute name="body" value="" />
+    <put-attribute name="footer" value="/WEB-INF/templates/public/footer.jsp" />
+  </definition>
+  
+  <definition name="public.index.nguoitimviec" extends="public.template">
+  <put-attribute name="header" value="/WEB-INF/templates/public/header-index.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/nguoitimviec/index.jsp" />
+  </definition>
+  
+  <definition name="public.index.nhatuyendung" extends="public.template">
+  	 <put-attribute name="header" value="/WEB-INF/templates/public/header-index.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/nhatuyendung/index.jsp" />
+  </definition>
+  
+   <!-- Dangky -dang nhap-->
+  <definition name="public.registration" extends="public.template">
+	 <put-attribute name="header" value="/WEB-INF/templates/public/registration/header.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/registration/dangky.jsp" />
+  </definition>
+  <definition name="public.login" extends="public.template">
+  	<put-attribute name="header" value="/WEB-INF/templates/public/registration/header.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/registration/dangnhap.jsp" />
+  </definition>
+  <definition name="public.login.nhatuyendung" extends="public.template">
+  	<put-attribute name="header" value="/WEB-INF/templates/public/registration/header.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/registration/login_NTD.jsp" />
+  </definition>
+  <definition name="public.login.nguoitimviec" extends="public.template">
+ 	 <put-attribute name="header" value="/WEB-INF/templates/public/registration/header.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/registration/login_NTV.jsp" />
+  </definition>
+  
+  <definition name="public.registration.dangkynhatuyendung" extends="public.template">
+  	<put-attribute name="header" value="/WEB-INF/templates/public/registration/header.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/registration/dangkynhatuyendung.jsp" />
+  </definition>
+   <definition name="public.registration.dangkynguoitimviec" extends="public.template">
+   <put-attribute name="header" value="/WEB-INF/templates/public/registration/header.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/registration/dangkynguoitimviec.jsp" />
+  </definition>
+  
+  <!-- nguoi tim viec -->
+  <definition name="public.nguoitimviec.account_management" extends="public.template">
+   <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/nguoitimviec/quanlytaikhoan/quanlytaikhoan.jsp" />
+  </definition>
+  <definition name="public.nguoitimviec.account_management.edit" extends="public.template">
+   <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/nguoitimviec/quanlytaikhoan/edit.jsp" />
+  </definition>
+  <definition name="public.nguoitimviec.records_management.add" extends="public.template">
+   <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/nguoitimviec/quanlyhoso/add.jsp" />
+  </definition>
+  <definition name="public.nguoitimviec.records_management.listhosodatao" extends="public.template">
+   <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/nguoitimviec/quanlyhoso/listhosodatao.jsp" />
+  </definition>
+   <definition name="public.nguoitimviec.records_management.view" extends="public.template">
+   <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/nguoitimviec/quanlyhoso/view.jsp" />
+  </definition>
+  
+  <!-- Nha tuyen dung-tin đăng -->
+  <definition name="public.nhatuyendung.records_management.add" extends="public.template">
+   <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/nhatuyendung/quanlytindang/add.jsp" />
+  </definition>
+  <definition name="public.nhatuyendung.records_management.listview" extends="public.template">
+   <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/nhatuyendung/quanlytindang/listtindang.jsp" />
+  </definition>
+  
+  <!-- Nha tuyển dụng-tài khoản -->
+  <definition name="public.nhatuyendung.account_management.view" extends="public.template">
+   <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/nhatuyendung/quanlytaikhoan/view.jsp" />
+  </definition>
+  
+  <!-- NHa tuyen dung- quan lý ung tuyen -->
+  <definition name="public.nhatuyendung.job_seeker_management.view" extends="public.template">
+   <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/nhatuyendung/quanlyhosoungtuyen/view.jsp" />
+  </definition>
+  
+ <!-- auth templates -->
+  <definition name="auth.login" template="/WEB-INF/jsp/auth/login.jsp">
+    <put-attribute name="header" value="/WEB-INF/templates/admin/header.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/templates/auth/footer.jsp" />
+  </definition>
+  
+   <!-- error 404-->
+  <definition name="error404" template="/WEB-INF/jsp/error/404.jsp">
+  </definition>
+  
+  
+  
+</tiles-definitions>
