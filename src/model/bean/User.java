@@ -18,7 +18,7 @@ public class User {
 	private int maTrinhDoChuyenMonKyThuat;
 	private int maTrinhDoNgoaiNgu;
 	private int maTrinhDoTinHoc;
-	private int kinhNghiemLamViec;
+	private String kinhNghiemLamViec;
 	
 	private String  tenVietTat;
 	private int namThanhLap;
@@ -42,14 +42,15 @@ public class User {
 	}
 
 	//constructor nguoitimviec
-	public User(int maTK, String taiKhoan, String matKhau, String hoTen, String email, String diaChi, String dienThoai,
-			Timestamp ngaySinh, String gioiTinh, String cMND, int maTrinhDoVanHoa, int maTrinhDoChuyenMonKyThuat,
-			int maTrinhDoNgoaiNgu, int maTrinhDoTinHoc, int kinhNghiemLamViec, int trangThaiTaiKhoan, int maQuyenHan,
-			Timestamp lanCuoiDangNhap, Timestamp lanCuoiChinhSua,String avatar) {
+	public User(int maTK, String taiKhoan, String matKhau, String avatar, String hoTen, String email, String diaChi,
+			String dienThoai, Timestamp ngaySinh, String gioiTinh, String cMND, int maTrinhDoVanHoa,
+			int maTrinhDoChuyenMonKyThuat, int maTrinhDoNgoaiNgu, int maTrinhDoTinHoc, String kinhNghiemLamViec,
+			int trangThaiTaiKhoan, int maQuyenHan, Timestamp lanCuoiDangNhap, Timestamp lanCuoiChinhSua) {
 		super();
 		this.maTK = maTK;
 		this.taiKhoan = taiKhoan;
 		this.matKhau = matKhau;
+		this.avatar = avatar;
 		this.hoTen = hoTen;
 		this.email = email;
 		this.diaChi = diaChi;
@@ -66,8 +67,8 @@ public class User {
 		this.maQuyenHan = maQuyenHan;
 		this.lanCuoiDangNhap = lanCuoiDangNhap;
 		this.lanCuoiChinhSua = lanCuoiChinhSua;
-		this.avatar=avatar;
 	}
+
 	//constructor nhà tuyển dụng
 	
 	public User(int maTK, String taiKhoan, String matKhau, String hoTen, String email, String diaChi, String dienThoai,
@@ -248,11 +249,11 @@ public class User {
 		this.maTrinhDoTinHoc = maTrinhDoTinHoc;
 	}
 
-	public int getKinhNghiemLamViec() {
+	public String getKinhNghiemLamViec() {
 		return kinhNghiemLamViec;
 	}
 
-	public void setKinhNghiemLamViec(int kinhNghiemLamViec) {
+	public void setKinhNghiemLamViec(String kinhNghiemLamViec) {
 		this.kinhNghiemLamViec = kinhNghiemLamViec;
 	}
 

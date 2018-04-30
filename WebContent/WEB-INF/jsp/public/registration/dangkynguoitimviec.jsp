@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <!-- article -->
 <style>
     .error{font-style: italic;font-size: 12px;}
@@ -17,9 +18,14 @@
 						</h1>
 					</a>
 					<!-- Header Mobile -->
-
+					<c:if test="${not empty msg}">
+                   		<p class="category success">${msg}</p>
+                   	</c:if>
+                   	<c:if test="${not empty msg1}">
+                   		<p class="category success">${msg1}</p>
+                   	</c:if>
 					<div class="marginCenter width620">
-						<form class="form-register paddingTop20" id="form-register" method="post" action="">
+						<form action="${ pageContext.request.contextPath }/ung-vien/add" method="POST" enctype="multipart/form-data" class="form-06b hidden-xs hidden-sm">
 							<div class="col-xs-12 padding0 form-group marginBottom5">
 								<p class="col-xs-12  text-center color-363636 fontSize28 marginBottom10 fontSize20-mb marginBottom15-mb">Người tìm việc đăng ký</p>
 								<div class="col-xs-12 error-info paddingLeft0 paddingRight0"></div>
@@ -31,7 +37,8 @@
 							<div class="col-xs-12 padding0 form-group pst-relative">
 								<label for="" class="col-sm-4 control-label label-register">Tên đăng nhập <span class="text-red">*</span></label>
 								<div class="col-sm-8 padding0 div-input-margin-moblile">
-									<input type="text" id="input-name" name="name" class="form-control input-register" />									        	        <p id="error_name" class="hidden text-red error"></p>
+									<input type="text" id="taiKhoan" name="taiKhoan" placeholder="Tên đăng nhập" class="form-control input-register" />
+										<p id="error_name" class="hidden text-red error"></p>
      									<p class="text-red hidden error_submit error italic fontSize12"></p>
 								</div>
 							</div>
@@ -41,56 +48,197 @@
 									Mật khẩu <span class="text-red">*</span>
 								</label>
 								<div class="col-sm-8 padding0 div-input-margin-moblile">
-									<input type="text" id="input-email" name="email" class="form-control input-register" />									        	        <p id="error_email" class="hidden text-red error"></p>
+									<input type="password" name="matKhau" class="form-control input-register" placeholder="Mật khẩu"/>
+										<p id="error_email" class="hidden text-red error"></p>
      									<p class="text-red hidden error_submit error italic fontSize12"></p>
 								</div>
 							</div>
 
 							<div class="col-xs-12 padding0  form-group pst-relative">
-								<label for="" class="col-sm-4 control-label label-register">
+								<label class="col-sm-4 control-label label-register">
 									Nhập lại Mật khẩu <span class="text-red">*</span>
 								</label>
 								<div class="col-sm-8 padding0 div-input-margin-moblile">
-									<input type="text" id="input-email" name="email" class="form-control input-register" />									        	        <p id="error_email" class="hidden text-red error"></p>
+									<input type="password" name="re-pass" class="form-control input-register" placeholder="Nhập lại mật khẩu"/>
+										<p id="error_email" class="hidden text-red error"></p>
+     									<p class="text-red hidden error_submit error italic fontSize12"></p>
+								</div>
+							</div>
+							
+							
+							
+							<div class="col-xs-12 padding0  form-group pst-relative">
+								<label for="" class="col-sm-4 control-label label-register">
+									Họ và tên <span class="text-red">*</span>
+								</label>
+								<div class="col-sm-8 padding0 div-input-margin-moblile">
+									<input type="text" id="hoTen" name="hoTen" class="form-control input-register" placeholder="Họ và tên"/>
+										<p id="error_mobile" class="hidden text-red error"></p>
      									<p class="text-red hidden error_submit error italic fontSize12"></p>
 								</div>
 							</div>
 							
 							<div class="col-xs-12 padding0  form-group pst-relative">
 								<label for="" class="col-sm-4 control-label label-register">
+									Ngày sinh <span class="text-red">*</span>
+								</label>
+								<div class="col-sm-8 padding0 div-input-margin-moblile">
+									<input type="date" id="ngaySinh" name="ngaySinh" class="form-control input-register" />
+										<p id="error_mobile" class="hidden text-red error"></p>
+     									<p class="text-red hidden error_submit error italic fontSize12"></p>
+								</div>
+							</div>
+							<div class="col-xs-12 padding0  form-group pst-relative">
+								<label for="" class="col-sm-4 control-label label-register">
+									Avatar <span class="text-red">*</span>
+								</label>
+								<div class="col-sm-8 padding0 div-input-margin-moblile">
+									<input type="file" id="hinhanh" name="anhdaidien" class="form-control input-register" />
+										<p id="error_mobile" class="hidden text-red error"></p>
+     									<p class="text-red hidden error_submit error italic fontSize12"></p>
+								</div>
+							</div>
+							<div class="col-xs-12 padding0  form-group pst-relative">
+								<label for="" class="col-sm-4 control-label label-register">
+									Giới tính <span class="text-red">*</span>
+								</label>
+								<div class="col-sm-8 padding0 div-input-margin-moblile">
+									<select class="form-control input-register" name="gioiTinh">
+											<option value="" class="form-control border-input">---- Chọn giới tính ----</option>
+                                        	<option value="Nam" class="form-control border-input">Nam</option>
+                                        	<option value="Nữ" class="form-control border-input">Nữ</option>
+                                        	
+									</select>
+										<p id="error_mobile" class="hidden text-red error"></p>
+     									<p class="text-red hidden error_submit error italic fontSize12"></p>
+								</div>
+							</div>
+							<div class="col-xs-12 padding0  form-group pst-relative">
+								<label for="" class="col-sm-4 control-label label-register">
 									Số điện thoại <span class="text-red">*</span>
 								</label>
 								<div class="col-sm-8 padding0 div-input-margin-moblile">
-									<input type="text" id="input-sdt" name="mobile" class="form-control input-register" />									        	        <p id="error_mobile" class="hidden text-red error"></p>
+									<input type="text" id="dienThoai" name="dienThoai" class="form-control input-register" placeholder="Số điện thoại"/>
+									<p id="error_mobile" class="hidden text-red error"></p>
+     								<p class="text-red hidden error_submit error italic fontSize12"></p>
+								</div>
+							</div>
+							<div class="col-xs-12 padding0  form-group pst-relative">
+								<label for="" class="col-sm-4 control-label label-register">
+									Email <span class="text-red">*</span>
+								</label>
+								<div class="col-sm-8 padding0 div-input-margin-moblile">
+									<input type="text" id="email" name="email" class="form-control input-register" placeholder="Email"/>
+										<p id="error_mobile" class="hidden text-red error"></p>
      									<p class="text-red hidden error_submit error italic fontSize12"></p>
 								</div>
 							</div>
-
-							<div class="col-xs-12 padding0  form-group ">
-								<label for="" class="col-sm-4 control-label label-register">Mật Khẩu <span class="text-red">*</span></label>
-								<div class="col-sm-8 padding0 div-input-margin-moblile pst-relative">
-									<input type="password" id="input-password" name="password" class="form-control input-register" required="required" />									<!-- <div class="border-none button-input h40">
-										<div class="bg-password top12" id="bg-password"></div>
-										<div class="bg-password-show top12" id="bg-password-show"></div>
-									</div> -->
-									        	        <p id="error_password" class="hidden text-red error"></p>
-     									<p class="text-red hidden error_submit error italic fontSize12"></p>
-                                                                            <i class="fontSize12 note">Mật khẩu tối thiểu 8 ký tự, có ít nhất 1 ký tự chữ và 1 ký tự số.</i>
-                                    								</div>
-							</div>
-
-							<div class="col-xs-12 padding0  form-group ">
-								<label for="" class="col-sm-4 control-label label-register">Nhập lại mật Khẩu <span class="text-red">*</span></label>
-								<div class="col-sm-8 padding0 div-input-margin-moblile pst-relative">
-									<input type="password" id="input-retype-password" name="retype_password" class="form-control input-register" required="required" />									<!-- <div class="border-none button-input h40">
-										<div class="bg-password top12" id="bg-password2"></div>
-										<div class="bg-password-show top12" id="bg-password-show2"></div>
-									</div> -->
-									        	        <p id="error_retype_password" class="hidden text-red error"></p>
+							<div class="col-xs-12 padding0  form-group pst-relative">
+								<label for="" class="col-sm-4 control-label label-register">
+									Số chứng minh thư <span class="text-red">*</span>
+								</label>
+								<div class="col-sm-8 padding0 div-input-margin-moblile">
+									<input type="text" id="cMND" name="cMND" class="form-control input-register" placeholder="Số chứng minh thư"/>
+										<p id="error_mobile" class="hidden text-red error"></p>
      									<p class="text-red hidden error_submit error italic fontSize12"></p>
 								</div>
 							</div>
-
+							<div class="col-xs-12 padding0  form-group pst-relative">
+								<label for="" class="col-sm-4 control-label label-register">
+									Chi tiết địa chỉ <span class="text-red">*</span>
+								</label>
+								<div class="col-sm-8 padding0 div-input-margin-moblile">
+									<input type="text" id="diaChi" name="diaChi" class="form-control input-register" placeholder="Chi tiết địa chỉ"/>
+										<p id="error_mobile" class="hidden text-red error"></p>
+     									<p class="text-red hidden error_submit error italic fontSize12"></p>
+								</div>
+							</div>
+							<div class="col-xs-12 padding0  form-group pst-relative">
+								<label for="" class="col-sm-4 control-label label-register">
+									Tỉnh/Thành phố <span class="text-red">*</span>
+								</label>
+								<div class="col-sm-8 padding0 div-input-margin-moblile">
+									<select class="form-control input-register" name="tinh">
+										<option value="" class="form-control border-input">---- Chọn Tỉnh/Thành phố ----</option>
+										<c:forEach items="${listCity}" var="item">
+                                        	<option value="${item.tenThanhPho }" class="form-control border-input">${item.tenThanhPho }</option>
+                                       	</c:forEach>
+									</select>
+										<p id="error_mobile" class="hidden text-red error"></p>
+     									<p class="text-red hidden error_submit error italic fontSize12"></p>
+								</div>
+							</div>
+							<div class="col-xs-12 padding0  form-group pst-relative">
+								<label for="" class="col-sm-4 control-label label-register">
+									Trình độ văn hóa <span class="text-red">*</span>
+								</label>
+								<div class="col-sm-8 padding0 div-input-margin-moblile">
+									<select class="form-control input-register" name="maTrinhDoVanHoa">
+										<option value="" class="form-control border-input">---- Chọn Trình độ văn hóa ----</option>
+										<c:forEach items="${listTrinhDoVanHoa}" var="item">
+                                        	<option value="${item.maTDVH }" class="form-control border-input">${item.moTaTDVH }</option>
+                                       	</c:forEach>
+									</select>
+										<p id="error_mobile" class="hidden text-red error"></p>
+     									<p class="text-red hidden error_submit error italic fontSize12"></p>
+								</div>
+							</div>
+							
+							<div class="col-xs-12 padding0  form-group pst-relative">
+								<label for="" class="col-sm-4 control-label label-register">
+									Trình độ chuyên môn - kỹ thuật <span class="text-red">*</span>
+								</label>
+								<div class="col-sm-8 padding0 div-input-margin-moblile">
+									<select class="form-control input-register" name="maTrinhDoChuyenMonKyThuat">
+										<option value="" class="form-control border-input">---- Chọn Trình độ chuyên môn kỹ thuật ----</option>
+										<c:forEach items="${listTrinhDoChuyenMonKyThuat}" var="item">
+                                        	<option value="${item.maTDCMKT }" class="form-control border-input">${item.moTaTDCMKT }</option>
+                                       	</c:forEach>
+									</select>
+										<p id="error_mobile" class="hidden text-red error"></p>
+     									<p class="text-red hidden error_submit error italic fontSize12"></p>
+								</div>
+							</div>
+							<div class="col-xs-12 padding0  form-group pst-relative">
+								<label for="" class="col-sm-4 control-label label-register">
+									Trình độ ngoại ngữ <span class="text-red">*</span>
+								</label>
+								<div class="col-sm-8 padding0 div-input-margin-moblile">
+									<select class="form-control input-register" name="maTrinhDoNgoaiNgu">
+										<option value="" class="form-control border-input">---- Chọn Trình độ ngoại ngữ ----</option>
+										<c:forEach items="${listTrinhDoNgoaiNgu}" var="item">
+                                        	<option value="${item.maTDNN }" class="form-control border-input">${item.moTaTDNN }</option>
+                                       	</c:forEach>
+									</select>
+										<p id="error_mobile" class="hidden text-red error"></p>
+     									<p class="text-red hidden error_submit error italic fontSize12"></p>
+								</div>
+							</div>
+							<div class="col-xs-12 padding0  form-group pst-relative">
+								<label for="" class="col-sm-4 control-label label-register">
+									Trình độ tin học <span class="text-red">*</span>
+								</label>
+								<div class="col-sm-8 padding0 div-input-margin-moblile">
+									<select class="form-control input-register" name="maTrinhDoTinHoc">
+										<option value="" class="form-control border-input">---- Chọn Trình độ tin học ----</option>
+										<c:forEach items="${listTrinhDoTinHoc}" var="item">
+                                        	<option value="${item.maTDTH }" class="form-control border-input">${item.moTaTDTH }</option>
+                                       	</c:forEach>
+									</select>
+										<p id="error_mobile" class="hidden text-red error"></p>
+     									<p class="text-red hidden error_submit error italic fontSize12"></p>
+								</div>
+							</div>
+							<div class="col-xs-12 padding0  form-group pst-relative">
+								<label for="" class="col-sm-4 control-label label-register">
+									Kinh nghiệm làm việc <span class="text-red">*</span>
+								</label>
+								<div class="col-sm-8 padding0 div-input-margin-moblile">
+									<textarea rows="5" cols="20" class="form-control input-register" name="kinhNghiemLamViec" placeholder="Kinh nghiệm làm việc"></textarea>
+										<p id="error_mobile" class="hidden text-red error"></p>
+     									<p class="text-red hidden error_submit error italic fontSize12"></p>
+								</div>
+							</div>
 							<div class="col-xs-12 form-group padding0 marginBottom20 marginBottom10-mb marginTop10">
 								<p class="fontSize13 text-center font400 text-left-mb div-input-margin-moblile fontSize14-mb">
 									Bằng việc bấm nút "ĐĂNG KÝ", bạn đã đồng ý với <a href="/asset/default/upload/dieu_khoan_su_dung.pdf" target="_blank" title="" style="color: #337ab7">thỏa thuận sử dụng</a> của Việc Tốt Nhất
@@ -99,28 +247,12 @@
 							<div class="col-xs-12 form-group padding0 marginBottom25 marginBottom0-mb">
 								<label for="" class="col-sm-4 control-label label-register hidden-xs">&nbsp</label>
 								<div class="col-sm-8 padding0 div-input-margin-moblile">
-									<button type="button" class="btn btn-default button-login fontSize16 button-register" id="login" >ĐĂNG KÝ</button>
+									
+									<input type="submit" class="btn btn-default button-login fontSize16 button-register" value="ĐĂNG KÝ"/>
 								</div>
 							</div>
 							<div class="col-xs-12 form-group padding0 marginBottom25 div-hr">
 								<hr class="hr-login marginTop0 marginBottom0">
-							</div>
-							<div class="col-xs-12 form-group padding0 marginBottom0">
-								<label for="" class="col-sm-4 control-label label-register paddingTop15 label-register-or"><i class="hidden-xs">Hoặc</i> <i class="visible-xs font400">Hoặc đăng ký nhanh bằng: </i></label>
-								<div class="col-sm-8 padding0 div-input-margin-moblile">
-									<div>
-										<button type="button" class="btn btn-fb-login w325 w100p-mb" onclick="window.open('https://www.facebook.com/dialog/oauth?client_id=547711688745311&scope=email&redirect_uri=https://viectotnhat.com/dang-nhap/nguoi-tim-viec/login-facebook','FacebookLogin','width=1100','height = 700');">
-											<i class="fb-icon"></i>Đăng ký <span class="hidden-xs">nhanh</span> bằng Facebook
-										</button>
-									</div>
-
-									<div class="marginTop15">
-										<button type="button" class="btn btn-gg-login w325 w100p-mb" onclick="window.open('https://accounts.google.com/o/oauth2/auth?client_id=677220394175-6pgqnetodq62mt60cb755c7ei3mdeao2.apps.googleusercontent.com&amp;response_type=code&amp;scope=email&amp;redirect_uri=https://viectotnhat.com/dang-nhap/nguoi-tim-viec/login-google','GoogleLogin','width=1100','height = 700');">
-											<i class="gg-icon"></i>Đăng ký <span class="hidden-xs">nhanh</span> bằng Google +
-										</button>
-									</div>
-
-								</div>
 							</div>
 						</form>
 					</div>
@@ -140,7 +272,7 @@
 </article>
 <!-- /article -->
 
-<script>
+<!-- <script>
 	$(document).ready(function(){
 	    $("#bg-password").click(function(){
 	        $("#password").attr('type', 'text');
@@ -250,5 +382,5 @@
 			}
 		});
 
-	});
+	}); -->
 </script> 
