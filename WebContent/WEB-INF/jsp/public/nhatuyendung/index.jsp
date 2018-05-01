@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@include file="/templates/taglib.jsp" %>
    <!-- article -->
 <style>
     .select2-container--default .select2-selection--multiple .select2-selection__rendered{
@@ -381,22 +382,19 @@
                                 <div class="row" id="menungang">
                                     <div class="job-name job-name-not-visited list">
                                         <div class="col-xs-2" style="width: 13%;">
-                                            <a href="https://viectotnhat.com/nha-tuyen-dung/dang-tin"><i class="icon-sprite-new icon-upload-black"></i>&nbsp;&nbsp;&nbsp;Đăng tin</a>
+                                            <a href="${pageContext.request.contextPath }/nha-tuyen-dung/dang-tin"><i class="icon-sprite-new icon-upload-black"></i>&nbsp;&nbsp;&nbsp;Đăng tin</a>
                                         </div>
                                         <div class="col-xs-2 padding0" style="width: 17%;">
-                                            <a href="https://viectotnhat.com/nha-tuyen-dung/tai-khoan"><i class="icon-24 icon-user-small"></i>&nbsp;&nbsp;Quản lý tài khoản</a>
+                                            <a href="${pageContext.request.contextPath }/nha-tuyen-dung/tai-khoan"><i class="icon-24 icon-user-small"></i>&nbsp;&nbsp;Quản lý tài khoản</a>
                                         </div>
                                         <div class="col-xs-2 padding0" style="width: 16%;">
-                                            <a href="https://viectotnhat.com/nha-tuyen-dung/quan-ly-tin-dang"><i class="icon-sprite-new icon-ql-ttd"></i>&nbsp;&nbsp;Quản lý tin đăng</a>
+                                            <a href="${pageContext.request.contextPath }/nha-tuyen-dung/quan-ly-tin-dang"><i class="icon-sprite-new icon-ql-ttd"></i>&nbsp;&nbsp;Quản lý tin đăng</a>
                                         </div>
                                         <div class="col-xs-2 padding0" style="width: 17%;">
-                                            <a href="https://viectotnhat.com/nha-tuyen-dung/ho-so-da-ung-tuyen"><i class="icon-sprite-new icon-tick-new" style="margin-right: 0;left: 7px;"></i>&nbsp;&nbsp;Hồ sơ đã ứng tuyển</a>
+                                            <a href="${pageContext.request.contextPath }/nha-tuyen-dung/ho-so-da-ung-tuyen"><i class="icon-sprite-new icon-tick-new" style="margin-right: 0;left: 7px;"></i>&nbsp;&nbsp;Hồ sơ đã ứng tuyển</a>
                                         </div>
                                         <div class="col-xs-2 padding0" style="width: 14%;">
-                                            <a href="https://viectotnhat.com/nha-tuyen-dung/ho-so-da-luu"><i class="icon-24 icon-star-small"></i>&nbsp;&nbsp;&nbsp;Hồ sơ đã lưu</a>
-                                        </div>
-                                        <div class="col-xs-2 padding0" style="width: 19%;">
-                                            <a href="https://viectotnhat.com/nha-tuyen-dung/quan-ly-giay-phep-kinh-doanh"><i class="icon-24 icon-hs"></i>&nbsp;&nbsp;Giấy phép kinh doanh</a>
+                                            <a href="${pageContext.request.contextPath }/nha-tuyen-dung/ho-so-da-luu"><i class="icon-24 icon-star-small"></i>&nbsp;&nbsp;&nbsp;Hồ sơ đã lưu</a>
                                         </div>
                                     </div>
                                 </div>

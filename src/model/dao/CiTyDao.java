@@ -18,4 +18,9 @@ public class CiTyDao {
 		String sql="SELECT * from city";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<City>(City.class));
 	}
+
+	public City getItem(int city) {
+		String sql="select * from city where MaThanhPho=?";
+		return jdbcTemplate.queryForObject(sql, new Object[] {city},new BeanPropertyRowMapper<City>(City.class));
+	}
 }
