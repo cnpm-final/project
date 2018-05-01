@@ -13,7 +13,7 @@ import model.bean.User;
 public class UsersDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-<<<<<<< HEAD
+
 	
 	public List<User> getItemsNTD(){
 		String sql="select MaTK,TaiKhoan,MatKhau,HoTen,Email,avatar,DiaChi,maThanhPho,DienThoai,TenVietTat,NamThanhLap,Website,MaLoaiHinhDoanhNghiep,MaNN,MaNNN,Fax,SoLaoDong,NguoiDaiDien,ChucVuNguoiDaiDien,GioiThieuChung,NgayDangKy,MaQuyenHan from nguoi_dung ";
@@ -80,7 +80,7 @@ public class UsersDao {
 				user.getMaNN(),user.getMaNNN(),user.getFax(),user.getSoLaoDong(),user.getNguoiDaiDien(),user.getChucVuNguoiDaiDien(),user.getGioiThieuChung(),user.getMaTK()});
 	}
 	
-=======
+
 	public User getItem(String username){
 		String sql="SELECT * FROM nguoi_dung WHERE TaiKhoan like '"+username+"'";
 		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class));
@@ -91,5 +91,5 @@ public class UsersDao {
 				+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 				new Object[]{objItem.getTaiKhoan(), objItem.getMaTK(), objItem.getAvatar(), objItem.getHoTen(), objItem.getGioiTinh(), objItem.getEmail(), objItem.getDiaChi(), objItem.getDienThoai(), objItem.getNgaySinh(), objItem.getcMND(), objItem.getMaTrinhDoVanHoa(), objItem.getMaTrinhDoChuyenMonKyThuat(), objItem.getMaTrinhDoTinHoc(), objItem.getKinhNghiemLamViec()});
 	}
->>>>>>> e06001f25bcf31566e5395413f1c791a43ff4382
+
 }
