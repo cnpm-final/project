@@ -22,7 +22,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import constant.Defines;
-import model.bean.City;
+import model.bean.City;//aaaaaaaaaaaaa
 import model.bean.NganhNghe;
 import model.bean.User;
 import model.dao.CiTyDao;
@@ -281,7 +281,7 @@ public class PublicIndexController {
 			if(!fileName.isEmpty()) {
 				String appPath=request.getServletContext().getRealPath("");
 				String dirPath=appPath+Defines.DIR_UPLOAD;
-				File file=new File(dirPath+ File.separator+usersDao.getItem(userInfo.getMaTK()).getAvatar());
+				File file=new File(dirPath+ File.separator+usersDao.getItemNTD(userInfo.getMaTK()).getAvatar());
 				System.out.println(dirPath);
 				file.delete();
 				
@@ -301,12 +301,12 @@ public class PublicIndexController {
 					e.printStackTrace();
 				}
 			}else {
-				user.setAvatar(usersDao.getItem(userInfo.getMaTK()).getAvatar());
+				user.setAvatar(usersDao.getItemNTD(userInfo.getMaTK()).getAvatar());
 			}
 			user.setMaTK(userInfo.getMaTK());
 			if(usersDao.editItem(user)>0) {
 				session.removeAttribute("UserInfo");
-				session.setAttribute("UserInfo", usersDao.getItem(user.getMaTK()));
+				session.setAttribute("UserInfo", usersDao.getItemNTD(user.getMaTK()));
 				ra.addFlashAttribute("msg", Defines.SUSSES);
 			}else {
 				ra.addFlashAttribute("msg", Defines.ERROR);
