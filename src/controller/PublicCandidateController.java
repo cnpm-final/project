@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.File;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,51 +61,47 @@ public class PublicCandidateController {
 	
 	@RequestMapping(value="/dang-ky", method = RequestMethod.GET)
 	public String dangKyNTV(){
-		System.out.println("123456");
 		return "public.registration.dangkynguoitimviec";
 	}
 	@RequestMapping(value="/add", method = RequestMethod.POST)
-	public String dangKyNTV(@ModelAttribute("objItem") User objItem/*, @RequestParam("tinh") String tinh,
-			@RequestParam("anhdaidien") CommonsMultipartFile cmf, RedirectAttributes ra, 
-			HttpServletRequest request,ModelMap modelMap*/){
-		System.out.println(objItem.getEmail());
-//		System.out.println("123");
-//		if(userDao.getItem(objItem.getTaiKhoan()) != null) {
-//			modelMap.addAttribute("objItem", objItem);
-//			modelMap.addAttribute("usernameFail", "Tên đăng nhập đã tồn tại");
-//			return "public.registration.dangkynguoitimviec";
-//		}
-//		String fileName = cmf.getOriginalFilename();
-//		if(!fileName.isEmpty()){
-//			String appPath = request.getServletContext().getRealPath("");
-//			String dirPath = appPath + File.separator + DIR_UPLOAD;
-//			File saveDirPath = new File(dirPath);
-//			if(!saveDirPath.exists()){
-//				saveDirPath.mkdir();
-//			}
-//			String filePath = dirPath + File.separator + fileName;
-//			File fileUpload = new File(filePath);
-//			try{
-//				cmf.transferTo(fileUpload);
-//			}catch(Exception e){
-//				System.err.println(e.getMessage());
-//			}
-//			objItem.setAvatar(fileName);
-//		}else{
-//			objItem.setAvatar("");
-//		}
-//		objItem.setMatKhau(stringUtils.md5(objItem.getAvatar()));
-//		objItem.setDiaChi(tinh + " - " + objItem.getDiaChi());
-//		objItem.setMaQuyenHan(3);
-//		objItem.setTrangThaiTaiKhoan(1);
-//		if(userDao.addItem(objItem) > 0){
-//			ra.addFlashAttribute("msg", "1");
-//			return "redirect:/ung-vien/dang-ky";
-//		}else{
-//			ra.addFlashAttribute("msg1", "Đăng ký không thành công! Xin mời kiểm tra lại!");
-//			return "redirect:/ung-vien/dang-ky";
-//		}
-		return "public.registration.dangkynguoitimviec";
+	public String dangKyNTV( @ModelAttribute("objItem") User objItem,
+			@RequestParam("tinh") String tinh,@RequestParam("anhdaidien") CommonsMultipartFile cmf, RedirectAttributes ra,
+			HttpServletRequest request,ModelMap modelMap){	
+		/*if(userDao.getItem(objItem.getTaiKhoan()) != null) {
+			modelMap.addAttribute("objItem", objItem);
+			modelMap.addAttribute("usernameFail", "Tên đăng nhập đã tồn tại");
+			return "public.registration.dangkynguoitimviec";
+		}*/
+		String fileName = cmf.getOriginalFilename();
+		if(!fileName.isEmpty()){
+			String appPath = request.getServletContext().getRealPath("");
+			String dirPath = appPath + File.separator + DIR_UPLOAD;
+			File saveDirPath = new File(dirPath);
+			if(!saveDirPath.exists()){
+				saveDirPath.mkdir();
+			}
+			String filePath = dirPath + File.separator + fileName;
+			File fileUpload = new File(filePath);
+			try{
+				cmf.transferTo(fileUpload);
+			}catch(Exception e){
+				System.err.println(e.getMessage());
+			}
+			objItem.setAvatar(fileName);
+		}else{
+			objItem.setAvatar("");
+		}
+		objItem.setMatKhau(stringUtils.md5(objItem.getAvatar()));
+		objItem.setDiaChi(tinh + " - " + objItem.getDiaChi());
+		objItem.setMaQuyenHan(3);
+		objItem.setTrangThaiTaiKhoan(1);
+		if(userDao.addItem(objItem) > 0){
+			ra.addFlashAttribute("msg", "1");
+			return "redirect:/ung-vien/dang-ky";
+		}else{
+			ra.addFlashAttribute("msg1", "Đăng ký không thành công! Xin mời kiểm tra lại!");
+			return "redirect:/ung-vien/dang-ky";
+		}
 	}
 	/*@ModelAttribute
 	public void addCommonsObject(ModelMap modelMap) {

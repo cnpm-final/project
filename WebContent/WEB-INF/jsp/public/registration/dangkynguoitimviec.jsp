@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@include file="/templates/taglib.jsp" %>
     <!-- article -->
 <style>
     .error{font-style: italic;font-size: 12px;}
@@ -174,7 +174,7 @@
 								</label>
 								<div class="col-sm-8 padding0 div-input-margin-moblile">
 									<select class="form-control input-register" name="maTrinhDoVanHoa">
-										<option value="" class="form-control border-input">---- Chọn Trình độ văn hóa ----</option>
+										<option value="0" class="form-control border-input">---- Chọn Trình độ văn hóa ----</option>
 										<c:forEach items="${listTrinhDoVanHoa}" var="item">
                                         	<option value="${item.maTDVH }" class="form-control border-input">${item.moTaTDVH }</option>
                                        	</c:forEach>
@@ -190,7 +190,7 @@
 								</label>
 								<div class="col-sm-8 padding0 div-input-margin-moblile">
 									<select class="form-control input-register" name="maTrinhDoChuyenMonKyThuat">
-										<option value="" class="form-control border-input">---- Chọn Trình độ chuyên môn kỹ thuật ----</option>
+										<option value="0" class="form-control border-input">---- Chọn Trình độ chuyên môn kỹ thuật ----</option>
 										<c:forEach items="${listTrinhDoChuyenMonKyThuat}" var="item">
                                         	<option value="${item.maTDCMKT }" class="form-control border-input">${item.moTaTDCMKT }</option>
                                        	</c:forEach>
@@ -205,7 +205,7 @@
 								</label>
 								<div class="col-sm-8 padding0 div-input-margin-moblile">
 									<select class="form-control input-register" name="maTrinhDoNgoaiNgu">
-										<option value="" class="form-control border-input">---- Chọn Trình độ ngoại ngữ ----</option>
+										<option value="0" class="form-control border-input">---- Chọn Trình độ ngoại ngữ ----</option>
 										<c:forEach items="${listTrinhDoNgoaiNgu}" var="item">
                                         	<option value="${item.maTDNN }" class="form-control border-input">${item.moTaTDNN }</option>
                                        	</c:forEach>
@@ -220,7 +220,7 @@
 								</label>
 								<div class="col-sm-8 padding0 div-input-margin-moblile">
 									<select class="form-control input-register" name="maTrinhDoTinHoc">
-										<option value="" class="form-control border-input">---- Chọn Trình độ tin học ----</option>
+										<option value="0" class="form-control border-input">---- Chọn Trình độ tin học ----</option>
 										<c:forEach items="${listTrinhDoTinHoc}" var="item">
                                         	<option value="${item.maTDTH }" class="form-control border-input">${item.moTaTDTH }</option>
                                        	</c:forEach>
@@ -247,8 +247,7 @@
 							<div class="col-xs-12 form-group padding0 marginBottom25 marginBottom0-mb">
 								<label for="" class="col-sm-4 control-label label-register hidden-xs">&nbsp</label>
 								<div class="col-sm-8 padding0 div-input-margin-moblile">
-									
-									<input type="submit" class="btn btn-default button-login fontSize16 button-register" value="ĐĂNG KÝ"/>
+									<button type="submit" class="btn btn-default button-login fontSize16  btn-green-ntd"  >ĐĂNG KÝ</button>
 								</div>
 							</div>
 							<div class="col-xs-12 form-group padding0 marginBottom25 div-hr">
@@ -382,5 +381,5 @@
 			}
 		});
 
-	}); -->
-</script> 
+	}); 
+</script> -->

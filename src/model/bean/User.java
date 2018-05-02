@@ -1,5 +1,6 @@
 package model.bean;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class User {
@@ -11,7 +12,7 @@ public class User {
 	private String email;
 	private String diaChi;
 	private String dienThoai;
-	private Timestamp ngaySinh;
+	private Date ngaySinh;
 	private String gioiTinh;
 	private String cMND;
 	private int maTrinhDoVanHoa;
@@ -43,7 +44,7 @@ public class User {
 
 	//constructor nguoitimviec
 	public User(int maTK, String taiKhoan, String matKhau, String avatar, String hoTen, String email, String diaChi,
-			String dienThoai, Timestamp ngaySinh, String gioiTinh, String cMND, int maTrinhDoVanHoa,
+			String dienThoai, Date ngaySinh, String gioiTinh, String cMND, int maTrinhDoVanHoa,
 			int maTrinhDoChuyenMonKyThuat, int maTrinhDoNgoaiNgu, int maTrinhDoTinHoc, String kinhNghiemLamViec,
 			int trangThaiTaiKhoan, int maQuyenHan, Timestamp lanCuoiDangNhap, Timestamp lanCuoiChinhSua) {
 		super();
@@ -193,11 +194,11 @@ public class User {
 		this.dienThoai = dienThoai;
 	}
 
-	public Timestamp getNgaySinh() {
+	public Date getNgaySinh() {
 		return ngaySinh;
 	}
 
-	public void setNgaySinh(Timestamp ngaySinh) {
+	public void setNgaySinh(Date ngaySinh) {
 		this.ngaySinh = ngaySinh;
 	}
 
