@@ -23,12 +23,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import constant.Defines;
 import model.bean.City;//aaaaaaaaaaaaa
+import model.bean.HoSoNhaTuyenDung;
 import model.bean.NganhNghe;
+import model.bean.TrinhDoTinHoc;
 import model.bean.User;
+import model.dao.ChucDanhDao;
 import model.dao.CiTyDao;
+import model.dao.HoSoTuyenDungDao;
 import model.dao.LoaiHinhDoanhNghiepDao;
+import model.dao.MucLuongDao;
 import model.dao.NganhNgheDao;
 import model.dao.NhomNganhNgheDao;
+import model.dao.ThoiGianLamViecDao;
+import model.dao.TrinhDoChuyenMonKyThuatDao;
+import model.dao.TrinhDoNgoaiNguDao;
+import model.dao.TrinhDoTinHocDao;
 import model.dao.UsersDao;
 import util.SlugUtil;
 import util.StringUtil;
@@ -48,6 +57,20 @@ public class PublicIndexController {
 	private NganhNgheDao nganhNgheDao;
 	@Autowired
 	private UsersDao usersDao;
+	@Autowired
+	private ChucDanhDao chucDanhDao;
+	@Autowired
+	private MucLuongDao mucLuongDao;
+	@Autowired
+	private ThoiGianLamViecDao thoiGianLamViecDao;
+	@Autowired
+	private TrinhDoChuyenMonKyThuatDao trinhDoChuyenMonKyThuatDao;
+	@Autowired
+	private TrinhDoNgoaiNguDao trinhDoNgoaiNguDao;
+	@Autowired
+	private TrinhDoTinHocDao trinhDoTinHocDao;
+	@Autowired
+	private HoSoTuyenDungDao hoSoTuyenDungDao;
 	
 	
 	 @ModelAttribute
@@ -61,6 +84,12 @@ public class PublicIndexController {
 		modelMap.addAttribute("nhomNganhNgheDao", nhomNganhNgheDao);
 		modelMap.addAttribute("nganhNgheDao", nganhNgheDao);
 		modelMap.addAttribute("listNganhNghe", nganhNgheDao.getItems());
+		modelMap.addAttribute("listChucDanh", chucDanhDao.getItems());
+		modelMap.addAttribute("listMucLuong", mucLuongDao.getItems());
+		modelMap.addAttribute("listThoiGianLamViec", thoiGianLamViecDao.getItems());
+		modelMap.addAttribute("listTrinhDoChuyenMonKyThuat", trinhDoChuyenMonKyThuatDao.getItems());
+		modelMap.addAttribute("listTrinhDoNgoaiNgu", trinhDoNgoaiNguDao.getItems());
+		modelMap.addAttribute("listTrinhDoTinHoc", trinhDoTinHocDao.getItems());
 	}
 	 
 	 //controller ajax select ngành nghề theo nhóm ngành nghề nghề
@@ -257,9 +286,38 @@ public class PublicIndexController {
 	public String nhatuyendung_add(){
 		return "public.nhatuyendung.records_management.add";
 	}
+	@RequestMapping(value="/nha-tuyen-dung/tao-ho-so-tuyen-dung", method=RequestMethod.POST)
+	public String nhatuyendung_add(@ModelAttribute("hso") HoSoNhaTuyenDung hso ,@RequestParam("min_kickback") int min_kickback,
+			@RequestParam("max_kickback") int max_kickback,RedirectAttributes ra,HttpSession session,HttpServletRequest  request){
+		System.out.println(hso.getGioiTinhTuyenDung());
+		System.out.println(hso.getNgayDuTuyen());
+		System.out.println(max_kickback);
+		//set trang thai  gui phe duyet : 0:luu nhap ko gui phe duyet,1:gui phe duyet
+		hso.setTrangThaiGuiPheDuyet(0);
+		//set do tuoi lao ddong
+		String dtuoi=min_kickback+" - "+max_kickback;
+		hso.setDoTuoiTuyenDung(dtuoi);
+		//set trang thai phe duyet
+		hso.setTrangThaiPheDuyet(0);
+		//set  phe duyet boi
+		hso.setPheDuyetBoi(0);
+		//set ma tai khoan tao tin
+		session=request.getSession();
+		User user=(User)session.getAttribute("UserInfo");
+		hso.setMaTKTao(user.getMaTK());
+		if(hoSoTuyenDungDao.addItem(hso)>0) {
+			ra.addFlashAttribute("msg", Defines.SUSSES);
+		}else {
+			ra.addFlashAttribute("msg", Defines.ERROR);
+		}
+		return "redirect:/nha-tuyen-dung/quan-ly-tin-dang";
+	}
 	//danh sách  tin tuyển dụng đã tạo
 		@RequestMapping(value="/nha-tuyen-dung/quan-ly-tin-dang", method=RequestMethod.GET)
-		public String nhatuyendung_listView(){
+		public String nhatuyendung_listView(ModelMap modelMap,HttpSession session,HttpServletRequest request){
+		session=request.getSession();	
+		User user=(User)session.getAttribute("UserInfo");
+		modelMap.addAttribute("listHoSoByMaTK", hoSoTuyenDungDao.getItems(user.getMaTK())	);
 			return "public.nhatuyendung.records_management.listview";
 		}
 	
@@ -340,7 +398,23 @@ public class PublicIndexController {
 			return ajax_respone;
 			
 		}
-	
+		//ajax xóa tin tuyển dụng
+	@RequestMapping(value= {"/nha-tuyen-dung/quan-ly-tin-dang/del"}, method=RequestMethod.GET,produces ="application/json;charset=UTF-8")
+	public @ResponseBody String del_NTD(HttpServletRequest request,ModelMap modelMap,HttpSession session) {
+		
+		int maHSTD=Integer.parseInt(request.getParameter("maHSTD"));
+		System.out.println(maHSTD);
+		
+		String ajax_respone="";
+		if(hoSoTuyenDungDao.delItem(maHSTD)>0) {
+			ajax_respone="1";
+		}else {
+			ajax_respone="0";
+		}
+
+		return ajax_respone;
+		
+	}
 	//quản lý hồ ứng tuyển
 	
 	@RequestMapping(value="/nha-tuyen-dung/ho-so-da-ung-tuyen", method=RequestMethod.GET)
