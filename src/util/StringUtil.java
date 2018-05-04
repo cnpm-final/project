@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class StringUtil {
 	
-	public String md5(String str){
+	public static String md5(String str){
 		MessageDigest md;
 		String result = "";
 		try {

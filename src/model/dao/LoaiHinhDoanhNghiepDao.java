@@ -18,4 +18,9 @@ public class LoaiHinhDoanhNghiepDao {
 		String sql="select * from loai_hinh_doanh_nghiep";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<LoaiHinhDoanhNghiep>(LoaiHinhDoanhNghiep.class));
 	}
+	
+	public LoaiHinhDoanhNghiep getItemById(int id) {
+		String sql="select * from loai_hinh_doanh_nghiep where MaLHDN=? ";
+		return jdbcTemplate.queryForObject(sql, new Object[] {id},new BeanPropertyRowMapper<LoaiHinhDoanhNghiep>(LoaiHinhDoanhNghiep.class));
+	}
 }

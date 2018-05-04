@@ -11,6 +11,7 @@ public class User {
 	private String hoTen;
 	private String email;
 	private String diaChi;
+	private int maThanhPho;
 	private String dienThoai;
 	private Date ngaySinh;
 	private String gioiTinh;
@@ -128,6 +129,16 @@ public class User {
 		this.gioiThieuChung = gioiThieuChung;
 		this.nguoiDaiDien = nguoiDaiDien;
 		this.chucVuNguoiDaiDien = chucVuNguoiDaiDien;
+	}
+
+	
+	
+	public int getMaThanhPho() {
+		return maThanhPho;
+	}
+
+	public void setMaThanhPho(int maThanhPho) {
+		this.maThanhPho = maThanhPho;
 	}
 
 	public int getMaTK() {

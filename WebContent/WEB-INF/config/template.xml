@@ -63,6 +63,10 @@
    <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
     <put-attribute name="body" value="/WEB-INF/jsp/public/nguoitimviec/quanlyhoso/add.jsp" />
   </definition>
+  <definition name="public.nguoitimviec.account_management.view_dangkythanhcong" extends="public.template">
+   <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/nguoitimviec/view_dangkythanhcong.jsp" />
+  </definition>
   <definition name="public.nguoitimviec.records_management.listhosodatao" extends="public.template">
    <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
     <put-attribute name="body" value="/WEB-INF/jsp/public/nguoitimviec/quanlyhoso/listhosodatao.jsp" />
@@ -74,23 +78,31 @@
   
   <!-- Nha tuyen dung-tin đăng -->
   <definition name="public.nhatuyendung.records_management.add" extends="public.template">
-   <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
+   <put-attribute name="header" value="/WEB-INF/templates/public/header_NTD.jsp" />
     <put-attribute name="body" value="/WEB-INF/jsp/public/nhatuyendung/quanlytindang/add.jsp" />
   </definition>
   <definition name="public.nhatuyendung.records_management.listview" extends="public.template">
-   <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
+   <put-attribute name="header" value="/WEB-INF/templates/public/header_NTD.jsp" />
     <put-attribute name="body" value="/WEB-INF/jsp/public/nhatuyendung/quanlytindang/listtindang.jsp" />
   </definition>
   
   <!-- Nha tuyển dụng-tài khoản -->
   <definition name="public.nhatuyendung.account_management.view" extends="public.template">
-   <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
+   <put-attribute name="header" value="/WEB-INF/templates/public/header_NTD.jsp" />
     <put-attribute name="body" value="/WEB-INF/jsp/public/nhatuyendung/quanlytaikhoan/view.jsp" />
   </definition>
-  
+  <definition name="public.nhatuyendung.account_management.edit" extends="public.template">
+   <put-attribute name="header" value="/WEB-INF/templates/public/header_NTD.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/nhatuyendung/quanlytaikhoan/edit.jsp" />
+  </definition>
+  <!-- Nhà tuyển dụng đăng ký thành công view -->
+  <definition name="public.nhatuyendung.account_management.view_dangkythanhcong" extends="public.template">
+   <put-attribute name="header" value="/WEB-INF/templates/public/header_NTD.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/nhatuyendung/view_dangkythanhcong.jsp" />
+  </definition>
   <!-- NHa tuyen dung- quan lý ung tuyen -->
   <definition name="public.nhatuyendung.job_seeker_management.view" extends="public.template">
-   <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
+   <put-attribute name="header" value="/WEB-INF/templates/public/header_NTD.jsp" />
     <put-attribute name="body" value="/WEB-INF/jsp/public/nhatuyendung/quanlyhosoungtuyen/view.jsp" />
   </definition>
   

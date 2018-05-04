@@ -28,8 +28,7 @@
 			value="org.springframework.web.servlet.view.tiles3.TilesView" />
 	</bean>
 
-	<bean id="SlugUtil" class="util.SlugUtil"></bean>
-	<bean id="StringUtil" class="util.StringUtil"></bean>
+	
 
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -41,6 +40,8 @@
 		<property name="urlPublic" value="/vieclamdanang/templates/public"></property>
 		<property name="urlAdmin" value="/vieclamdanang/templates/admin"></property>
 	</bean>
+	<bean id="SlugUtil" class="util.SlugUtil"></bean>
+	<bean id="StringUtil" class="util.StringUtil"></bean>
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename">

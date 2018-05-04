@@ -29,7 +29,7 @@
             <!-- LOGIN -->
             <div class="dn-dk-login login_acc_v2" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="login"><a href="/dang-nhap/lua-chon" rel="nofollow"><span class=" icon-24-white icon-user-white"></span> Đăng nhập</a></li>
+                    <li class="login"><a href="${pageContext.request.contextPath }/dang-nhap/lua-chon" rel="nofollow"><span class=" icon-24-white icon-user-white"></span> Đăng nhập</a></li>
                 </ul>
             </div>
             <!-- LOGIN -->

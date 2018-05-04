@@ -25,7 +25,7 @@
                    		<p class="category success">${msg1}</p>
                    	</c:if>
 					<div class="marginCenter width620">
-						<form action="${ pageContext.request.contextPath }/ung-vien/add" method="POST" enctype="multipart/form-data" class="form-06b hidden-xs hidden-sm">
+						<form action="${ pageContext.request.contextPath }/nguoi-tim-viec/dang-ky" method="POST" enctype="multipart/form-data" class="form-06b hidden-xs hidden-sm">
 							<div class="col-xs-12 padding0 form-group marginBottom5">
 								<p class="col-xs-12  text-center color-363636 fontSize28 marginBottom10 fontSize20-mb marginBottom15-mb">Người tìm việc đăng ký</p>
 								<div class="col-xs-12 error-info paddingLeft0 paddingRight0"></div>

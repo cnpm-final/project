@@ -17,4 +17,9 @@ public class NhomNganhNgheDao {
 		String sql="Select * from nhom_nganh_nghe";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<NhomNganhNghe>(NhomNganhNghe.class));
 	}
+	
+	public NhomNganhNghe getItemById(int id) {
+		String sql="select * from nhom_nganh_nghe where MaNNN=?";
+		return jdbcTemplate.queryForObject(sql,new Object[] {id},new BeanPropertyRowMapper<NhomNganhNghe>(NhomNganhNghe.class));
+	}
  }

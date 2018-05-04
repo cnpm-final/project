@@ -14,12 +14,12 @@
 
                             <div class="form-group">
                                 <label class="text-left pull-left" for="username">Tên đăng nhập</label>
-                                <input class="form-control" type="text" placeholder="Username" name="username">
+                                <input class="form-control" type="text" placeholder="Username" name="taiKhoan">
                             </div>
 
                             <div class="form-group">
                                 <label class="text-left pull-left" for="password">Mật Khẩu</label>
-                                <input class="form-control" type="password" placeholder="Password" name="password">
+                                <input class="form-control" type="password" placeholder="Password" name="matKhau">
                             </div>
 
                             <div class="action">

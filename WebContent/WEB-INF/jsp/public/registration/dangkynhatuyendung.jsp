@@ -17,7 +17,9 @@
 						<div class="marginCenter width620 particle">
 							<div class="header-form">
                                 Thông tin đăng nhập
-                                <div class="error-info"></div>
+                                <c:if test="${not empty msg }">
+                                <div class="error-info">${msg }</div>
+                                </c:if>
                             </div>
 
 							<div class="form-register form-register2">
@@ -108,7 +110,7 @@
 										phố&nbsp;<span class="text-red">*</span>
 									</label>
 									<div class="col-sm-8 padding0">
-										<select name="city"
+										<select name="maThanhPho"
 											class="select2  " 
 											style="width: 100%">
 											<option  value="">Chọn tỉnh thành</option>

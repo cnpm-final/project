@@ -67,7 +67,7 @@
                                         </li>
                                     </ul>
 
-                                    <a href="/dang-ky/nha-tuyen-dung-dang-ky" class="btn btn-green-56 uppercase w100p marginTop10 btn-green-ntd">
+                                    <a href="${pageContext.request.contextPath }/dang-ky/nha-tuyen-dung-dang-ky" class="btn btn-green-56 uppercase w100p marginTop10 btn-green-ntd">
                                         Nhà tuyển dụng Đăng ký
                                         <i class="icon-sprite-new icon-next-white"></i>
                                     </a>
@@ -80,7 +80,7 @@
 
                     <div class="visible-xs pl12mb pr12mb">
                         <div class="marginTop20">
-                            <a href="/dang-ky/nguoi-tim-viec" class="btn-ntv-big">
+                            <a href="${pageContext.request.contextPath }/dang-ky/nguoi-tim-viec" class="btn-ntv-big">
                                 <i class="icon-ntv"></i>
                                 NGƯỜI TÌM VIỆC<br>
                                 <span class="fontSize24 block marginTop5">ĐĂNG KÝ</span>
@@ -88,7 +88,7 @@
                         </div>
 
                         <div class="marginTop20">
-                            <a href="/dang-ky/nha-tuyen-dung-dang-ky" class="btn-ntv-big bg-ntd">
+                            <a href="${pageContext.request.contextPath }/dang-ky/nha-tuyen-dung-dang-ky" class="btn-ntv-big bg-ntd">
                                 <i class="icon-ntd"></i>
                                 NHÀ TUYỂN DỤNG<br>
                                 <span class="fontSize24 block marginTop5">ĐĂNG KÝ</span>
@@ -100,7 +100,7 @@
                     <div class="marginCenter width620 marginTop20-mb">
                         <div class="marginTop35 marginCenter text-center register register2 logintk marginTop5-mb marginBottom35-mb">
                             <p class="txt-75">Bạn đã có tài khoản?
-                                <a href="/dang-nhap/lua-chon" class="txt-75 txt-ntv-mb">Đăng nhập</a>
+                                <a href="${pageContext.request.contextPath }/dang-nhap/lua-chon" class="txt-75 txt-ntv-mb">Đăng nhập</a>
                             </p>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                     <div class="clearfix"></div>
 
                     <div class="marginBottom15 txc marginTop10-mb pl12mb pr12mb visible-xs">
-                        <a href="/" class="btn btn-home-52 fontSize16 font600 w250 h48mb w100p-mb padding0 lh48mb btn-mb" id="login"> <i class="icon-sprite-new icon-home-white"></i>TRỞ VỀ TRANG CHỦ</a>
+                        <a href="${pageContext.request.contextPath }/" class="btn btn-home-52 fontSize16 font600 w250 h48mb w100p-mb padding0 lh48mb btn-mb" id="login"> <i class="icon-sprite-new icon-home-white"></i>TRỞ VỀ TRANG CHỦ</a>
                     </div>
                 </div>
             </div>
