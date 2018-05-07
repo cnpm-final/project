@@ -2,7 +2,9 @@
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +28,6 @@ import constant.Defines;
 import model.bean.City;//aaaaaaaaaaaaa
 import model.bean.HoSoNhaTuyenDung;
 import model.bean.NganhNghe;
-import model.bean.TrinhDoTinHoc;
 import model.bean.User;
 import model.dao.ChucDanhDao;
 import model.dao.CiTyDao;
@@ -71,7 +73,8 @@ public class PublicIndexController {
 	private TrinhDoTinHocDao trinhDoTinHocDao;
 	@Autowired
 	private HoSoTuyenDungDao hoSoTuyenDungDao;
-	
+	@Autowired
+	private SlugUtil slugUtil;
 	
 	 @ModelAttribute
 	public void addCommonsObject(ModelMap modelMap) {
@@ -90,6 +93,14 @@ public class PublicIndexController {
 		modelMap.addAttribute("listTrinhDoChuyenMonKyThuat", trinhDoChuyenMonKyThuatDao.getItems());
 		modelMap.addAttribute("listTrinhDoNgoaiNgu", trinhDoNgoaiNguDao.getItems());
 		modelMap.addAttribute("listTrinhDoTinHoc", trinhDoTinHocDao.getItems());
+		modelMap.addAttribute("usersDao", usersDao);
+		modelMap.addAttribute("mucLuongDao", mucLuongDao);
+		modelMap.addAttribute("cityDao", cityDao);
+		modelMap.addAttribute("listCity", cityDao.getItems());
+		modelMap.addAttribute("slugUtil", slugUtil);
+		modelMap.addAttribute("chucDanhDao", chucDanhDao);
+		modelMap.addAttribute("trinhDoChuyenMonKyThuatDao", trinhDoChuyenMonKyThuatDao);
+		modelMap.addAttribute("thoiGianLamViecDao", thoiGianLamViecDao);
 	}
 	 
 	 //controller ajax select ngành nghề theo nhóm ngành nghề nghề
@@ -98,7 +109,6 @@ public class PublicIndexController {
 	public @ResponseBody String selectNganhNghe(HttpServletRequest request,ModelMap modelMap) {
 		int maNNN=Integer.parseInt(request.getParameter("maNNN"));
 		List<NganhNghe> listNganhNghe=nganhNgheDao.getItemsByMaNNN(maNNN);
-		
 		ObjectMapper objectMapper=new ObjectMapper();
 		String ajax_respone="";
 		try {
@@ -111,7 +121,8 @@ public class PublicIndexController {
 			
 	}
 	@RequestMapping(value="", method=RequestMethod.GET)
-	public String index(){
+	public String index(ModelMap modelMap){
+		modelMap.addAttribute("listNew", hoSoTuyenDungDao.getItemsMoi());
 		return "public.index.nguoitimviec";
 	}
 	@RequestMapping(value="/nha-tuyen-dung", method=RequestMethod.GET)
@@ -230,6 +241,7 @@ public class PublicIndexController {
 	public String loginNTD(@RequestParam("taiKhoan") String taiKhoan,@RequestParam("matKhau") String matKhau,HttpServletRequest request,HttpSession session,
 			RedirectAttributes ra){
 		String mk=StringUtil.md5(matKhau);
+		
 		User user=usersDao.getItemLogin(taiKhoan,mk);
 	
 		if(user!=null) {
@@ -293,9 +305,9 @@ public class PublicIndexController {
 		System.out.println(hso.getNgayDuTuyen());
 		System.out.println(max_kickback);
 		//set trang thai  gui phe duyet : 0:luu nhap ko gui phe duyet,1:gui phe duyet
-		hso.setTrangThaiGuiPheDuyet(0);
+		hso.setTrangThaiGuiPheDuyet(1);
 		//set do tuoi lao ddong
-		String dtuoi=min_kickback+" - "+max_kickback;
+		String dtuoi=min_kickback+"-"+max_kickback;
 		hso.setDoTuoiTuyenDung(dtuoi);
 		//set trang thai phe duyet
 		hso.setTrangThaiPheDuyet(0);
@@ -320,7 +332,39 @@ public class PublicIndexController {
 		modelMap.addAttribute("listHoSoByMaTK", hoSoTuyenDungDao.getItems(user.getMaTK())	);
 			return "public.nhatuyendung.records_management.listview";
 		}
-	
+	//chỉnh sửa tin tuyển dụng đã tạo
+		@RequestMapping(value="/nha-tuyen-dung/quan-ly-tin-dang/edit/{id}", method=RequestMethod.GET)
+		public String nhatuyendung_tinDang_edit(@PathVariable("id") int maHSTD,ModelMap modelMap){
+			HoSoNhaTuyenDung hoSoTD=hoSoTuyenDungDao.getItemByMaHSTD(maHSTD);
+			String dt=hoSoTD.getDoTuoiTuyenDung();
+			String[] words=dt.split("-");
+			int dt_Tu=Integer.parseInt(words[0]);
+			int dt_den=Integer.parseInt(words[1]);
+			modelMap.addAttribute("doTuoiTu", dt_Tu);
+			modelMap.addAttribute("doTuoiDen", dt_den);
+			modelMap.addAttribute("hsoTuyenDung",hoSoTD );
+			return "public.nhatuyendung.records_management.edit";
+		}
+		@RequestMapping(value="/nha-tuyen-dung/quan-ly-tin-dang/edit/{id}", method=RequestMethod.POST)
+		public String nhatuyendung_tinDang_edit(@PathVariable("id") int maHSTD,@ModelAttribute("hoSoTuyenDung") HoSoNhaTuyenDung hso,
+				ModelMap modelMap,RedirectAttributes ra,@RequestParam("min_kickback") int min_kickback,
+				@RequestParam("max_kickback") int max_kickback){
+				hso.setMaHSTD(maHSTD);
+				//set do tuoi lao ddong
+				String dtuoi=min_kickback+"-"+max_kickback;
+				hso.setDoTuoiTuyenDung(dtuoi);
+
+				//nếu sửa thì set lại trạng thái phê duyệt =0; 
+				hso.setTrangThaiPheDuyet(0);
+				hso.setTrangThaiGuiPheDuyet(1);
+				if(hoSoTuyenDungDao.eidtItem(hso)>0) {
+					ra.addFlashAttribute("msg", Defines.SUSSES);
+				}else {
+					
+					ra.addFlashAttribute("msg", Defines.ERROR);
+				}
+				return "redirect:/nha-tuyen-dung/quan-ly-tin-dang";
+		}
 	//xem thông tin tài khoản nhà tuyển dụng
 	@RequestMapping(value="/nha-tuyen-dung/tai-khoan", method=RequestMethod.GET)
 	public String nhatuyendung_account_view(){
@@ -421,6 +465,37 @@ public class PublicIndexController {
 	public String nhatuyendung_jobSeeker_view(){
 		return "public.nhatuyendung.job_seeker_management.view";
 	}
+	//ajax add tin tuyen dung nhap
+	@RequestMapping(value= {"/getFormData"}, method=RequestMethod.POST,produces ="application/json;charset=UTF-8")
+	public @ResponseBody String add_NTD( List<Map<String, String>> client,HttpServletRequest request,ModelMap modelMap,HttpSession session) {
+		Map<String, String> formInputs = new HashMap<String, String>();
+
+        for (Map<String, String> formInput : client) {
+            formInputs.put(formInput.get("name"), formInput.get("value"));
+        }
+
+        System.out.println(formInputs);
+		String ajax_respone="";
+
+		return ajax_respone;
+		
+	}
 	
-	
+	//Xem chi tiết hồ sơ tuyển dụng
+	//{pageContext.request.contextPath }/${slugUtil.makeSlug(hso.tieuDeHoSo) }-${hso.maHSTD}.html
+	@RequestMapping(value="/{tieuDeHoSo}-{maHSTD}.html", method=RequestMethod.GET)
+	public String hoSoTuyenDung_detail(@PathVariable("maHSTD") int maHSTD,ModelMap modelMap){
+		HoSoNhaTuyenDung hso=hoSoTuyenDungDao.getDetail(maHSTD);
+		modelMap.addAttribute("hso", hso);
+		HoSoNhaTuyenDung hsotd=hoSoTuyenDungDao.getItemByMaHSTD(maHSTD);
+		User objUserNTD=usersDao.getItemNTD( hsotd.getMaTKTao());
+		modelMap.addAttribute("userNTD", objUserNTD);
+		//việc làm tương tự
+		List<HoSoNhaTuyenDung> listHsoSimilar=hoSoTuyenDungDao.getItemSimilar(hsotd.getYeuCauNganhNghe(),hsotd.getYeuCauNhomNganhNghe());
+		modelMap.addAttribute("listHsoSimilar", listHsoSimilar);
+		//viêc làm cùng nhà tuyển dụng
+		List<HoSoNhaTuyenDung> listHsoSNTD=hoSoTuyenDungDao.getItemsNTD(hsotd.getMaTKTao());
+		modelMap.addAttribute("listHsoSNTD", listHsoSNTD);
+		return "public.hosotuyendung.detail";
+	}
 }

@@ -13,7 +13,7 @@
 			</div>
 			<div id="logo_sv_mb" class="floatLeft">
 				<div class="margin0">
-					<a class="logo-header-small" href="https://viectotnhat.com/"></a>
+					<a class="logo-header-small" href="${pageContext.request.contextPath }/"></a>
 				</div>
 			</div>
 			<div class="menu_mobile floatRight">
@@ -30,7 +30,7 @@
 				<ul class="nav navbar-nav search-box">
 					<li class="nav-link">
 						<div class="margin0">
-							<a class="logo-header-small" href="https://viectotnhat.com/"></a>
+							<a class="logo-header-small" href="${pageContext.request.contextPath }/"></a>
 						</div>
 					</li>
 					<li class="search-form search-form-v2">
@@ -184,17 +184,13 @@
 								</button>
 							</form>
 						</div>
-						<div class="button-search">
-							<a
-								href="https://viectotnhat.com/viec-lam/tim-kiem-nang-cao?tu_khoa=&nganh_nghe=0&muc_luong=&tinh_thanh=0&loai_hinh=&kinh_nghiem=&trinh_do=&gioi_tinh="
-								class="btn btn-advanced-search" title="Tìm kiếm nâng cao"><span>+</span></a>
-						</div>
+						
 					</li>
 				</ul>
 				<div class="header-right">
 					<ul class="navbar navbar-right list-inline">
 						<li class="li-new"><a class=""
-							href="https://viectotnhat.com/nhatuyendung"> <i
+							href="${pageContext.request.contextPath }/nhatuyendung"> <i
 								class="icon-sprite-new icon-ntd-white"></i> <span
 								class="hidden-sm hidden-xs">Nhà tuyển dụng</span>
 						</a></li>

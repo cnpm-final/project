@@ -71,7 +71,11 @@
    <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
     <put-attribute name="body" value="/WEB-INF/jsp/public/nguoitimviec/quanlyhoso/view.jsp" />
   </definition>
-  
+  <!-- trang chi tiết việc làm -->
+    <definition name="public.hosotuyendung.detail" extends="public.template">
+   <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/vieclam_detail.jsp" />
+  </definition>
   <!-- Nha tuyen dung-tin đăng -->
   <definition name="public.nhatuyendung.records_management.add" extends="public.template">
    <put-attribute name="header" value="/WEB-INF/templates/public/header_NTD.jsp" />
@@ -80,6 +84,10 @@
   <definition name="public.nhatuyendung.records_management.listview" extends="public.template">
    <put-attribute name="header" value="/WEB-INF/templates/public/header_NTD.jsp" />
     <put-attribute name="body" value="/WEB-INF/jsp/public/nhatuyendung/quanlytindang/listtindang.jsp" />
+  </definition>
+  <definition name="public.nhatuyendung.records_management.edit" extends="public.template">
+   <put-attribute name="header" value="/WEB-INF/templates/public/header_NTD.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/nhatuyendung/quanlytindang/edit.jsp" />
   </definition>
   
   <!-- Nha tuyển dụng-tài khoản -->

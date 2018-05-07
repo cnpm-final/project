@@ -17,4 +17,8 @@ public class TrinhDoChuyenMonKyThuatDao {
 			String sql="Select * from trinh_do_cm_ky_thuat";
 			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<TrinhDoChuyenMonKyThuat>(TrinhDoChuyenMonKyThuat.class));
 		}
+		public TrinhDoChuyenMonKyThuat getItem(int id) {
+			String sql="select * from trinh_do_cm_ky_thuat where MaTDCMKT=?";
+			return jdbcTemplate.queryForObject(sql,new Object[] {id}, new BeanPropertyRowMapper<TrinhDoChuyenMonKyThuat>(TrinhDoChuyenMonKyThuat.class));
+		}
 }

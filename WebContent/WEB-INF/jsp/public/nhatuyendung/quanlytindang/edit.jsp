@@ -17,7 +17,7 @@
 					<a title="back" href="javascript: window.history.go(-1)"
 						class="button-back"><span
 						class="icon-24 icon-button-back marginRight15"></span>Quay lại</a>
-					<div class="title-content-page">Đăng tin tuyển dụng</div>
+					<div class="title-content-page">Chỉnh sửa tin tuyển dụng</div>
 				</div>
 
 
@@ -43,7 +43,7 @@
 									<input type="text" id="input-vitri" name="tieuDeHoSo"
 										class="form-control input-vitri"
 										placeholder="Ví dụ: Nhân viên kinh doanh, Nhân viên hành chính, ..."
-										 style="cursor: auto" />
+										 style="cursor: auto" value="${hsoTuyenDung.tieuDeHoSo }"/>
 
 								</div>
 							</div>
@@ -59,7 +59,8 @@
 										class="select2 form-control luong-toi-thieu select_ntd_search">
 										<option selected="selected" value="">Chọn chức danh</option>
 										<c:forEach items="${listChucDanh}" var="cdanh">
-											<option value="${cdanh.maChucDanh }">${cdanh.moTaChucDanh}</option>
+										
+											<option <c:if test="${hsoTuyenDung.maChucDanh == cdanh.maChucDanh}">selected='selected'</c:if> value="${cdanh.maChucDanh }">${cdanh.moTaChucDanh}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -74,7 +75,7 @@
 									class="col-sm-9 col-md-9 col-lg-9 paddingRight0 paddingLeft20">
 									<textarea id="muctieu" name="moTaCongViec"
 										class="form-control h80-mb ck_editors_new"
-										placeholder="Nhập mô tả công việc" rows="5"></textarea>
+										placeholder="Nhập mô tả công việc" rows="5">${hsoTuyenDung.moTaCongViec}</textarea>
 								</div>
 							</div>
 							
@@ -87,7 +88,7 @@
 									class="col-sm-9 col-md-9 col-lg-9 paddingRight0 paddingLeft20">
 									<textarea  name="quyenLoi"
 										class="form-control h80-mb ck_editors_new"
-										placeholder="Nhập quyền lợi" rows="5"></textarea>
+										placeholder="Nhập quyền lợi" rows="5">${hsoTuyenDung.quyenLoi}</textarea>
 								</div>
 							</div>
 							
@@ -102,7 +103,7 @@
 										class="select2 form-control luong-toi-thieu select_ntd_search">
 										<option selected="selected" value="">Chọn mức lương</option>
 										<c:forEach items="${listMucLuong}" var="mucluong">
-											<option value="${mucluong.maMucLuong}">${mucluong.moTaMucLuong}</option>
+											<option <c:if test="${hsoTuyenDung.maMucLuong == mucluong.maMucLuong}">selected='selected'</c:if> value="${mucluong.maMucLuong}">${mucluong.moTaMucLuong}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -119,7 +120,7 @@
 										class="select2 form-control luong-toi-thieu select_ntd_search">
 										<option selected="selected" value="">Chọn thời gian làm việc</option>
 										<c:forEach items="${listThoiGianLamViec}" var="thoigian">
-											<option value="${thoigian.maTGLV}">${thoigian.moTaTGLV}</option>
+											<option <c:if test="${hsoTuyenDung.maThoiGianLamViec == thoigian.maTGLV}">selected='selected'</c:if> value="${thoigian.maTGLV}">${thoigian.moTaTGLV}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -137,7 +138,7 @@
 										class="select2 form-control luong-toi-thieu select_ntd_search">
 										<option selected="selected" value="">Chọn Y/c trình độ chuyên môn kỹ thuật</option>
 										<c:forEach items="${listTrinhDoChuyenMonKyThuat}" var="yctdcmkt">
-											<option value="${yctdcmkt.maTDCMKT}">${yctdcmkt.moTaTDCMKT}</option>
+											<option <c:if test="${hsoTuyenDung.yeuCauTrinhDoChuyenMonKyThuat == yctdcmkt.maTDCMKT}">selected='selected'</c:if> value="${yctdcmkt.maTDCMKT}">${yctdcmkt.moTaTDCMKT}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -159,7 +160,7 @@
 											style="width: 100%" onchange="selectNganhNghe()">
 											<option  value="">Chọn ngành nghề</option>
 											<c:forEach items="${listNhomNganhNghe}" var="nhomnganhnghe">
-												<option value="${nhomnganhnghe.maNNN}" >${nhomnganhnghe.moTaNNN}</option>
+												<option <c:if test="${hsoTuyenDung.yeuCauNhomNganhNghe == nhomnganhnghe.maNNN}">selected='selected'</c:if> value="${nhomnganhnghe.maNNN}" >${nhomnganhnghe.moTaNNN}</option>
 											</c:forEach>
 										</select>
 										</div>
@@ -205,6 +206,9 @@
 												class="select2 select_ntd_search" 
 												style="width: 100%">
 												<option value="">......</option>
+												<c:forEach items="${listNganhNghe }" var="nganhnghe">
+													<option <c:if test="${hsoTuyenDung.yeuCauNganhNghe == nganhnghe.maNN}">selected='selected'</c:if> value="${nganhnghe.maNN}" >${nganhnghe.moTaNN}</option>
+												</c:forEach>
 											</select>
 										</div>
 									</div>
@@ -220,7 +224,7 @@
 									<div class="col-xs-5 pl0">
 										<div class="fl w90 div-select-grey">
 											<input type="text"  name="yeuCauKinhNghiem"
-												class="form-control w100" />
+												class="form-control w100" value="${hsoTuyenDung.yeuCauKinhNghiem }"/>
 										</div>
 									</div>
 									<div class="col-xs-1 pr0 pl8">
@@ -242,7 +246,7 @@
 										class="select2 form-control luong-toi-thieu select_ntd_search">
 										<option selected="selected" value="">Chọn Yêu cầu ngoại ngữ	</option>
 										<c:forEach items="${listTrinhDoNgoaiNgu}" var="trinhdongoaiNgu">
-											<option value="${trinhdongoaiNgu.maTDNN}">${trinhdongoaiNgu.moTaTDNN}</option>
+											<option <c:if test="${hsoTuyenDung.yeuCauNgoaiNgu == trinhdongoaiNgu.maTDNN}">selected='selected'</c:if> value="${trinhdongoaiNgu.maTDNN}">${trinhdongoaiNgu.moTaTDNN}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -260,7 +264,7 @@
 										class="select2 form-control luong-toi-thieu select_ntd_search">
 										<option selected="selected" value="">Chọn Yêu cầu tin học	</option>
 										<c:forEach items="${listTrinhDoTinHoc}" var="trinhdotinhoc">
-											<option value="${trinhdotinhoc.maTDTH}">${trinhdotinhoc.moTaTDTH}</option>
+											<option <c:if test="${hsoTuyenDung.yeuCauTinHoc == trinhdotinhoc.maTDTH}">selected='selected'</c:if>  value="${trinhdotinhoc.maTDTH}">${trinhdotinhoc.moTaTDTH}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -276,7 +280,7 @@
 									<input type="text"  name="soLuongTuyenDung"
 										class="form-control input-sluong"
 										placeholder="Nhập số lượng cần tuyển"
-										style="cursor: auto" />
+										style="cursor: auto" value="${hsoTuyenDung.soLuongTuyenDung }" />
 								</div>
 							</div>
 
@@ -289,10 +293,9 @@
 									class="col-sm-9 col-md-9 col-lg-9 paddingRight0 paddingLeft20">
 									<select id="sl-gioi-tinh" name="gioiTinhTuyenDung"
 										class="select2 form-control select_ntd_search" data-disS="1">
-										<option selected="selected" value="">Chọn giới tính</option>
-										<option value="Nu">Nữ</option>
-										<option value="Nam">Nam</option>
-										<option value="Nam/Nu">Không yêu cầu</option>
+										<option <c:if test="${hsoTuyenDung.gioiTinhTuyenDung eq 'Nu'}">selected='selected'</c:if> value="Nu">Nữ</option>
+										<option <c:if test="${hsoTuyenDung.gioiTinhTuyenDung eq 'Nam'}">selected='selected'</c:if> value="Nam">Nam</option>
+										<option <c:if test="${hsoTuyenDung.gioiTinhTuyenDung eq 'Nam/Nu'}">selected='selected'</c:if> value="Nam/Nu">Không yêu cầu</option>
 									</select>
 								</div>
 							</div>
@@ -303,12 +306,12 @@
                                         <div class="col-xs-5 pl0">
                                             <div class=" fl mr10 mt12 mr5 font14 txt-ntd-normal" style="color: #555">Từ</div>
                                             <div class="fl w90 div-select-grey">
-                                                <input type="text"  name="min_kickback" class="form-control w100">                                            </div>
+                                                <input type="text"  name="min_kickback" class="form-control w100" value="${doTuoiTu}">                                            </div>
                                         </div>
                                         <div class="col-xs-5 pr0 pl8">
                                             <div class=" fl mr10 mt12 mr5 font14 txt-ntd-normal" style="color: #555">Đến</div>
                                             <div class="fl w90 div-select-grey">
-                                                <input type="text"  name="max_kickback" class="form-control w100">                                            </div>
+                                                <input type="text"  name="max_kickback" class="form-control w100" value="${doTuoiDen }">                                            </div>
                                         </div>
                                         <div class="col-xs-1 pr0 pl8">
                                             <div class=" fl mr10 mt12 font16 txt-ntd-normal">tuổi</div>
@@ -326,7 +329,7 @@
 									class="col-sm-9 col-md-9 col-lg-9 paddingRight0 paddingLeft20">
 									<textarea id="muctieu" name="yeuCauKyNangKhac"
 										class="form-control h80-mb ck_editors_new"
-										placeholder="Nhập các kỹ năng khác" rows="5"></textarea>
+										placeholder="Nhập các kỹ năng khác" rows="5">${hsoTuyenDung.yeuCauKyNangKhac }</textarea>
 								</div>
 							</div>
 							
@@ -339,7 +342,7 @@
 									class="col-sm-9 col-md-9 col-lg-9 paddingRight0 paddingLeft20">
 									<textarea id="muctieu" name="yeuCauHoSoGom"
 										class="form-control h80-mb ck_editors_new"
-										placeholder="Nhập Yêu cầu hồ sơ " rows="5"></textarea>
+										placeholder="Nhập Yêu cầu hồ sơ " rows="5">${hsoTuyenDung.yeuCauHoSoGom }</textarea>
 								</div>
 							</div>
 							
@@ -353,7 +356,7 @@
 									class="col-sm-9 col-md-9 col-lg-9 paddingRight0 paddingLeft20">
 									<div class="input-date">
 										<input type="date" id="input-han-nop" name="ngayBatDauNhanHoSo"
-											class="form-control"/>
+											class="form-control" value="${hsoTuyenDung.ngayBatDauNhanHoSo }"/>
 									</div>
 								</div>
 							</div>
@@ -364,7 +367,7 @@
 								</label>
 								<div
 									class="col-sm-9 col-md-9 col-lg-9 paddingRight0 paddingLeft20">
-									<input type="text" id="input-vitri" name="noiNhan"
+									<input type="text" id="input-vitri" name="noiNhan"  value="${hsoTuyenDung.noiNhan}"
 										class="form-control input-vitri"
 										 style="cursor: auto" />
 								</div>
@@ -383,7 +386,7 @@
 								<div
 									class="col-sm-9 col-md-9 col-lg-9 paddingRight0 paddingLeft20">
 									<div class="input-date">
-										<input type="date" id="input-cham-dut-hs" name="ngayChamDutNhanHoSo"
+										<input type="date" id="input-cham-dut-hs" name="ngayChamDutNhanHoSo" value="${hsoTuyenDung.ngayChamDutNhanHoSo}"
 											class="form-control"/>
 									</div>
 								</div>
@@ -397,7 +400,7 @@
 								<div
 									class="col-sm-9 col-md-9 col-lg-9 paddingRight0 paddingLeft20">
 									<div class="input-date">
-										<input type="date" id="input-ngay-du-tuyen" name="ngayDuTuyen"
+										<input type="date" id="input-ngay-du-tuyen" name="ngayDuTuyen" value="${hsoTuyenDung.ngayDuTuyen}"
 											class="form-control"/>
 									</div>
 								</div>
@@ -410,7 +413,7 @@
 								</label>
 								<div
 									class="col-sm-9 col-md-9 col-lg-9 paddingRight0 paddingLeft20">
-									<input type="text"  name="noiDuTuyen"
+									<input type="text"  name="noiDuTuyen" value="${hsoTuyenDung.noiDuTuyen}"
 										class="form-control "
 										 style="cursor: auto" />
 								</div>
@@ -426,8 +429,8 @@
 								Lưu và gửi phê duyệt
 							</button>
 			
-							<button type="submit" id="submit_luunhap"
-								
+							<button type="button" id="submit_luunhap"
+								onclick="jobSubmit('submit_luunhap')"
 								class="btn btn-default fontSize16 button-white2 marginRight15 font600 btn-left">
 								Lưu nháp
 								</button>
@@ -458,23 +461,3 @@
 		</div>
 	</section>
 </article>
-<!-- 
-// function to make form values to json format -->
- <script type="text/javascript">
-    
-                $('form').submit(function () {
-                    $.ajax({
-                        url: '${pageContext.request.contextPath}/getFormData',
-                        type: 'POST',
-                        data: JSON.stringify($(this).serializeArray()),
-                        contentType: 'application/json',
-                        success: function (data) {
-                            alert('Client created!! :-)')
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            alert('An error has occured!! :-(')
-                        }
-                    })
-                    return false
-                })
-            </script>

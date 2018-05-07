@@ -18,4 +18,8 @@ public class ChucDanhDao {
 		String sql="select * from chuc_danh";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<ChucDanh>(ChucDanh.class));
 	}
+	public ChucDanh getItem(int id) {
+		String sql="select * from chuc_danh where MaChucDanh=?";
+		return jdbcTemplate.queryForObject(sql,new Object[] {id}, new BeanPropertyRowMapper<ChucDanh>(ChucDanh.class));
+	}
 }

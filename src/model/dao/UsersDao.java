@@ -91,5 +91,10 @@ public class UsersDao {
 				+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 				new Object[]{objItem.getTaiKhoan(), objItem.getMaTK(), objItem.getAvatar(), objItem.getHoTen(), objItem.getGioiTinh(), objItem.getEmail(), objItem.getDiaChi(), objItem.getDienThoai(), objItem.getNgaySinh(), objItem.getcMND(), objItem.getMaTrinhDoVanHoa(), objItem.getMaTrinhDoChuyenMonKyThuat(), objItem.getMaTrinhDoTinHoc(), objItem.getKinhNghiemLamViec()});
 	}
+	public User getName(int MaTK) {
+		String sql="select HoTen from nguoi_dung where MaTK=?";
+		return jdbcTemplate.queryForObject(sql, new Object[] {MaTK},new  BeanPropertyRowMapper<User>(User.class));
+		
+	}
 
 }
