@@ -371,8 +371,7 @@
 
       
     
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="${pageContext.request.contextPath }/templates/public/asset/default_new/js/jquery.min.js"></script>
+   
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="${pageContext.request.contextPath }/templates/public/asset/default_new/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath }/templates/public/asset/default_new/js/iscroll-probe.min.js"></script>
@@ -388,7 +387,6 @@
     <script src="${pageContext.request.contextPath }/templates/public/asset/default_new/js/custom.min.js"></script>
     <script src="${pageContext.request.contextPath }/templates/public/asset/default_new/js/more.min.js"></script>
     <script src="${pageContext.request.contextPath }/templates/public/asset/default_new/js/jquery-ui.min.js"></script>
-
    <%--  <script src="${pageContext.request.contextPath }/templates/public/asset/default/js/web_push.js"></script> --%>
 
     <div id="notifications-popup" class="modal modal-dele-mb fade" role="dialog">

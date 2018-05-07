@@ -13,7 +13,7 @@
 							<div class="logo-login hidden-xs"></div>
 						</h1>
 					</a>
-					<form action="" method="POST" enctype="multipart/form-data" class="marginBottom30 marginBottom0-mb" >
+					<form action="" method="POST" enctype="multipart/form-data" class="marginBottom30 marginBottom0-mb dk-ntd" >
 						<div class="marginCenter width620 particle">
 							<div class="header-form">
                                 Thông tin đăng nhập
@@ -47,7 +47,7 @@
 								<div class="col-xs-12 padding0  form-group ">
 									<label for="" class="col-sm-4 control-label label-register">Mật Khẩu&nbsp;<span class="text-red">*</span></label>
 									<div class="col-sm-8 padding0 pst-relative ippass">
-                                        <input type="password"  name="matKhau" class="input-password form-control checknull" placeholder="Nhập vào mật khẩu" />                                                	        
+                                        <input type="password"  name="matKhau" class="input-password form-control checknull" placeholder="Nhập vào mật khẩu" id="password"/>                                                	        
                                         <i class="fontSize12 note_validate">Mật khẩu tối thiểu 8 ký tự, có ít nhất 1 ký tự chữ và 1 ký tự số.</i>
                                     </div>
 								</div>
@@ -81,7 +81,7 @@
 									</div>
 								</div>
 								<div class="col-xs-12 padding0 form-group pst-relative form-group2">
-									<label for="" class="col-sm-4 control-label label-register">Năm thành lập&nbsp;</label>
+									<label for="" class="col-sm-4 control-label label-register">Năm thành lập&nbsp;<span class="text-red">*</span></label>
 									<div class="col-sm-8 padding0">
                                         <input type="text" name="namThanhLap" class="form-control input-register2 checknull" />                                                	        
 									</div>
@@ -93,18 +93,20 @@
 									</div>
 								</div>
 								<div class="col-xs-12 padding0  form-group pst-relative">
-									<label for="" class="col-sm-4 control-label label-register">Website&nbsp;<span class="text-red">*</span></label>
+									<label for="" class="col-sm-4 control-label label-register">Website&nbsp;</label>
 									<div class="col-sm-8 padding0">
                                         <input type="text"  name="website" class="form-control input-register2 checknull" />                                                	    
 									</div>
 								</div>
 								<div class="col-xs-12 padding0  form-group pst-relative">
-									<label for="" class="col-sm-4 control-label label-register">Giới thiệu về công ty&nbsp;<span class="text-red">*</span></label>
+									<label for="" class="col-sm-4 control-label label-register">Giới thiệu về công ty&nbsp;</label>
 									<div class="col-sm-8 padding0">
-                                        <textarea  name="gioiThieuChung" class="form-control input-register2" rows="9"></textarea>                                                	        
+                                        <textarea id="editor1"  name="gioiThieuChung" class="form-control input-register2" rows="9"></textarea>                                                	        
 									</div>
 								</div>
-								
+								<script >
+							 	var editor=CKEDITOR.replace('editor1');
+						 	</script>
 								 <div class="col-xs-12 padding0  form-group pst-relative">
 									<label for="" class="col-sm-4 control-label label-register">Tỉnh/Thành
 										phố&nbsp;<span class="text-red">*</span>
@@ -201,13 +203,13 @@
 									</div>
 								</div>
 								<div class="col-xs-12 padding0  form-group pst-relative">
-									<label for="" class="col-sm-4 control-label label-register">Fax</span></label>
+									<label for="" class="col-sm-4 control-label label-register">Fax</label>
 									<div class="col-sm-8 padding0">
 										<input type="text"  name="fax" class="form-control input-register2 checknull" />    
 									</div>
 								</div>
 								<div class="col-xs-12 padding0  form-group pst-relative">
-									<label for="" class="col-sm-4 control-label label-register">Số lao động</span></label>
+									<label for="" class="col-sm-4 control-label label-register">Số lao động<span class="text-red">*</span></label>
 									<div class="col-sm-8 padding0">
                                         <input type="text"  name="soLaoDong" class="form-control input-register2 checknull" />                                                	       
 									</div>
@@ -261,3 +263,135 @@
 	    </div>
 	</section>
 </article>
+<script type="text/javascript">
+				$(document).ready(function() {
+					$('.dk-ntd').validate({
+						ignore : [],
+						debug : false,
+						rules : {
+							"taiKhoan" : {
+								required : true,
+								maxlength : 100,
+								minlength:5
+							},
+							"matKhau" : {
+								required : true,
+								minlength:5,
+								maxlength:15
+							},
+							"confirm_password" : {
+								required : true,
+								equalTo: "#password"
+							},
+							"email" : {
+								required : true,
+								email: true
+							},
+							"hoTen" : {
+								required : true,
+								maxlength : 100,
+								minlength:5
+							},
+							"anhdaidien" : {
+								required : true,
+							},
+							"namThanhLap" : {
+								required : true,
+								digits : true,
+							},
+							"dienThoai" : {
+								required : true,
+							},
+							"website" : {
+								url:true
+							},
+							"maThanhPho" : {
+								required : true,
+							},
+							"diaChi" : {
+								required : true,
+								
+							},
+							"maLoaiHinhDoanhNghiep" : {
+								required : true,
+								digits : true,
+							},
+							"maNNN" : {
+								required : true,
+								date:true
+							},
+							"maNN" : {
+								required : true,
+							},
+							"maNN" : {
+								required : true,
+							},
+							"soLaoDong" : {
+								required : true,
+								digits : true
+							},
+							
+						},
+						messages : {
+							"taiKhoan" : {
+								required : "Vui lòng nhập tên tài khoản",
+								maxlength:"Tên tài khoản tối đa 100 ký tự",
+								minlength:"Tên tài khoản tối thiểu 5 ký tự"
+							},
+							"matKhau" : {
+								required : "Vui lòng  nhập mật khẩu",
+								minlength:"Độ dài mật khẩu tối thiểu 8 ký tự ",
+								maxlength:"Độ dài mật khẩu tối đa 15 ký tự"
+							},
+							"confirm_password" : {
+								required : "Vui lòng nhập xác nhận mật khẩu",
+								equalTo: 'Mật khẩu không trùng',
+								
+							},
+							"email" : {
+								required : "Vui lòng nhập email",
+								email: "Vui lòng nhập đúng định dạng email",
+								
+							},
+							"hoTen" : {
+								required : "Vui lòng nhập tên công ty",
+									maxlength:"Tên công ty tối đa 100 ký tự",
+									minlength:"Tên công ty tối thiểu 5 ký tự"
+							},
+							"anhdaidien" : {
+								required : "Vui lòng chọn ảnh đại diện",
+							},
+							"namThanhLap" : {
+								required : "Vui lòng nhập năm thành lập",
+								digits : "Vui lòng nhập vào số nguyên dương",
+								
+							},
+							"dienThoai" : {
+								required : "Vui lòng nhập số điện thoại",
+								
+							},
+							"website" : {
+								url:"Vui lòng nhập đúng định dạng website",
+							},
+							"maThanhPho" : {
+								required : "Vui lòng chọn thành phố",
+							},
+							"diaChi" : {
+								required : "Vui lòng nhập vào địa chỉ chi tiết",
+							},
+							"maLoaiHinhDoanhNghiep" : {
+								required :  "Vui lòng chọn loại hình doanh nghiệp",
+							},
+							"maNNN" : {
+								required : "Vui lòng chọn nhóm ngành nghề",
+							},
+							"soLaoDong" : {
+								required : "Vui lòng nhập số lao động",
+								digits : "Vui lòng nhập vào số nguyên dương",
+							},
+							
+							
+						},
+					});
+				});
+			</script>

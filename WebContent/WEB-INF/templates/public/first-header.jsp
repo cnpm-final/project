@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <!-- The above 2 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Việc Tốt Nhất - Tìm việc làm nhanh từ những Nhà tuyển dụng uy tín</title>
+    <title>Việc Tốt Nhất</title>
 	<meta property="og:image"
-		content="${pageContext.request.contextPath }/templates/public//asset/default/img/logo-share-fb-26082017.png" />
+		content="${pageContext.request.contextPath }/templates/public/asset/default/img/logo-share-fb-26082017.png" />
            <!-- Bootstrap -->
           <link href="${pageContext.request.contextPath }/templates/public/asset/default_new/css/bootstrap.min.css" rel="stylesheet">
           <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -26,9 +26,18 @@
           <link href="${pageContext.request.contextPath }/templates/public/asset/default_new/css/style-t.min.css" rel="stylesheet">
           <link href="${pageContext.request.contextPath }/templates/public/asset/default_new/css/media_all.min.css" rel="stylesheet">
           <link href="${pageContext.request.contextPath }/templates/public/asset/default/css/custom.min.css" rel="stylesheet">
-      	<link href="${pageContext.request.contextPath }/templates/public/asset/default/css/style-an.css" rel="stylesheet">
-
-
+      		<link href="${pageContext.request.contextPath }/templates/public/asset/default/css/style-an.css" rel="stylesheet">
+			  <script type="text/javascript" src="${pageContext.request.contextPath }/library/ckeditor/ckeditor.js"> </script>
+		 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  
+	    <script src="${pageContext.request.contextPath }/templates/public/asset/default_new/js/jquery.min.js"></script>
+	     <script src="${pageContext.request.contextPath }/templates/public/asset/default/js/jquery-validate.js"></script>
+	     <style>
+			.error{
+				color:red;
+				font-style:italic;
+				}
+		</style>
   </head>
   <body class="bgGray">
     <!-- header -->
