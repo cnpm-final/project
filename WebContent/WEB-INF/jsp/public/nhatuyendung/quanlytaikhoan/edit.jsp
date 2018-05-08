@@ -65,20 +65,20 @@
                              <div class="col-xs-12 padding0-pc form-group">
                                 <label for="" class="padding0-mb col-sm-4 label-register2 txl-mb">Mật khẩu hiện tại<span class="text-red">*</span></label>
                                 <div class="col-sm-8 padding0 ippass">
-                                    <input type="password" id="mk-hientai" name="old_password" class="form-control h40 input-password">                                            	        <p id="error_old_password" class="hidden text-red error"></p>
+                                    <input type="password" id="mk-hientai" name="old_password" class="form-control h40 input-password" required="required">                                            	        <p id="error_old_password" class="hidden text-red error"></p>
                                 </div>
                             </div>
                             <div class="col-xs-12 padding0-pc form-group ">
-                                <label for="" class="padding0-mb col-sm-4 label-register2 txl-mb">Mật khẩu mới<span class="text-red">*</span></label>
+                                <label for="" class="padding0-mb col-sm-4 label-register2 txl-mb">Mật khẩu mới<span class="text-red" >*</span></label>
                                 <div class="col-sm-8 padding0 ippass">
-                                    <input type="password" id='mk-moi' name="password" class="form-control h40 input-password">                                            	        <p id="error_password" class="hidden text-red error"></p>
+                                    <input type="password" id='mk-moi' name="password" class="form-control h40 input-password" required="required">                                            	        <p id="error_password" class="hidden text-red error"></p>
                                      <i class="fontSize12">Mật khẩu tối thiểu 8 ký tự, có ít nhất 1 ký tự chữ và 1 ký tự số.</i>
                              </div>
                             </div>
                             <div class="col-xs-12 padding0-pc form-group">
                                 <label for="" class="padding0-mb col-sm-4 label-register2 txl-mb">Nhập lại mật khẩu mới<span class="text-red">*</span></label>
                                 <div class="col-sm-8 padding0 ippass">
-                                    <input type="password" id='confirm-pass' name="confirm_password" class="form-control h40 input-password">                                            	        <p id="error_confirm_password" class="hidden text-red error"></p>
+                                    <input type="password" id='confirm-pass' name="confirm_password" class="form-control h40 input-password" required="required">                                            	        <p id="error_confirm_password" class="hidden text-red error"></p>
                                 </div>
                             </div>
                         </div>
@@ -142,7 +142,7 @@
 	    </script>					
 						
 						
-		<form action="${pageContext.request.contextPath }/nha-tuyen-dung/tai-khoan/edit" method="POST" enctype="multipart/form-data" class="marginBottom30 marginBottom0-mb" >
+		<form action="${pageContext.request.contextPath }/nha-tuyen-dung/tai-khoan/edit" method="POST" enctype="multipart/form-data" class="marginBottom30 marginBottom0-mb edit-ntd" >
 						<div class="marginCenter width620 particle ">
 							<div class="header-form">Thông tin công ty</div>
 							<div class="form-register form-register2">
@@ -342,5 +342,100 @@
 	    </div>
 	</section>
 </article>
-
+<script type="text/javascript">
+				$(document).ready(function() {
+					$('.edit-ntd').validate({
+						ignore : [],
+						debug : false,
+						rules : {
+							
+							"hoTen" : {
+								required : true,
+								maxlength : 100,
+								minlength:5
+							},
+							"anhdaidien" : {
+								required : true,
+							},
+							"namThanhLap" : {
+								required : true,
+								digits : true,
+							},
+							"dienThoai" : {
+								required : true,
+							},
+							"website" : {
+								url:true
+							},
+							"maThanhPho" : {
+								required : true,
+							},
+							"diaChi" : {
+								required : true,
+								
+							},
+							"maLoaiHinhDoanhNghiep" : {
+								required : true,
+								digits : true,
+							},
+							"maNNN" : {
+								required : true,
+								date:true
+							},
+							"maNN" : {
+								required : true,
+							},
+							"maNN" : {
+								required : true,
+							},
+							"soLaoDong" : {
+								required : true,
+								digits : true
+							},
+							
+						},
+						messages : {
+							
+							"hoTen" : {
+								required : "Vui lòng nhập tên công ty",
+									maxlength:"Tên công ty tối đa 100 ký tự",
+									minlength:"Tên công ty tối thiểu 5 ký tự"
+							},
+							"anhdaidien" : {
+								required : "Vui lòng chọn ảnh đại diện",
+							},
+							"namThanhLap" : {
+								required : "Vui lòng nhập năm thành lập",
+								digits : "Vui lòng nhập vào số nguyên dương",
+								
+							},
+							"dienThoai" : {
+								required : "Vui lòng nhập số điện thoại",
+								
+							},
+							"website" : {
+								url:"Vui lòng nhập đúng định dạng website",
+							},
+							"maThanhPho" : {
+								required : "Vui lòng chọn thành phố",
+							},
+							"diaChi" : {
+								required : "Vui lòng nhập vào địa chỉ chi tiết",
+							},
+							"maLoaiHinhDoanhNghiep" : {
+								required :  "Vui lòng chọn loại hình doanh nghiệp",
+							},
+							"maNNN" : {
+								required : "Vui lòng chọn nhóm ngành nghề",
+							},
+							"soLaoDong" : {
+								required : "Vui lòng nhập số lao động",
+								digits : "Vui lòng nhập vào số nguyên dương",
+							},
+							
+							
+						},
+					});
+				});
+			</script>
 <!-- footer -->

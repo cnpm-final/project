@@ -18,4 +18,10 @@ public class ThoiGianLamViecDao {
 		String sql="select * from thoi_gian_lam_viec";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<ThoiGianLamViec>(ThoiGianLamViec.class));
 	}
+	
+	public ThoiGianLamViec getItem(int id) {
+		String sql="select * from thoi_gian_lam_viec where MaTGLV=?";
+		return jdbcTemplate.queryForObject(sql,new Object[] {id}, new BeanPropertyRowMapper<ThoiGianLamViec>(ThoiGianLamViec.class));
+	}
+
 }

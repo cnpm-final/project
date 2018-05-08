@@ -371,8 +371,7 @@
 
       
     
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="${pageContext.request.contextPath }/templates/public/asset/default_new/js/jquery.min.js"></script>
+   
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="${pageContext.request.contextPath }/templates/public/asset/default_new/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath }/templates/public/asset/default_new/js/iscroll-probe.min.js"></script>
@@ -388,8 +387,7 @@
     <script src="${pageContext.request.contextPath }/templates/public/asset/default_new/js/custom.min.js"></script>
     <script src="${pageContext.request.contextPath }/templates/public/asset/default_new/js/more.min.js"></script>
     <script src="${pageContext.request.contextPath }/templates/public/asset/default_new/js/jquery-ui.min.js"></script>
-
-    <script src="${pageContext.request.contextPath }/templates/public/asset/default/js/web_push.js"></script>
+   <%--  <script src="${pageContext.request.contextPath }/templates/public/asset/default/js/web_push.js"></script> --%>
 
     <div id="notifications-popup" class="modal modal-dele-mb fade" role="dialog">
     <div class="modal-dialog maxw540">
@@ -425,7 +423,7 @@
         });
     });
 </script> -->
-  <!--   <script>
+    <%-- <script>
         var WebPushConfig = {
             subscribe_url: '/save-endpoint',
             unsubscribe_url: '/remove-endpoint',
@@ -434,9 +432,9 @@
             is_subscribed: 0,
             show_tip: 1
         }
-    </script> -->
+    </script>
     <script src="${pageContext.request.contextPath }/templates/public/asset/default/js/notification.js"></script>
-
+ --%>
     <script type="text/javascript" src="${pageContext.request.contextPath }/templates/public/asset/default_new/js/app/home/index_new.min.js"></script>
     <script src="${pageContext.request.contextPath }/templates/public/asset/default_new/js/app/common.min.js"></script>
        <!--  <script>

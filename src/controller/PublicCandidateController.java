@@ -196,23 +196,19 @@ public class PublicCandidateController {
 			return "redirect:/nguoi-tim-viec/ho-so/view";
 		}
 	}
-	@RequestMapping(value="/sua-ho-so/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/ho-so/sua-ho-so/{id}", method=RequestMethod.GET)
 	public String suaHoSo(@PathVariable("id") int id,ModelMap modelMap){
 		modelMap.addAttribute("objHSVL", hoSoViecLamDao.getItemEdit(id));
 		return "public.nguoitimviec.records_management.edit";
 	}
-	@RequestMapping(value="/sua-ho-so", method = RequestMethod.POST)
-	public String suaHoSo( @ModelAttribute("objItem") HoSoViecLam objItem, RedirectAttributes ra,HttpServletRequest request,
-			ModelMap modelMap, HttpSession session){
-		session = request.getSession();
-		User objUser = (User) session.getAttribute("objNTV");
-		objItem.setMaTKTao(objUser.getMaTK());
-		objItem.setTrangThaiGuiPheDuyet(0);
-		if(hoSoViecLamDao.addItem(objItem) > 0){
-			ra.addFlashAttribute("msg_suc", "Tạo hồ sơ thành công!");
+	@RequestMapping(value="/ho-so/sua-ho-so/{id}", method = RequestMethod.POST)
+	public String suaHoSo( @ModelAttribute("objItem") HoSoViecLam objItem, @PathVariable("id") int id, RedirectAttributes ra){
+		objItem.setMaHSVL(id);
+		if(hoSoViecLamDao.eidtItem(objItem) > 0){
+			ra.addFlashAttribute("msg_suc", "Sửa hồ sơ thành công!");
 			return "redirect:/nguoi-tim-viec/ho-so/view";
 		}else{
-			ra.addFlashAttribute("msg_fail", "Tạo hồ sơ không thành công! Xin mời kiểm tra lại!");
+			ra.addFlashAttribute("msg_fail", "Sửa hồ sơ không thành công! Xin mời kiểm tra lại!");
 			return "redirect:/nguoi-tim-viec/ho-so/view";
 		}
 	}

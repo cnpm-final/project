@@ -1,6 +1,7 @@
 package model.bean;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class HoSoNhaTuyenDung {
 	private int maHSTD;
@@ -27,7 +28,7 @@ public class HoSoNhaTuyenDung {
 	private Date ngayChamDutNhanHoSo;
 	private Date ngayDuTuyen;
 	private String noiDuTuyen;
-	private Date thoiGianTao;
+	private Timestamp thoiGianTao;
 	private Date lanCuoiChinhSua;
 	private int trangThaiPheDuyet;
 	private int trangThaiGuiPheDuyet;
@@ -47,7 +48,7 @@ public class HoSoNhaTuyenDung {
 			int yeuCauNganhNghe, int yeuCauNhomNganhNghe, int yeuCauKinhNghiem, int yeuCauNgoaiNgu, int yeuCauTinHoc,
 			String gioiTinhTuyenDung, String doTuoiTuyenDung, int soLuongTuyenDung, String yeuCauKyNangKhac,
 			String yeuCauHoSoGom, Date ngayBatDauNhanHoSo, String noiNhan, Date ngayChamDutNhanHoSo, Date ngayDuTuyen,
-			String noiDuTuyen, Date thoiGianTao, Date lanCuoiChinhSua, int trangThaiPheDuyet, int trangThaiGuiPheDuyet,
+			String noiDuTuyen, Timestamp thoiGianTao, Date lanCuoiChinhSua, int trangThaiPheDuyet, int trangThaiGuiPheDuyet,
 			int pheDuyetBoi) {
 		super();
 		this.maHSTD = maHSTD;
@@ -221,10 +222,10 @@ public class HoSoNhaTuyenDung {
 	public void setNoiDuTuyen(String noiDuTuyen) {
 		this.noiDuTuyen = noiDuTuyen;
 	}
-	public Date getThoiGianTao() {
+	public Timestamp getThoiGianTao() {
 		return thoiGianTao;
 	}
-	public void setThoiGianTao(Date thoiGianTao) {
+	public void setThoiGianTao(Timestamp thoiGianTao) {
 		this.thoiGianTao = thoiGianTao;
 	}
 	public Date getLanCuoiChinhSua() {

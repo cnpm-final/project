@@ -20,19 +20,16 @@
                                                         <div class="col-xs-12 padding0 form-group">
                                 <p class="title-form hidden-xs">Đăng nhập</p>
                                 <c:if test="${ not empty msg }">
-                                	<p>${msg }</p>
+                                	<p style="color:red;font-style:italic;">${msg }</p>
                                 </c:if>
                                 <p class="visible-xs fontSize20 txt-36 txc-mb marginTop15-mb">Nhà tuyển dụng đăng nhập</p>
                             </div>
                                                         <div class="col-xs-12 padding0 form-group">
-                                <input type="text" name="taiKhoan" class="form-control input-login" placeholder="Nhập tên tài khoản" />                                        	        <p id="error_email" class="hidden text-red error"></p>
-                                     <p class="text-red hide error" id="error">Bạn không được để trống trường này</p>
+                                <input type="text" name="taiKhoan" class="form-control input-login" placeholder="Nhập tên tài khoản" required="required" />                                        	        <p id="error_email" class="hidden text-red error"></p>
                             </div>
 
                             <div class="col-xs-12 padding0  form-group">
-                                <input type="password" id="input-password" name="matKhau" class="form-control input-login" placeholder="Nhập Mật Khẩu" />                                <div class=" border-none button-input"></div>
-                                        	        <p id="error_password" class="hidden text-red error"></p>
-                                     <p class="text-red hide error" id="error2">Bạn không được để trống trường này</p>
+                                <input type="password" id="input-password" name="matKhau" class="form-control input-login" placeholder="Nhập Mật Khẩu" required="required"/>                                <div class=" border-none button-input"></div>
                                
                             </div>
                             
@@ -52,4 +49,29 @@
     </section>
 </article>
 <!-- /article -->
-
+<script type="text/javascript">
+				$(document).ready(function() {
+					$('#form-login').validate({
+						ignore : [],
+						debug : false,
+						rules : {
+							"taiKhoan" : {
+								required : true,
+							},
+							"matKhau" : {
+								required : true,
+							},
+							
+							
+						},
+						messages : {
+							"taiKhoan" : {
+								required : "Vui lòng nhập tên tài khoản",
+							},
+							"matKhau" : {
+								required : "Vui lòng  nhập mật khẩu",
+							},
+						},
+					});
+				});
+			</script>

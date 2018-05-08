@@ -27,7 +27,7 @@
                 <ul class="nav navbar-nav search-box">
                     <li class="nav-link">
                         <div class="margin0">
-                            <a class="logo-header-small" href="https://viectotnhat.com/nhatuyendung"></a>
+                            <a class="logo-header-small" href="${pageContext.request.contextPath }"></a>
                         </div>
                     </li>
                     <li class="search-form search-form-v2">
@@ -481,7 +481,7 @@
                             <div class="row" id="menungang">
                                 <div class="job-name job-name-not-visited list">
                                     <div class="col-xs-2" style="width: 13%;">
-                                        <a href="${pageContext.request.contextPath }/nha-tuyen-dung/dang-tin"><i class="icon-sprite-new icon-upload-black"></i>&nbsp;&nbsp;&nbsp;Đăng tin</a>
+                                        <a href="${pageContext.request.contextPath }/nha-tuyen-dung/tao-ho-so-tuyen-dung"><i class="icon-sprite-new icon-upload-black"></i>&nbsp;&nbsp;&nbsp;Đăng tin</a>
                                     </div>
                                     <div class="col-xs-2 padding0" style="width: 17%;">
                                         <a href="${pageContext.request.contextPath }/nha-tuyen-dung/tai-khoan"><i class="icon-24 icon-user-small"></i>&nbsp;&nbsp;Quản lý tài khoản</a>

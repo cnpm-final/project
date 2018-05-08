@@ -18,4 +18,10 @@ public class MucLuongDao {
 		String sql="select * from muc_luong ";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<MucLuong>(MucLuong.class));
 	}
+
+	public MucLuong getItem(int maMucLuong) {
+		String sql="select * from muc_luong where MaMUcLuong=?";
+		return jdbcTemplate.queryForObject(sql, new Object[] {maMucLuong},new  BeanPropertyRowMapper<MucLuong>(MucLuong.class));
+		
+	}
 }

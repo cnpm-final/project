@@ -40,37 +40,7 @@
 
 						<div class="padding25 pl12mb pr12mb paddingTop15-mb">
 							<div class="row margin0">
-								<div class="col-xs-6 col-sm-4 padding0">
-									<p class="marginBottom5 marginBottom10-mb">
-										<b>Tin còn hạn: </b> 1
-									</p>
-									<p class="marginBottom5 marginBottom10-mb">
-										<b>Tin chờ duyệt: </b> 0
-									</p>
-									<p class="marginBottom5 marginBottom10-mb visible-xs">
-										<b>Tin nháp: </b> 1
-									</p>
-								</div>
-
-								<div class="col-xs-6 col-sm-4 padding0 hidden-xs">
-									<p class="marginBottom5 marginBottom10-mb">
-										<b>Tin nháp: </b> 1
-									</p>
-									<p class="marginBottom5 marginBottom10-mb">
-										<b>Tin đã hết hạn: </b> <span class="text-red">0</span>
-									</p>
-								</div>
-
-								<div class="col-xs-6 col-sm-4 padding0">
-									<p class="marginBottom5 marginBottom10-mb">
-										<b>Tin ẩn: </b> 0
-									</p>
-									<p class="marginBottom5 marginBottom10-mb">
-										<b>Tin không duyệt: </b> <span class="text-red">0</span>
-									</p>
-									<p class="marginBottom5 marginBottom10-mb visible-xs">
-										<b>Tin đã hết hạn: </b> <span class="text-red">0</span>
-									</p>
+								
 								</div>
 							</div>
 							<a
@@ -99,28 +69,7 @@
 												</form>
 											</div>
 
-											<div class="col-xs-12 col-sm-5 paddingRight0">
-												<div class="col-sx">
-													<div class="txt-lablel-sx">Trạng thái</div>
-													<div class="sl-sap-xep paddingLeft15">
-														<select class="sl-sap-xep" id="sl-sap-xep"
-															style="width: 100%">
-															<option value="">Tất cả</option>
-															<option value="100">Tất cả</option>
-															<option value="N" ids="N">Chờ duyệt</option>
-															<option value="Y" ids="Y">Đã duyệt</option>
-															<option value="A" ids="A">Không duyệt</option>
-															<option value="search_allowed" ids="search_allowed">Tin
-																ẩn</option>
-															<option value="R" ids="R">Tin nháp</option>
-															<option value="3" ids="3">Còn hạn</option>
-															<option value="2" ids="2">Sắp hết hạn</option>
-															<option value="1" ids="1">Hết hạn</option>
-															<option value="S" ids="S">Tin quá hạn</option>
-														</select>
-													</div>
-												</div>
-											</div>
+											
 										</div>
 									</th>
 
@@ -128,9 +77,8 @@
 								<tr class="th-label">
 									<th>Vị trí tuyển dụng</th>
 									<th class="w92">Lượt nộp</th>
-									<th class="w90">Lượt xem</th>
 									<th class="w95">Hạn nộp</th>
-									<th class="w95">Ngày bắt đầu nộp hồ sơ</th>
+									<th class="w95">Ngày tạo hồ sơ</th>
 									<th class="w100">Trạng thái</th>
 									<th class="w60"></th>
 								</tr>
@@ -145,9 +93,8 @@
 										<div class="txt-89 fontSize12">Mã tin: NTD ${hsotd.maHSTD}</div>
 									</td>
 									<td>0</td>
-									<td>0</td>
 									<td>${hsotd.ngayChamDutNhanHoSo }</td>
-									<td>${hsotd.ngayBatDauNhanHoSo }</td>
+									<td>${hsotd.thoiGianTao}</td>
 									<c:choose>
 										<c:when test="${hsotd.trangThaiGuiPheDuyet==0}">
 											<td>Tin nháp</td>
@@ -165,15 +112,11 @@
 										</button>
 
 										<ul class="dropdown-menu">
+											
 											<li><a
-												href="https://viectotnhat.com/nha-tuyen-dung/lam-moi-ntd-free?id=1118271&action=refresh"><i
-													class="icon-sprite-new icon-refresh-new"></i> Làm mới</a></li>
-											<li><a
-												href="https://viectotnhat.com/nha-tuyen-dung/dang-tin?job_id=1118271&type=update"><i
+												href="${pageContext.request.contextPath }/nha-tuyen-dung/quan-ly-tin-dang/edit/${hsotd.maHSTD}"><i
 													class="icon-sprite-new icon-edit-new"></i> Chỉnh sửa</a></li>
-											<li><a
-												href="https://viectotnhat.com/nha-tuyen-dung/gia-han-tin?job_id=1118271"><i
-													class="icon-sprite-new icon-time-new"></i> Gia hạn</a></li>
+											
 											<li><a
 												href="https://viectotnhat.com/nha-tuyen-dung/ho-so-da-ung-tuyen?job_id=1118271"><i
 													class="icon-sprite-new icon-tick-new"></i> Hồ sơ đã nộp</a></li>

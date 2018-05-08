@@ -48,10 +48,29 @@ public class HoSoViecLamDao {
 				+ " WHERE hsvl.MaHSVL = ?";
 		return jdbcTemplate.queryForObject(sql, new Object[]{maHSVL}, new BeanPropertyRowMapper<HoSoViecLam>(HoSoViecLam.class));
 	}
+	public int addItem1(HoSoViecLam obj) {
+		String sql="INSERT INTO ho_so_viec_lam (MaTKTao, TieuDeHoSo, MaChucDanhMongMuon, MaMucLuongMongMuon, MaNganhNgheMongMuon,"
+				+ "MaNhomNganhNgheMongMuon, NoiLamViecMongMuon, MaThoiGianLamViecMongMuon, MaQuocGia, KinhNghiemLamViec, MongMuonLamViec,"
+				+ " TrangThaiGuiPheDuyet, TrangThaiPheDuyet)"
+				+ "Values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		return jdbcTemplate.update(sql, new Object[] {obj.getMaTKTao(), obj.getTieuDeHoSo(), obj.getMaChucDanhMongMuon(), 
+				obj.getMaMucLuongMongMuon(), obj.getMaNganhNgheMongMuon(), obj.getMaNhomNganhNgheMongMuon(), obj.getNoiLamViecMongMuon(),
+				 obj.getMaThoiGianLamViecMongMuon(), obj.getMaQuocGia(), obj.getKinhNghiemLamViec(), obj.getMongMuonVeCongViec(),
+				 obj.getTrangThaiGuiPheDuyet(), 0});
+		
+	}
 	public int delItem(int MaHSVL) {
 		String sql="delete from ho_so_viec_lam where MaHSVL=?";
 		return jdbcTemplate.update(sql, new Object[]{MaHSVL});
 	}
-	
+	public int eidtItem(HoSoViecLam hso) {
+		String sql="UPDATE ho_so_viec_lam SET TieuDeHoSo=?,MaChucDanhMongMuon=?,MaMucLuongMongMuon=?,MaNganhNgheMongMuon=?,"
+				+ "MaNhomNganhNgheMongMuon=?,NoiLamViecMongMuon=?,MaThoiGianLamViecMongMuon=?,MaQuocGia=?,KinhNghiemLamViec=?,"
+				+ "MongMuonLamViec=? where MaHSVL=?";
+		return jdbcTemplate.update(sql, new Object[]  {hso.getTieuDeHoSo(), hso.getMaChucDanhMongMuon(), hso.getMaMucLuongMongMuon(),
+				hso.getMaNganhNgheMongMuon(), hso.getMaNhomNganhNgheMongMuon(), hso.getNoiLamViecMongMuon(), 
+				hso.getMaThoiGianLamViecMongMuon(),hso.getMaQuocGia(),hso.getKinhNghiemLamViec(), hso.getMongMuonVeCongViec(), 
+				hso.getMaHSVL()});
+	}
 }
 //SELECT * FROM user INNER JOIN exchange ON user.id_user = exchange.id_parent WHERE exchange.id_parent = ? AND exchange.id_status = 2

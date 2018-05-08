@@ -110,6 +110,12 @@ public class UsersDao {
 						objItem.getMaTrinhDoVanHoa(), objItem.getMaTrinhDoChuyenMonKyThuat(), objItem.getMaTrinhDoNgoaiNgu(),
 						objItem.getMaTrinhDoTinHoc(), objItem.getKinhNghiemLamViec(), objItem.getMaQuyenHan(), objItem.getTrangThaiTaiKhoan()});
 	}
-	
+
+	public User getName(int MaTK) {
+		String sql="select HoTen from nguoi_dung where MaTK=?";
+		return jdbcTemplate.queryForObject(sql, new Object[] {MaTK},new  BeanPropertyRowMapper<User>(User.class));
+		
+	}
+
 
 }

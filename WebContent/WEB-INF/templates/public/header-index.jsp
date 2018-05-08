@@ -250,7 +250,7 @@
                     <div class="account-type">${UserInfo.email }</div>
                 </div>
             </div>
-            <a href="https://viectotnhat.com/nha-tuyen-dung/dang-tin" class="btn btn-orange-48 w100p marginTop15">
+            <a href="${pageContext.request.contextPath }/nha-tuyen-dung/tao-ho-so-tuyen-dung" class="btn btn-orange-48 w100p marginTop15">
                 <span class="icon-24-white icon-edit-white marginRight10"></span>
                 TẠO TIN TUYỂN DỤNG
             </a>
@@ -258,10 +258,10 @@
         <div class="line-gray"></div>
         <div class="clearfix"></div>
         <div class="qltk">
-            <a class="list-menu-mb" href="https://viectotnhat.com/nha-tuyen-dung/tai-khoan" title="Quản lý tài khoản"><span class="icon-24 icon-user-small marginRight15"></span>Quản lý tài khoản</a>
-            <a class="list-menu-mb" title="Quản lý tin tuyển dụng" href="https://viectotnhat.com/nha-tuyen-dung/quan-ly-tin-dang"><span class="icon-sprite-new icon-ql-ttd marginRight15"></span>Quản lý tin tuyển dụng</a>
-            <a class="list-menu-mb" title="Hồ sơ đã lưu" href="https://viectotnhat.com/nha-tuyen-dung/ho-so-da-luu"><span class="icon-24 icon-star-small marginRight15"></span>Hồ sơ đã lưu</a>
-            <a class="list-menu-mb" title="Hồ sơ đã ứng tuyển" href="https://viectotnhat.com/nha-tuyen-dung/ho-so-da-ung-tuyen"><span class="icon-sprite-new icon-tick-new marginRight15"></span>Hồ sơ đã ứng tuyển</a>
+            <a class="list-menu-mb" href="${pageContext.request.contextPath }/nha-tuyen-dung/tai-khoan" title="Quản lý tài khoản"><span class="icon-24 icon-user-small marginRight15"></span>Quản lý tài khoản</a>
+            <a class="list-menu-mb" title="Quản lý tin tuyển dụng" href="${pageContext.request.contextPath }/nha-tuyen-dung/quan-ly-tin-dang"><span class="icon-sprite-new icon-ql-ttd marginRight15"></span>Quản lý tin tuyển dụng</a>
+            <a class="list-menu-mb" title="Hồ sơ đã lưu" href="/nha-tuyen-dung/ho-so-da-luu"><span class="icon-24 icon-star-small marginRight15"></span>Hồ sơ đã lưu</a>
+            <a class="list-menu-mb" title="Hồ sơ đã ứng tuyển" href="/nha-tuyen-dung/ho-so-da-ung-tuyen"><span class="icon-sprite-new icon-tick-new marginRight15"></span>Hồ sơ đã ứng tuyển</a>
                        <!--  <a id="manage_notifications" class="list-menu-mb" title="Việc Tốt Nhất thông báo" href="https://viectotnhat.com/nha-tuyen-dung/thong-bao-tu-viectotnhat"><span class="icon-sprite-new icon-noti-by-ad marginRight15"><span class="number_notify"></span></span>Việc Tốt Nhất thông báo</a> -->
         </div>
                     <div class="line-gray"></div>

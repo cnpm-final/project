@@ -22,7 +22,7 @@
                         <hr class="margin0">
                        	<div id="box_seeker_profile">
                        		<div class="content-box-white">
-							    <form id="frm-main" name="frmMain" action="${pageContext.request.contextPath }/nguoi-tim-viec/sua-ho-so" method="post">
+							    <form id="frm-main" name="frmMain" action="${pageContext.request.contextPath }/nguoi-tim-viec/ho-so/sua-ho-so/${objHSVL.maHSVL }" method="post">
 							        <div class="col-xs-12 padding0 form-group pst-relative">
 							            <label for="" class="col-sm-3 col-md-3 col-lg-3 paddingRight0 paddingLeft0 control-label">Tiêu đề hồ sơ</label>
 							            <div class="col-sm-9 col-md-9 col-lg-9 paddingRight0 paddingLeft20">
@@ -48,9 +48,8 @@
 											<select id="MaQuocGia" name="MaQuocGia"
 												class="select2 form-control luong-toi-thieu select_ntd_search">
 												<option selected="selected" value="0">---Chọn quốc gia---</option>
-												<c:forEach items="${listQuocGia}" var="objItem">
-													
-													<option value="${objItem.maQuocGia }" >${objItem.tenQuocGia}</option>
+												<c:forEach items="${listQuocGia}" var="objItem">													
+													<option value="${objItem.maQuocGia }" <c:if test="${objItem.maQuocGia == objHSVL.maQuocGia }">selected='selected'</c:if>>${objItem.tenQuocGia}</option>
 												</c:forEach>
 											</select>
 										</div>
@@ -71,7 +70,7 @@
 													style="width: 100%" onchange="selectNganhNghe()">
 													<option  value="">Chọn ngành nghề</option>
 													<c:forEach items="${listNhomNganhNghe}" var="nhomnganhnghe">
-														<option value="${nhomnganhnghe.maNNN}" >${nhomnganhnghe.moTaNNN}</option>
+														<option value="${nhomnganhnghe.maNNN}" <c:if test="${nhomnganhnghe.maNNN == objHSVL.maNhomNganhNgheMongMuon }">selected='selected'</c:if>>${nhomnganhnghe.moTaNNN}</option>
 													</c:forEach>
 												</select>
 												</div>
@@ -132,7 +131,7 @@
 												class="select2 form-control luong-toi-thieu select_ntd_search">
 												<option selected="selected" value="">---Chọn vị trí---</option>
 												<c:forEach items="${listChucDanh}" var="cdanh">
-													<option value="${cdanh.maChucDanh }">${cdanh.moTaChucDanh}</option>
+													<option value="${cdanh.maChucDanh }" <c:if test="${cdanh.maChucDanh == objHSVL.maChucDanhMongMuon }">selected='selected'</c:if>>${cdanh.moTaChucDanh}</option>
 												</c:forEach>
 											</select>
 										</div>
@@ -147,7 +146,7 @@
 												class="select2 form-control luong-toi-thieu select_ntd_search">
 												<option selected="selected" value="">---Chọn mức lương---</option>
 												<c:forEach items="${listMucLuong}" var="objItem">
-													<option value="${objItem.maMucLuong }">${objItem.moTaMucLuong}</option>
+													<option value="${objItem.maMucLuong }" <c:if test="${objItem.maMucLuong == objHSVL.maMucLuongMongMuon }">selected='selected'</c:if>>${objItem.moTaMucLuong}</option>
 												</c:forEach>
 											</select>
 										</div>
@@ -162,7 +161,7 @@
 												class="select2 form-control luong-toi-thieu select_ntd_search">
 												<option selected="selected" value="">---Chọn thời gian làm việc---</option>
 												<c:forEach items="${listThoiGianLamViec}" var="objItem">
-													<option value="${objItem.maTGLV }">${objItem.moTaTGLV}</option>
+													<option value="${objItem.maTGLV }" <c:if test="${objItem.maTGLV == objHSVL.maThoiGianLamViecMongMuon }">selected='selected'</c:if>>${objItem.moTaTGLV}</option>
 												</c:forEach>
 											</select>
 										</div>
@@ -196,7 +195,7 @@
 					                      <button type="button" id="btnSaveDraft" class="btn btn-default fontSize16 button-white2 marginRight10">LƯU NHÁP</button>
 										  <button type="button" id="btnCancel" onclick="myFunction()" class="btn btn-default fontSize16 button-white2 marginRight10">LÀM MỚI</button>
 										  <button class="btn btn-default fontSize16 button-white2 marginRight10">
-										  	<a href="${pageContext.request.contextPath }/nguoi-tim-viec">
+										  	<a href="${pageContext.request.contextPath }/nguoi-tim-viec/ho-so/view">
 										  		Quay lại
 										  	</a>
 									  	  </button>
