@@ -13,6 +13,7 @@ public class HoSoNhaTuyenDung {
 	private int maThoiGianLamViec;
 	private int yeuCauTrinhDoChuyenMonKyThuat;
 	private int yeuCauNganhNghe;
+	private int yeuCauNhomNganhNghe;
 	private int yeuCauKinhNghiem;
 	private int yeuCauNgoaiNgu;
 	private int yeuCauTinHoc;
@@ -33,14 +34,21 @@ public class HoSoNhaTuyenDung {
 	private int pheDuyetBoi;
 	public HoSoNhaTuyenDung() {
 		super();
-		// TODO Auto-generated constructor stub
+	}
+	
+	public int getMaHSTD() {
+		return maHSTD;
+	}
+	public void setMaHSTD(int maHSTD) {
+		this.maHSTD = maHSTD;
 	}
 	public HoSoNhaTuyenDung(int maHSTD, int maTKTao, String tieuDeHoSo, int maChucDanh, String moTaCongViec,
 			String quyenLoi, int maMucLuong, int maThoiGianLamViec, int yeuCauTrinhDoChuyenMonKyThuat,
-			int yeuCauNganhNghe, int yeuCauKinhNghiem, int yeuCauNgoaiNgu, int yeuCauTinHoc, String gioiTinhTuyenDung,
-			String doTuoiTuyenDung, int soLuongTuyenDung, String yeuCauKyNangKhac, String yeuCauHoSoGom,
-			Date ngayBatDauNhanHoSo, String noiNhan, Date ngayChamDutNhanHoSo, Date ngayDuTuyen, String noiDuTuyen,
-			Date thoiGianTao, Date lanCuoiChinhSua, int trangThaiPheDuyet, int trangThaiGuiPheDuyet, int pheDuyetBoi) {
+			int yeuCauNganhNghe, int yeuCauNhomNganhNghe, int yeuCauKinhNghiem, int yeuCauNgoaiNgu, int yeuCauTinHoc,
+			String gioiTinhTuyenDung, String doTuoiTuyenDung, int soLuongTuyenDung, String yeuCauKyNangKhac,
+			String yeuCauHoSoGom, Date ngayBatDauNhanHoSo, String noiNhan, Date ngayChamDutNhanHoSo, Date ngayDuTuyen,
+			String noiDuTuyen, Date thoiGianTao, Date lanCuoiChinhSua, int trangThaiPheDuyet, int trangThaiGuiPheDuyet,
+			int pheDuyetBoi) {
 		super();
 		this.maHSTD = maHSTD;
 		this.maTKTao = maTKTao;
@@ -52,6 +60,7 @@ public class HoSoNhaTuyenDung {
 		this.maThoiGianLamViec = maThoiGianLamViec;
 		this.yeuCauTrinhDoChuyenMonKyThuat = yeuCauTrinhDoChuyenMonKyThuat;
 		this.yeuCauNganhNghe = yeuCauNganhNghe;
+		this.yeuCauNhomNganhNghe = yeuCauNhomNganhNghe;
 		this.yeuCauKinhNghiem = yeuCauKinhNghiem;
 		this.yeuCauNgoaiNgu = yeuCauNgoaiNgu;
 		this.yeuCauTinHoc = yeuCauTinHoc;
@@ -71,12 +80,15 @@ public class HoSoNhaTuyenDung {
 		this.trangThaiGuiPheDuyet = trangThaiGuiPheDuyet;
 		this.pheDuyetBoi = pheDuyetBoi;
 	}
-	public int getMaHSTD() {
-		return maHSTD;
+
+	public int getYeuCauNhomNganhNghe() {
+		return yeuCauNhomNganhNghe;
 	}
-	public void setMaHSTD(int maHSTD) {
-		this.maHSTD = maHSTD;
+
+	public void setYeuCauNhomNganhNghe(int yeuCauNhomNganhNghe) {
+		this.yeuCauNhomNganhNghe = yeuCauNhomNganhNghe;
 	}
+
 	public int getMaTKTao() {
 		return maTKTao;
 	}

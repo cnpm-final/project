@@ -3,72 +3,7 @@
     <!-- footer -->
     
 
-<!-- Hotline -->
-<div class="bg-green-nhat hidden-xs paddingBottom15">
-        <div class="main-content">
-                    <div class="fontSize18 bold txt-21">
-                <i class="icon-sprite-new icon-tit-hotline"></i>
-                Hotline cho Nhà tuyển dụng miền Nam (từ Đà Nẵng trở vào)            </div>
-            <div class="row row-10 marginTop10 marginBottom20">
-                                                            <div class="col-xs-12 col-sm-4 paddingLeft10 paddingRight10">
-                            <div class="fontSize14 txt-36 marginTop5"><b class="text-red" style="display: inline-block; min-width: 92px;">0911 530 578</b> Ms. Nguyệt</div>
 
-                        </div>
-                                            <div class="col-xs-12 col-sm-4 paddingLeft10 paddingRight10">
-                            <div class="fontSize14 txt-36 marginTop5"><b class="text-red" style="display: inline-block; min-width: 92px;">0918 395 316</b> Ms. Kim Cúc</div>
-
-                        </div>
-                                            <div class="col-xs-12 col-sm-4 paddingLeft10 paddingRight10">
-                            <div class="fontSize14 txt-36 marginTop5"><b class="text-red" style="display: inline-block; min-width: 92px;">0918 840 316</b> Ms. Kim Ngân</div>
-
-                        </div>
-                                            <div class="col-xs-12 col-sm-4 paddingLeft10 paddingRight10">
-                            <div class="fontSize14 txt-36 marginTop5"><b class="text-red" style="display: inline-block; min-width: 92px;">0911 130 578</b> Ms. Hà Thanh</div>
-
-                        </div>
-                                            <div class="col-xs-12 col-sm-4 paddingLeft10 paddingRight10">
-                            <div class="fontSize14 txt-36 marginTop5"><b class="text-red" style="display: inline-block; min-width: 92px;">0918 770 416</b> Ms. Đan Thanh</div>
-
-                        </div>
-                                            <div class="col-xs-12 col-sm-4 paddingLeft10 paddingRight10">
-                            <div class="fontSize14 txt-36 marginTop5"><b class="text-red" style="display: inline-block; min-width: 92px;">0915 291 916</b> Ms. Thanh Thảo</div>
-
-                        </div>
-                                                                                <div class="col-xs-12 col-sm-4 paddingLeft10 paddingRight10">
-                            <div class="fontSize14 txt-36 marginTop5"><b class="text-red" style="display: inline-block; min-width: 92px;">0917 579 716</b> Ms. Khánh Linh</div>
-
-                        </div>
-                                            <div class="col-xs-12 col-sm-4 paddingLeft10 paddingRight10">
-                            <div class="fontSize14 txt-36 marginTop5"><b class="text-red" style="display: inline-block; min-width: 92px;">0918 075 916</b> Ms. Hồng Phương</div>
-
-                        </div>
-                                            <div class="col-xs-12 col-sm-4 paddingLeft10 paddingRight10">
-                            <div class="fontSize14 txt-36 marginTop5"><b class="text-red" style="display: inline-block; min-width: 92px;">0918 862 416</b> Ms. Tường Vi</div>
-
-                        </div>
-                                    
-            </div>
-                    <div class="fontSize18 bold txt-21">
-                <i class="icon-sprite-new icon-tit-hotline"></i>
-                Hotline cho Nhà tuyển dụng miền Bắc (từ Huế trở ra)            </div>
-            <div class="row row-10 marginTop10 marginBottom20">
-                                                            <div class="col-xs-12 col-sm-4 paddingLeft10 paddingRight10">
-                            <div class="fontSize14 txt-36 marginTop5"><b class="text-red" style="display: inline-block; min-width: 92px;">0919 542 216</b> Ms. Mai Phương</div>
-
-                        </div>
-                                            <div class="col-xs-12 col-sm-4 paddingLeft10 paddingRight10">
-                            <div class="fontSize14 txt-36 marginTop5"><b class="text-red" style="display: inline-block; min-width: 92px;">0919 531 216</b> Ms. Minh Phương</div>
-
-                        </div>
-                                            <div class="col-xs-12 col-sm-4 paddingLeft10 paddingRight10">
-                            <div class="fontSize14 txt-36 marginTop5"><b class="text-red" style="display: inline-block; min-width: 92px;">0914 846 116</b> Ms. Kiều Trinh</div>
-
-                        </div>
-                                    
-            </div>
-            </div>
-</div>
-<!-- End Hotline -->
 <div id="footer">
     <div class="border-top"></div>
     <div class="main-content">

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,8 +19,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import constant.Defines;
 import model.bean.City;
+import model.bean.HoSoViecLam;
 import model.bean.User;
+import model.dao.ChucDanhDao;
 import model.dao.CiTyDao;
+import model.dao.HoSoTuyenDungDao;
+import model.dao.HoSoViecLamDao;
+import model.dao.LoaiHinhDoanhNghiepDao;
+import model.dao.MucLuongDao;
+import model.dao.NganhNgheDao;
+import model.dao.NhomNganhNgheDao;
+import model.dao.QuocGiaDAO;
+import model.dao.ThoiGianLamViecDao;
 import model.dao.TrinhDoChuyenMonKyThuatDao;
 import model.dao.TrinhDoNgoaiNguDao;
 import model.dao.TrinhDoTinHocDao;
@@ -48,15 +59,34 @@ public class PublicCandidateController {
 	private TrinhDoVanHoaDao trinhDoVanHoaDao;
 	@Autowired
 	private StringUtil stringUtils;
+	@Autowired
+	private NhomNganhNgheDao nhomNganhNgheDao;
+	@Autowired
+	private NganhNgheDao nganhNgheDao;
+	@Autowired
+	private ChucDanhDao chucDanhDao;
+	@Autowired
+	private MucLuongDao mucLuongDao;
+	@Autowired
+	private QuocGiaDAO quocGiaDAO;
+	@Autowired
+	private ThoiGianLamViecDao thoiGianLamViecDao;
+	@Autowired
+	private HoSoViecLamDao hoSoViecLamDao;
 	@ModelAttribute
 	public void addCommonsObject(ModelMap modelMap) {
 		modelMap.addAttribute("defines", defines);
-		List<City> list=cityDao.getItems();
-		modelMap.addAttribute("listCity", list);
+		modelMap.addAttribute("listCity", cityDao.getItems());
 		modelMap.addAttribute("listTrinhDoChuyenMonKyThuat", trinhDoChuyenMonKyThuatDao.getItems());
 		modelMap.addAttribute("listTrinhDoNgoaiNgu", trinhDoNgoaiNguDao.getItems());
 		modelMap.addAttribute("listTrinhDoTinHoc", trinhDoTinHocDao.getItems());
 		modelMap.addAttribute("listTrinhDoVanHoa", trinhDoVanHoaDao.getItems());
+		modelMap.addAttribute("listNganhNghe", nganhNgheDao.getItems());
+		modelMap.addAttribute("listChucDanh", chucDanhDao.getItems());
+		modelMap.addAttribute("listMucLuong", mucLuongDao.getItems());
+		modelMap.addAttribute("listQuocGia", quocGiaDAO.getItems());
+		modelMap.addAttribute("listThoiGianLamViec", thoiGianLamViecDao.getItems());
+		modelMap.addAttribute("listNhomNganhNghe", nhomNganhNgheDao.getItems());
 	}
 	@RequestMapping(value="", method=RequestMethod.GET)
 	public String index(){
@@ -101,7 +131,8 @@ public class PublicCandidateController {
 		if(userDao.addItem(objItem) > 0){
 			session = request.getSession();
 			session.setAttribute("objNTV", objItem);
-			return "redirect:/dang-ky-nha-tuyen-dung-thanh-cong";
+			modelMap.addAttribute("objNTV", objItem);
+			return "redirect:/nguoi-tim-viec/dang-ky-nguoi-tim-viec-thanh-cong";
 		}else{
 			ra.addFlashAttribute("msg1", "Đăng ký không thành công! Xin mời kiểm tra lại!");
 			return "redirect:/nguoi-tim-viec/dang-ky";
@@ -123,7 +154,7 @@ public class PublicCandidateController {
 	
 		if(user!=null) {
 			session =request.getSession();
-			session.setAttribute("UserInfo", user);
+			session.setAttribute("objNTV", user);
 			return "redirect:/nguoi-tim-viec";
 		}else {
 			ra.addFlashAttribute("msg", "Sai tài khoản hoặc mật khẩu");
@@ -133,9 +164,82 @@ public class PublicCandidateController {
 	@RequestMapping(value="/dang-xuat", method=RequestMethod.GET)
 	public String logout(HttpSession session,HttpServletRequest request){
 	session=request.getSession();
-	if(session.getAttribute("UserInfo")!=null) {
-		session.removeAttribute("UserInfo");
+	if(session.getAttribute("objNTV")!=null) {
+		session.removeAttribute("objNTV");
 	}
 		return "redirect:/nguoi-tim-viec/dang-nhap";
+	}
+	@RequestMapping(value="/quan-ly-tai-khoan", method=RequestMethod.GET)
+	public String quanlytaikhoan(){
+		return "public.nguoitimviec.account_management";
+	}
+	@RequestMapping(value="/quan-ly-tai-khoan/edit", method=RequestMethod.GET)
+	public String nguoitimviec_edit(){
+		return "public.nguoitimviec.account_management.edit";
+	}
+	@RequestMapping(value="/tao-ho-so", method=RequestMethod.GET)
+	public String taoHoSo(){
+		return "public.nguoitimviec.records_management.add";
+	}
+	@RequestMapping(value="/tao-ho-so", method = RequestMethod.POST)
+	public String taoHoSo( @ModelAttribute("objItem") HoSoViecLam objItem, RedirectAttributes ra,HttpServletRequest request,
+			ModelMap modelMap, HttpSession session){
+		session = request.getSession();
+		User objUser = (User) session.getAttribute("objNTV");
+		objItem.setMaTKTao(objUser.getMaTK());
+		objItem.setTrangThaiGuiPheDuyet(0);
+		if(hoSoViecLamDao.addItem(objItem) > 0){
+			ra.addFlashAttribute("msg_suc", "Tạo hồ sơ thành công!");
+			return "redirect:/nguoi-tim-viec/ho-so/view";
+		}else{
+			ra.addFlashAttribute("msg_fail", "Tạo hồ sơ không thành công! Xin mời kiểm tra lại!");
+			return "redirect:/nguoi-tim-viec/ho-so/view";
+		}
+	}
+	@RequestMapping(value="/sua-ho-so/{id}", method=RequestMethod.GET)
+	public String suaHoSo(@PathVariable("id") int id,ModelMap modelMap){
+		modelMap.addAttribute("objHSVL", hoSoViecLamDao.getItemEdit(id));
+		return "public.nguoitimviec.records_management.edit";
+	}
+	@RequestMapping(value="/sua-ho-so", method = RequestMethod.POST)
+	public String suaHoSo( @ModelAttribute("objItem") HoSoViecLam objItem, RedirectAttributes ra,HttpServletRequest request,
+			ModelMap modelMap, HttpSession session){
+		session = request.getSession();
+		User objUser = (User) session.getAttribute("objNTV");
+		objItem.setMaTKTao(objUser.getMaTK());
+		objItem.setTrangThaiGuiPheDuyet(0);
+		if(hoSoViecLamDao.addItem(objItem) > 0){
+			ra.addFlashAttribute("msg_suc", "Tạo hồ sơ thành công!");
+			return "redirect:/nguoi-tim-viec/ho-so/view";
+		}else{
+			ra.addFlashAttribute("msg_fail", "Tạo hồ sơ không thành công! Xin mời kiểm tra lại!");
+			return "redirect:/nguoi-tim-viec/ho-so/view";
+		}
+	}
+	@RequestMapping(value="/ho-so/view", method=RequestMethod.GET)
+	public String nguoitimviec_listView(ModelMap modelMap,HttpSession session,HttpServletRequest request){
+		session=request.getSession();	
+		User user=(User)session.getAttribute("objNTV");
+		List<HoSoViecLam> listHSVL = (List<HoSoViecLam>) hoSoViecLamDao.getItems(user.getMaTK());
+		modelMap.addAttribute("listHoSoByMaTK", listHSVL);
+		return "public.nguoitimviec.records_management.listhosodatao";
+	}
+	@RequestMapping(value="/ho-so/del/{id}", method=RequestMethod.GET)
+	public String delHoSo(@PathVariable("id") int id,ModelMap modelMap, RedirectAttributes ra){
+		if(hoSoViecLamDao.delItem(id) > 0){
+			ra.addFlashAttribute("msg_suc", "Xóa thành công!");
+			return "redirect:/nguoi-tim-viec/ho-so/view";
+		}else{
+			ra.addFlashAttribute("msg_fail", "Xóa không thành công! Xin mời kiểm tra lại!");
+			return "redirect:/nguoi-tim-viec/ho-so/view";
+		}
+	}
+	@RequestMapping(value="/ho-so/xem/{id}", method=RequestMethod.GET)
+	public String nguoitimviec_view(@PathVariable("id") int id, ModelMap modelMap,HttpSession session,HttpServletRequest request){
+		session=request.getSession();	
+		User user=(User)session.getAttribute("objNTV");
+		modelMap.addAttribute("objNTV", user);
+		modelMap.addAttribute("HSVL", hoSoViecLamDao.getItem(id));
+		return "public.nguoitimviec.records_management.view";
 	}
 }

@@ -63,6 +63,10 @@
    <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
     <put-attribute name="body" value="/WEB-INF/jsp/public/nguoitimviec/quanlyhoso/add.jsp" />
   </definition>
+  <definition name="public.nguoitimviec.records_management.edit" extends="public.template">
+   <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
+    <put-attribute name="body" value="/WEB-INF/jsp/public/nguoitimviec/quanlyhoso/edit.jsp" />
+  </definition>
   <definition name="public.nguoitimviec.account_management.view_dangkythanhcong" extends="public.template">
    <put-attribute name="header" value="/WEB-INF/templates/public/header2.jsp" />
     <put-attribute name="body" value="/WEB-INF/jsp/public/nguoitimviec/view_dangkythanhcong.jsp" />

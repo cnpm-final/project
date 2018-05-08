@@ -22,11 +22,11 @@
                         <hr class="margin0">
                        	<div id="box_seeker_profile">
                        		<div class="content-box-white">
-							    <form id="frm-main" name="frmMain" action="${pageContext.request.contextPath }/nguoi-tim-viec/tao-ho-so" method="post">
+							    <form id="frm-main" name="frmMain" action="${pageContext.request.contextPath }/nguoi-tim-viec/sua-ho-so" method="post">
 							        <div class="col-xs-12 padding0 form-group pst-relative">
 							            <label for="" class="col-sm-3 col-md-3 col-lg-3 paddingRight0 paddingLeft0 control-label">Tiêu đề hồ sơ</label>
 							            <div class="col-sm-9 col-md-9 col-lg-9 paddingRight0 paddingLeft20">
-							                <input type="text" name="TieuDeHoSo" value="" class="form-control" placeholder="Nhập tiêu đề hồ sơ">
+							                <input type="text" name="TieuDeHoSo" value="${objHSVL.tieuDeHoSo }" class="form-control" placeholder="Nhập tiêu đề hồ sơ">
 							                	<p id="error_name" class="hidden text-red error"></p>
 							                    <p class="text-red hidden error_submit error"></p>
 							            </div>
@@ -34,7 +34,7 @@
 							        <div class="col-xs-12 padding0 form-group pst-relative">
 							            <label for="" class="col-sm-3 col-md-3 col-lg-3 paddingRight0 paddingLeft0 control-label">Nơi muốn làm việc</label>
 							            <div class="col-sm-9 col-md-9 col-lg-9 paddingRight0 paddingLeft20">
-							                <input type="text" id="NoiLamViecMongMuon" name="NoiLamViecMongMuon" value="" class="form-control h40" placeholder="Nhập nơi muốn làm việc">
+							                <input type="text" id="NoiLamViecMongMuon" name="NoiLamViecMongMuon" value="${objHSVL.noiLamViecMongMuon }" class="form-control h40" placeholder="Nhập nơi muốn làm việc">
 							                	<p id="error_name" class="hidden text-red error"></p>
 							                    <p class="text-red hidden error_submit error"></p>
 							            </div>
@@ -49,7 +49,8 @@
 												class="select2 form-control luong-toi-thieu select_ntd_search">
 												<option selected="selected" value="0">---Chọn quốc gia---</option>
 												<c:forEach items="${listQuocGia}" var="objItem">
-													<option value="${objItem.maQuocGia }">${objItem.tenQuocGia}</option>
+													
+													<option value="${objItem.maQuocGia }" >${objItem.tenQuocGia}</option>
 												</c:forEach>
 											</select>
 										</div>
@@ -175,7 +176,7 @@
 											class="col-sm-9 col-md-9 col-lg-9 paddingRight0 paddingLeft20">
 											<textarea id="KinhNghiemLamViec" name="KinhNghiemLamViec"
 												class="form-control h80-mb ck_editors_new"
-												placeholder="Viết kinh nghiệm làm việc " rows="5"></textarea>
+												placeholder="Viết kinh nghiệm làm việc " rows="5">${objHSVL.kinhNghiemLamViec }</textarea>
 										</div>
 									</div>
 									<div class="col-xs-12 padding0 form-group pst-relative">
@@ -187,7 +188,7 @@
 											class="col-sm-9 col-md-9 col-lg-9 paddingRight0 paddingLeft20">
 											<textarea id="MongMuonVeCongViec" name="MongMuonVeCongViec"
 												class="form-control h80-mb ck_editors_new"
-												placeholder="Viết mong muốn về công việc " rows="5"></textarea>
+												placeholder="Viết mong muốn về công việc " rows="5">${objHSVL.mongMuonLamViec }</textarea>
 										</div>
 									</div>
 				                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding0 form-group pst-relative dis-ver center">

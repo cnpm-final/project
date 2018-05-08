@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+		  <%@include file="/templates/taglib.jsp" %>
 <style>
 .table-qly-td a:hover {
 	text-decoration: underline;
@@ -19,41 +20,20 @@
 							<div class="title-content-page">Quản lý tin tuyển dụng</div>
 						</div>
 					</div>
-					<div class="pl12mb pr12mb clearfix">
-						<div
-							class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marginBottom15 box-green-content bor-cl-ntd marginBottom10-mb text-center hidden-xs">
-							<span>Để đảm bảo tin đăng hợp lệ, Quý khách vui lòng tham
-								khảo <a target="_blank" class="text-green font600"
-								href="https://viectotnhat.com/quy-dinh-dang-tin-tuyen-dung.html">Quy
-									định duyệt tin tuyển dụng tại Việc Tốt Nhất</a>
-							</span>
-							<hr class="marginTop5 marginBottom5">
-							Để được hỗ trợ, vui lòng liên hệ chuyên viên đang chăm sóc tài
-							khoản của Quý khách:<br /> Tên CSKH: <span
-								class="txt-green font700">Hà Đoan Thanh</span> - Email: <span
-								class="txt-green font700">thanhhd@viectotnhat.com</span> -
-							Hotline: <span class="txt-green font700">0911130578</span>
+					<c:if test="${not empty msg }">
+						<div class="pl12mb pr12mb clearfix">
+							<div
+								class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marginBottom15 box-green-content bor-cl-ntd marginBottom10-mb text-center hidden-xs">
+								<h3 style="color:green">${msg }
+								</h3>
+								
+							</div>
 						</div>
-					</div>
-
+					</c:if>			
 					<div class="clearfix"></div>
-
-					<!-- <div class="box-white-content padding25 bor-2-red hidden-xs">
-    <div class="fontSize16">Quý khách đang sử dụng tài khoản <b class="text-red">MIỄN PHÍ.</b> Hiệu quả tuyển dụng thấp do giới hạn số lượng tin đăng - vị trí đăng tin kém nổi bật, khó tiếp cận Người tìm việc và bị giới hạn nhiều quyền lợi đặc biệt khác.</div>
-    <a class="btn btn-green-52 btn-green-ntd w380 uppercase fontSize16 bold marginTop20" href="#">Tìm hiểu và nâng cấp tài khoản »</a>
-</div> -->
-
 					<div class="box-white-content marginTop0-mb">
 						<div class="box-white-content marginTop0-mb pl12mb pr12mb">
-							<div
-								class="paddingLeft25 paddingRight25 paddingBottom15  padding0-mb paddingTop10">
-								<div class="alert-job-list"></div>
-								<p class="paddingTop10 marginBottom0">
-									Quý khách đã đăng <span class="txt-green bold">0</span> tin
-									tuyển dụng - Số tin đăng miễn phí còn lại: <span
-										class="text-red bold">3</span>
-								</p>
-							</div>
+							
 						</div>
 
 						<hr class="margin0 marginTop10-mb marginBottom10-mb">
@@ -95,7 +75,7 @@
 							</div>
 							<a
 								class="btn btn-orange-52 w330 uppercase fontSize16 bold marginTop15 w100p-mb fontSize16-mb marginBottom15-mb h48mb lh48mb"
-								href="https://viectotnhat.com/nha-tuyen-dung/dang-tin"> <i
+								href="${pageContext.request.contextPath }/nha-tuyen-dung/tao-ho-so-tuyen-dung"> <i
 								class="icon-24-white icon-edit-white marginRight10"></i> Tạo tin
 								tuyển dụng
 							</a>
@@ -150,24 +130,33 @@
 									<th class="w92">Lượt nộp</th>
 									<th class="w90">Lượt xem</th>
 									<th class="w95">Hạn nộp</th>
-									<th class="w95">Làm mới</th>
+									<th class="w95">Ngày bắt đầu nộp hồ sơ</th>
 									<th class="w100">Trạng thái</th>
 									<th class="w60"></th>
 								</tr>
+								<c:forEach items="${listHoSoByMaTK}" var="hsotd">
 								<tr>
 									<td>
 										<p class="row-fee-a">
 											<a
-												href="https://viectotnhat.com/tuyen-nhan-vien-kinh-doanh-da-nang?id=1118271"
-												class="name-vt fontSize14">Nhân Viên Kinh Doanh</a>
+												href=""
+												class="name-vt fontSize14">${hsotd.tieuDeHoSo}</a>
 										</p>
-										<div class="txt-89 fontSize12">Mã tin: NTD1118271</div>
+										<div class="txt-89 fontSize12">Mã tin: NTD ${hsotd.maHSTD}</div>
 									</td>
 									<td>0</td>
 									<td>0</td>
-									<td>25-04-2018</td>
-									<td>24-04-2018</td>
-									<td>Tin nháp</td>
+									<td>${hsotd.ngayChamDutNhanHoSo }</td>
+									<td>${hsotd.ngayBatDauNhanHoSo }</td>
+									<c:choose>
+										<c:when test="${hsotd.trangThaiGuiPheDuyet==0}">
+											<td>Tin nháp</td>
+										</c:when>
+										<c:when test="${hsotd.trangThaiGuiPheDuyet==1}">
+											<td>Tin chờ duyệt</td>
+										</c:when>
+									</c:choose>
+									
 									<td class="dropdown">
 										<button class="btn btn-setting dropdown-toggle "
 											data-toggle="dropdown">
@@ -189,15 +178,86 @@
 												href="https://viectotnhat.com/nha-tuyen-dung/ho-so-da-ung-tuyen?job_id=1118271"><i
 													class="icon-sprite-new icon-tick-new"></i> Hồ sơ đã nộp</a></li>
 											<li><a class="delete-job" href="javascript:void(0);"
-												data-toggle="modal" data-target="#del-ttd" data-id="1118271"
-												data-vip=""><i class="icon-sprite-new icon-xoa-new"></i>
+												data-toggle="modal" data-target="#del-ttd${hsotd.maHSTD }" 
+												><i class="icon-sprite-new icon-xoa-new"></i>
 													Xóa</a></li>
 										</ul>
-
-									</td>
+	<div id="del-ttd${hsotd.maHSTD }" class="modal fade" tabindex="-1"
+												role="dialog">
+												<div class="modal-dialog" role="document">
+													<form class="form-06b marginTop20-mb" id="form-edit-pass"
+														action="javascript:void(0)" method="post">
+														<div class="modal-content">
+															<div class="modal-header">
+																<button type="button" class="close" data-dismiss="modal"
+																	aria-label="Close">
+																	<span aria-hidden="true">&times;</span>
+																</button>
+																<h4 class="modal-title">Xóa tin tuyển dụng</h4>
+															</div>
+															<div class="modal-body">
+																<div
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 box-white-content marginBottom25-pc marginBottom15-mb paddingBottom15-mb pl12mb pr12mb">
+																	<div class="col-xs-12 content-box-white">
+																		<div class="col-xs-12 padding0-pc form-group "
+																			id='ajax-pass'></div>
+																		<div class="col-xs-12 padding0-pc form-group">
+																			<h4 style="color: red;">Bạn chắc chắn muốn xóa
+																				tin tuyển dụng này?</h4>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="modal-footer center">
+																<button type="button" class="btn btn-default"
+																	data-dismiss="modal">Trở về</button>
+																<button type="button" class="btn btn-primary"
+																	onclick="delHSTD(${hsotd.maHSTD })">Xóa</button>
+															</div>
+														</div>
+														<!-- /.modal-content -->
+													</form>
+												</div>
+												<!-- /.modal-dialog -->
+											</div>
+										</td>
 								</tr>
+							</c:forEach>
 							</table>
 						</div>
+<!-- ajax delete HSTD -->
+<script type="text/javascript">
+		function delHSTD(id) {
+		$.ajax({
+			url:'${pageContext.request.contextPath}/nha-tuyen-dung/quan-ly-tin-dang/del',
+			type: 'GET',
+			cache: false,
+			data:{
+					//Dữ liệu gửi đi
+					maHSTD:id
+					},
+			success: function(data){
+				// Xử lý thành công
+				
+				var result="";
+				 console.log(data);
+				 if(data==0){
+					 alert("Xóa không thành công!!"); 
+				}
+				if(data==1){
+					alert("Xóa thành công!!");
+					
+					 window.location.reload(); 
+				}
+			},
+			error: function (e){
+			// Xử lý nếu có lỗi
+				alert("err!!");
+				console.log(e);
+			}
+			});
+	}
+	    </script>	
 
 						<div class="visible-xs">
 							<div class="div-sl-sx">
@@ -342,55 +402,3 @@
 
 <div id="pop_job_reason" class="modal fade" role="dialog"></div>
 
-<!-- <script type="text/javascript">
-    function reason(job_id){
-        $.ajax({
-            type: 'post',
-            url: 'https://viectotnhat.com/nha-tuyen-dung/ly-do-khong-duyet-tin-tuyen-dung?id='+job_id,
-            success: function (data) {
-                $('#pop_job_reason').html(data);
-            },
-            error: function(data, code) {
-                $('#pop_job_reason').html(data);
-            }
-        });
-        return false;
-    }
-
-    $(document).ready(function() {
-        $("#sl-sap-xep").select2({
-            placeholder: "Tất cả",
-
-        })
-        $("#sl-sap-xep-mb").select2({
-            placeholder: "Tất cả",
-        })
-
-        $("#sl-sap-xep").on('change', function() {
-          var value = $(this).val();
-          window.location.href = updateQueryStringParameter(window.location.href, 'status_active', value);
-        });
-
-        $("#sl-sap-xep-mb").on('change', function() {
-          var value = $(this).val();
-          window.location.href = updateQueryStringParameter(window.location.href, 'status_active', value);
-        });
-
-        $(".delete-job").click(function(){
-            var job_id = $(this).attr('data-id');
-            var job_is_vip = $(this).attr('data-vip');
-            $.ajax({
-                type: 'GET',
-                url: 'https://viectotnhat.com/ajax/xoa-tin-dang',
-                data: {
-                    job_id: job_id,
-                    job_is_vip: job_is_vip
-                },
-                success: function(response) {
-                    console.log(response);
-                    $('#del-ttd').html(response);
-                }
-            });
-        });
-    });
-</script> -->

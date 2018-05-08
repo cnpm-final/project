@@ -201,8 +201,14 @@
 
 						<li class="nav-link dropdown"><a data-toggle="dropdown">
 								<div class="info-avt">
-									<span class="lazyload avatar icon-user-mid icon-24"></span> <span
-										class="icon-24 icon-down-green"></span>
+									<c:choose>
+					                 	<c:when test="${not empty objNTV.avatar }">
+					                 		<img style="width: 50px; height: 64px; padding-bottom: 38%;" src="${pageContext.request.contextPath }/files/${objNTV.avatar}" title="${objNTV.avatar} "/>
+					                 	</c:when>
+					                 	<c:otherwise>
+					                 		<span class="lazyload avatar icon-avatar icon-24 icon-48"></span>
+					                 	</c:otherwise>
+					                 </c:choose>
 								</div>
 								<div class="gb_fb"></div>
 								<div class="gb_eb"></div>
@@ -213,15 +219,22 @@
 									<div class="infor-mobile">
 										<div class="info-log">
 											<div class="info-avt">
-												<span class="lazyload avatar icon-avatar icon-24 icon-48"></span>
+												<c:choose>
+								                 	<c:when test="${not empty objNTV.avatar }">
+								                 		<img style="    width: 50px; height: 64px;    margin-left: 15%;;" src="${pageContext.request.contextPath }/files/${objNTV.avatar}" title="${UserInfo.avatar} "/>
+								                 	</c:when>
+								                 	<c:otherwise>
+								                 		<span class="lazyload avatar icon-avatar icon-24 icon-48"></span>
+								                 	</c:otherwise>
+								                 </c:choose>
 											</div>
 											<div class="info-name pt10">
-												<div class="user-name">UserInfo.taiKhoan</div>
-												<div class="email">UserInfo.email </div>
+												<div class="user-name">${objNTV.taiKhoan}</div>
+												<div class="email">${objNTV.email} </div>
 											</div>
 										</div>
 										<a class="btn btn-tao-hs"
-											href="https://viectotnhat.com/nguoi-tim-viec"> <span
+											href="${pageContext.request.contextPath }/nguoi-tim-viec/tao-ho-so"> <span
 											class="icon-24-white icon-edit-white marginRight10"></span>
 											Tạo hồ sơ
 										</a>
@@ -230,33 +243,31 @@
 									<div class="clearfix"></div>
 									<div class="qltk">
 										<a class="list-menu-mb"
-											href="https://viectotnhat.com/nguoi-tim-viec/quan-ly-tai-khoan"
+											href="${pageContext.request.contextPath }/nguoi-tim-viec/quan-ly-tai-khoan"
 											title="Quản lý tài khoản"><span
 											class="icon-24 icon-user-small marginRight15"></span>Quản lý
-											tài khoản <span>(Chờ duyệt)</span> </a> <a class="list-menu-mb"
+											tài khoản</a> <a class="list-menu-mb"
 											title="Quản lý hồ sơ" class=""
-											href="https://viectotnhat.com/nguoi-tim-viec"><span
+											href="${pageContext.request.contextPath }/nguoi-tim-viec/ho-so/view"><span
 											class="icon-sprite-new icon-gp-kinh-doanh marginRight15"></span>Quản
 											lý hồ sơ</a> <a class="list-menu-mb" title="Quản lý hồ sơ"
-											class="" href="https://viectotnhat.com/viec-lam-phu-hop"><i
+											class="" href="${pageContext.request.contextPath }/viec-lam-phu-hop"><i
 											class="fa fa-envelope-o icon-mail-font"></i>Thông báo việc
 											làm</a>
-										<!--<a class="list-menu-mb" class="" href="https://viectotnhat.com/viec-lam/danh-sach-nganh"><span class="icon-sprite-new icon-nganh-nghe marginRight15"></span>Việc làm theo ngành nghề</a>-->
-										<!--<a class="list-menu-mb" class="" href="https://viectotnhat.com/viec-lam/danh-sach-tinh-thanh"><span class="icon-sprite-new icon-dia-diem-h marginRight15"></span>Việc làm theo tỉnh thành</a>-->
-										<a class="list-menu-mb" title="Việc làm đã lưu" class=""
-											href="https://viectotnhat.com/nguoi-tim-viec/viec-lam-da-luu"><span
+											<a class="list-menu-mb" title="Việc làm đã lưu" class=""
+											href="${pageContext.request.contextPath }/nguoi-tim-viec/viec-lam-da-luu"><span
 											class="icon-24 icon-star-small marginRight15"></span>Việc làm
 											đã lưu</a> <a class="list-menu-mb" title="Việc làm đã ứng tuyển"
 											class=""
-											href="https://viectotnhat.com/nguoi-tim-viec/viec-lam-da-ung-tuyen"><span
+											href="${pageContext.request.contextPath }/nguoi-tim-viec/viec-lam-da-ung-tuyen"><span
 											class="icon-24 icon-ut marginRight15"></span>Việc làm đã ứng
 											tuyển</a> <a class="list-menu-mb"
 											title="Nhà tuyển dụng xem hồ sơ" class=""
-											href="https://viectotnhat.com/nguoi-tim-viec/nha-tuyen-dung-da-xem-ho-so"><span
+											href="${pageContext.request.contextPath }/nguoi-tim-viec/nha-tuyen-dung-da-xem-ho-so"><span
 											class="icon-24 icon-eye marginRight15"></span>Nhà tuyển dụng
 											xem hồ sơ</a> <a id="manage_notifications" class="list-menu-mb"
 											title="Việc Tốt Nhất thông báo" class=""
-											href="https://viectotnhat.com/nguoi-tim-viec/thong-bao-tu-viectotnhat"><span
+											href="${pageContext.request.contextPath }/nguoi-tim-viec/thong-bao-tu-viectotnhat"><span
 											class="icon-sprite-new icon-noti-by-ad marginRight15"><span
 												class="number_notify"></span></span>Việc Tốt Nhất thông báo</a>
 									</div>

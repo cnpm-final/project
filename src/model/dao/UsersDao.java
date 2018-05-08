@@ -80,7 +80,7 @@ public class UsersDao {
 				user.getMaNN(),user.getMaNNN(),user.getFax(),user.getSoLaoDong(),user.getNguoiDaiDien(),user.getChucVuNguoiDaiDien(),user.getGioiThieuChung(),user.getMaTK()});
 	}
 	
-
+	//nguoi-tim-viec
 	public User getItemNTV(String username){
 		try {
 			String sql="SELECT TaiKhoan FROM nguoi_dung WHERE TaiKhoan=?";
@@ -91,7 +91,9 @@ public class UsersDao {
 	}
 	public User getItemNTVLogin(String taiKhoan, String matKhau) {
 		try {
-			String sql="SELECT TaiKhoan, MatKhau FROM nguoi_dung WHERE TaiKhoan=? && MatKhau=?";
+			String sql="SELECT MaTk, taiKhoan, matKhau, avatar, hoTen, gioiTinh,email, diaChi, dienThoai,ngaySinh, cMND, "
+					+ "maTrinhDoVanHoa, maTrinhDoChuyenMonKyThuat, maTrinhDoNgoaiNgu, maTrinhDoTinHoc, kinhNghiemLamViec, MaQuyenHan,"
+					+ "TrangThaiTaiKhoan FROM nguoi_dung WHERE TaiKhoan=? && MatKhau=?";
 			return jdbcTemplate.queryForObject(sql, new Object[] {taiKhoan,matKhau},new BeanPropertyRowMapper<User>(User.class));
 			
 		} catch (Exception e) {
@@ -108,5 +110,6 @@ public class UsersDao {
 						objItem.getMaTrinhDoVanHoa(), objItem.getMaTrinhDoChuyenMonKyThuat(), objItem.getMaTrinhDoNgoaiNgu(),
 						objItem.getMaTrinhDoTinHoc(), objItem.getKinhNghiemLamViec(), objItem.getMaQuyenHan(), objItem.getTrangThaiTaiKhoan()});
 	}
+	
 
 }
