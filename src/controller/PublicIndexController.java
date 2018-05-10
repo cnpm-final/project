@@ -2,11 +2,13 @@
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,7 @@ import model.dao.LoaiHinhDoanhNghiepDao;
 import model.dao.MucLuongDao;
 import model.dao.NganhNgheDao;
 import model.dao.NhomNganhNgheDao;
+import model.dao.NopHoSoDAO;
 import model.dao.ThoiGianLamViecDao;
 import model.dao.TrinhDoChuyenMonKyThuatDao;
 import model.dao.TrinhDoNgoaiNguDao;
@@ -78,6 +81,8 @@ public class PublicIndexController {
 	@Autowired
 	private HoSoViecLamDao hoSoViecLamDao;
 	@Autowired
+	private NopHoSoDAO nopHoSoDAO;
+	@Autowired
 	private SlugUtil slugUtil;
 	
 	 @ModelAttribute
@@ -105,7 +110,6 @@ public class PublicIndexController {
 		modelMap.addAttribute("chucDanhDao", chucDanhDao);
 		modelMap.addAttribute("trinhDoChuyenMonKyThuatDao", trinhDoChuyenMonKyThuatDao);
 		modelMap.addAttribute("thoiGianLamViecDao", thoiGianLamViecDao);
-		mod
 	}
 	 
 	 //controller ajax select ngành nghề theo nhóm ngành nghề nghề
@@ -485,5 +489,19 @@ public class PublicIndexController {
 		return ajax_respone;
 		
 	}
-	
+	@RequestMapping(value= {"/thongbaomoi"}, method=RequestMethod.POST)
+	public void thongbao(@ModelAttribute("id") int id, HttpServletResponse response) {
+		String st = "";
+		if(nopHoSoDAO.cout(id) !=0 ) {
+		 st = ""+ nopHoSoDAO.cout(id);
+		}
+		PrintWriter out;
+		try {
+			out = response.getWriter();
+			out.print(st);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
 }
