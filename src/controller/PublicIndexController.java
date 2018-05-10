@@ -27,11 +27,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import constant.Defines;
 import model.bean.City;//aaaaaaaaaaaaa
 import model.bean.HoSoNhaTuyenDung;
+import model.bean.HoSoViecLam;
 import model.bean.NganhNghe;
 import model.bean.User;
 import model.dao.ChucDanhDao;
 import model.dao.CiTyDao;
 import model.dao.HoSoTuyenDungDao;
+import model.dao.HoSoViecLamDao;
 import model.dao.LoaiHinhDoanhNghiepDao;
 import model.dao.MucLuongDao;
 import model.dao.NganhNgheDao;
@@ -73,6 +75,8 @@ public class PublicIndexController {
 	private TrinhDoTinHocDao trinhDoTinHocDao;
 	@Autowired
 	private HoSoTuyenDungDao hoSoTuyenDungDao;
+	@Autowired
+	private HoSoViecLamDao hoSoViecLamDao;
 	@Autowired
 	private SlugUtil slugUtil;
 	
@@ -446,7 +450,7 @@ public class PublicIndexController {
 	//Xem chi tiết hồ sơ tuyển dụng
 	//{pageContext.request.contextPath }/${slugUtil.makeSlug(hso.tieuDeHoSo) }-${hso.maHSTD}.html
 	@RequestMapping(value="/{tieuDeHoSo}-{maHSTD}.html", method=RequestMethod.GET)
-	public String hoSoTuyenDung_detail(@PathVariable("maHSTD") int maHSTD,ModelMap modelMap){
+	public String hoSoTuyenDung_detail(@PathVariable("maHSTD") int maHSTD,ModelMap modelMap,HttpSession session,HttpServletRequest request){
 		HoSoNhaTuyenDung hso=hoSoTuyenDungDao.getDetail(maHSTD);
 		modelMap.addAttribute("hso", hso);
 		HoSoNhaTuyenDung hsotd=hoSoTuyenDungDao.getItemByMaHSTD(maHSTD);
@@ -458,6 +462,26 @@ public class PublicIndexController {
 		//viêc làm cùng nhà tuyển dụng
 		List<HoSoNhaTuyenDung> listHsoSNTD=hoSoTuyenDungDao.getItemsNTD(hsotd.getMaTKTao());
 		modelMap.addAttribute("listHsoSNTD", listHsoSNTD);
+		
+		session=request.getSession();	
+		User user=(User)session.getAttribute("objNTV");
+		List<HoSoViecLam> listHSVL = (List<HoSoViecLam>) hoSoViecLamDao.getItems2(user.getMaTK());
+		modelMap.addAttribute("listHSVL", listHSVL);
 		return "public.hosotuyendung.detail";
+	}
+	
+	//ajax nôp ho sơ
+	@RequestMapping(value= {"/nop-ho-so"}, method=RequestMethod.POST,produces ="application/json;charset=UTF-8")
+	public @ResponseBody String submit( HttpServletRequest request,ModelMap modelMap,HttpSession session) {
+		int maHSTD=Integer.parseInt(request.getParameter("maHSTD"));
+		int maHSVL=Integer.parseInt(request.getParameter("maHSVL"));
+		
+				
+				
+        System.out.println(maHSTD);
+		String ajax_respone="";
+
+		return ajax_respone;
+		
 	}
 }

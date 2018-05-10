@@ -30,6 +30,10 @@ public class HoSoViecLamDao {
 		String sql="select MaHSVL, TieuDeHoSo, ThoiGianTao, TrangThaiPheDuyet from ho_so_viec_lam where MaTKTao=?";
 		return jdbcTemplate.query(sql,new Object[] {maTK}, new BeanPropertyRowMapper<HoSoViecLam>(HoSoViecLam.class));
 	}
+	public List<HoSoViecLam> getItems2(int maTK) {
+		String sql="select MaHSVL, TieuDeHoSo, ThoiGianTao, TrangThaiPheDuyet from ho_so_viec_lam where MaTKTao=? and TrangThaiPheDuyet=1";
+		return jdbcTemplate.query(sql,new Object[] {maTK}, new BeanPropertyRowMapper<HoSoViecLam>(HoSoViecLam.class));
+	}
 	public HoSoViecLam getItemEdit(int maHSVL) {
 		String sql = "SELECT MaHSVL, TieuDeHoSo, MaChucDanhMongMuon, MaMucLuongMongMuon, MaNganhNgheMongMuon," + 
 				 "MaNhomNganhNgheMongMuon, NoiLamViecMongMuon, MaThoiGianLamViecMongMuon, MaQuocGia, KinhNghiemLamViec, "

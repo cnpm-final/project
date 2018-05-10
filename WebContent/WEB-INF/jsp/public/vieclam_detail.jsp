@@ -184,14 +184,111 @@
 									<hr class="marginTop15 hidden-xs">
 									<div class="col-xs-12 padding0 marginTop10-xs">
 										<a class="btn  btn-orange w100p orange-new"
-											href="https://viectotnhat.com/nguoi-tim-viec/ung-tuyen-cong-viec?id=1120714"><i
+											href="" data-toggle="modal" data-target="#myModal"><i
 											class="icon-24-white icon-send-file"></i> NỘP HỒ SƠ</a>
 									</div>
 									<div class="clearfix"></div>
 									<hr class="marginTop20 hidden-xs marginBottom15">
 									<div class="clearfix"></div>
 								</div>
+					<!-- drop nop ho so -->
+					<div id="myModal"  class="modal fade" tabindex="-1" role="dialog">
+						  <div class="modal-dialog" role="document">
+						 <form class="form-06b marginTop20-mb" id="form-edit-pass" action="javascript:void(0)" method="post">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <h4 class="modal-title">Chọn hồ sơ việc làm</h4>
+						      </div>
+						      <div class="modal-body">
+						       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 box-white-content marginBottom25-pc marginBottom15-mb paddingBottom15-mb pl12mb pr12mb">
+		                        <div class="col-xs-12 content-box-white">
+		                             <div class="col-xs-12 padding0-pc form-group">
+		                                <div class="result-box new-result-box marginTop15 paddingBottom10">
+											<div class="row th-box tr-box hidden-xs">
+												<div class="td-box col-xs-12 col-sm-8">Tên hồ sơ</div>
+												<div class="td-box col-xs-12 col-sm-4">Chọn</div>
+												
+											</div>	
+											<c:forEach items="${listHSVL }" var="objItem">				
+												<div class="row margin0 normal-job paddingTop10">
+													<div class="row tr-box job-info  ">
+														<div class="td-box col-xs-12 col-sm-8">
+															<a class="icon-24 icon-star-white save-job-1115861" href="#"></a>
+															<h2 class="job-name margin0">
+							
+																<a class="" title="Nhân Viên Kinh Doanh" href="">
+																	${objItem.tieuDeHoSo }</a>
+															</h2>
+															<a title="#" href="#" class="com-name text-gray fontSize14">${objItem.thoiGianTao }</a>
+														</div>
+														<div class="td-box col-xs-4 col-sm-4">
+															<a href="" onclick="submitHSVL(${hso.maHSTD},${objItem.maHSVL })">Nộp</a>
+														</div>
+													</div>
+												</div>
+											</c:forEach>
+										</div>
+		                            </div>
 
+
+		                            
+		                        </div>
+		                    </div>
+						      </div>
+	<!-- ajax chỉnh sửa mật khẩu -->	
+	<script type="text/javascript">
+		function submitHSVL(maHSTD1,maHSVL1) {
+			
+		$.ajax({
+			url:'${pageContext.request.contextPath}/nop-ho-so',
+			type: 'GET',
+			cache: false,
+			data:{
+					//Dữ liệu gửi đi
+					maHSTD:maHSTD1,
+					maHSVL:maHSVL1
+					},
+			success: function(data){
+				// Xử lý thành công
+				alert("Xử lý thành công!!");
+				var result="";
+				 console.log(data);
+				/* if(data==0){
+					result+="<p style='color:red;font-style:italic;'>Sai mật khẩu hiện tại!!</p>";
+					$('#ajax-pass').html(result);
+				}
+				if(data==1){
+					alert("Chỉnh sửa mật khẩu tài khoản thành công!!");
+					
+					 window.location.reload(); 
+				}
+				if(data==2){
+					//alert("Nhập xác nhận mật khẩu mới không trùng");
+					result+="<p style='color:red;font-style:italic;'>Nhập xác nhận mật khẩu mới không trùng!!</p>";
+					$('#ajax-pass').html(result);
+				}
+ */				 
+			},
+			error: function (e){
+			// Xử lý nếu có lỗi
+				alert("err!!");
+				console.log(e);
+			}
+			});
+	}
+	    </script>							      
+						      
+						      
+						      
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						      </div>
+						    </div><!-- /.modal-content -->
+						     </form>
+						  </div><!-- /.modal-dialog -->
+						</div>
+					<!-- end drop no ho so -->
 								<div
 									class="clearfix col-xs-12 col-sm-12 col-md-12 col-lg-12 marginTop20 padding0 hidden-xs">
 									<a href="javascript: window.history.go(-1)"
