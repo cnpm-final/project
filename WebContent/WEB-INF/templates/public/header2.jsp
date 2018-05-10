@@ -489,13 +489,7 @@
             <!-- navbar pc -->
             <div class="link-categories hidden-sm hidden-xs">
                 <div class="list">
-                                    <a href="https://viectotnhat.com/viec-lam-kinh-doanh-f32.html">Kinh doanh</a><i class="icon-24 icon-next-white"></i>
-                                    <a href="https://viectotnhat.com/viec-lam-ban-hang-f10.html">Bán hàng</a><i class="icon-24 icon-next-white"></i>
-                                    <a href="https://viectotnhat.com/viec-lam-cham-soc-khach-hang-f21.html">Chăm sóc khách hàng</a><i class="icon-24 icon-next-white"></i>
-                                    <a href="https://viectotnhat.com/viec-lam-lao-dong-pho-thong-f33.html">Lao động phổ thông</a><i class="icon-24 icon-next-white"></i>
-                                    <a href="https://viectotnhat.com/viec-lam-hanh-chinh-thu-ky-tro-ly-f29.html">Hành chính/Thư ký/Trợ lý</a><i class="icon-24 icon-next-white"></i>
-                                </div>
-                <i class="icon-24 icon-button-back-white icon-reverse" style="top: 0px; left: -5px;"></i><a class="more" href="https://viectotnhat.com/viec-lam/danh-sach-nganh">Xem ngành khác</a>
+                </div>               
             </div>
             <!-- /navbar pc -->
         </div>
