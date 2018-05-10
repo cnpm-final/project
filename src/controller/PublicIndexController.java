@@ -105,6 +105,7 @@ public class PublicIndexController {
 		modelMap.addAttribute("chucDanhDao", chucDanhDao);
 		modelMap.addAttribute("trinhDoChuyenMonKyThuatDao", trinhDoChuyenMonKyThuatDao);
 		modelMap.addAttribute("thoiGianLamViecDao", thoiGianLamViecDao);
+		mod
 	}
 	 
 	 //controller ajax select ngành nghề theo nhóm ngành nghề nghề
@@ -481,4 +482,5 @@ public class PublicIndexController {
 		return ajax_respone;
 		
 	}
+	
 }

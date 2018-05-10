@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
     <!-- footer -->
-    
+ <%@include file="/templates/taglib.jsp" %>   
 
 
 <div id="footer">
@@ -298,7 +298,10 @@
                      class="icon-totop"
                      data-toggle="tooltip" data-placement="left"
                      data-original-title="Tính năng nhận thông báo dành cho người tìm việc">
-                    <div id="img-notification" class=""></div>
+                    <div id="img-notification" class="" ></div>
+                    <c:if test="${ not empty objNTD }">
+                    	<span style="color: white; background-color: red; border-radius: 15px; margin-left: 20px; margin-bottom:20 px;padding: 5px;">123</span>
+                    </c:if>
                     <input type="hidden" class="redirect_url" value="/dang-nhap/nguoi-tim-viec?referral_url=https%3A%2F%2Fviectotnhat.com%2F&message=5">
                 </div>
             </div>
