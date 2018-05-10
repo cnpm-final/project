@@ -12,8 +12,13 @@ public class NopHoSoDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	public int add(NopHoSo obj){
-		String sql="INSERT INTO nop_ho_so(maHSVL, maHSTD) VALUES (?,?)";
-		return jdbcTemplate.update(sql, new Object[] {obj.getMaHSVL(), obj.getMaHSTD()});
+		try {
+			String sql="INSERT INTO nop_ho_so(MaHSVL, MaHSTD) VALUES (?,?)";
+			return jdbcTemplate.update(sql, new Object[] {obj.getMaHSVL(), obj.getMaHSTD()});
+		} catch (Exception e) {
+			return 0;
+		}
+		
 	}
 
 	public int cout(int id) {
@@ -23,4 +28,5 @@ public class NopHoSoDAO {
 				+ " where nd.maTK = ? and nhs.tt = 0";
 		return jdbcTemplate.queryForObject(sql, new Object[]{id},Integer.class);
 	}
+
 }

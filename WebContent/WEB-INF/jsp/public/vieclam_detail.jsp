@@ -194,7 +194,6 @@
 					<!-- drop nop ho so -->
 					<div id="myModal"  class="modal fade" tabindex="-1" role="dialog">
 						  <div class="modal-dialog" role="document">
-						 <form class="form-06b marginTop20-mb" id="form-edit-pass" action="javascript:void(0)" method="post">
 						    <div class="modal-content">
 						      <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -223,25 +222,29 @@
 															<a title="#" href="#" class="com-name text-gray fontSize14">${objItem.thoiGianTao }</a>
 														</div>
 														<div class="td-box col-xs-4 col-sm-4">
-															<a href="" onclick="submitHSVL(${hso.maHSTD},${objItem.maHSVL })">Nộp</a>
+															<a href="javascript:void(0)" onclick="submitHSVL(${hso.maHSTD},${objItem.maHSVL })">Nộp</a>
 														</div>
 													</div>
 												</div>
 											</c:forEach>
 										</div>
 		                            </div>
-
-
-		                            
 		                        </div>
 		                    </div>
 						      </div>
-	<!-- ajax chỉnh sửa mật khẩu -->	
+		      
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						      </div>
+						    </div><!-- /.modal-content -->
+						  </div><!-- /.modal-dialog -->
+						</div>
+					<!-- end drop no ho so -->
+<!-- ajax nop ho so-->	
 	<script type="text/javascript">
-		function submitHSVL(maHSTD1,maHSVL1) {
-			
+		function submitHSVL(maHSTD1, maHSVL1) {
 		$.ajax({
-			url:'${pageContext.request.contextPath}/nop-ho-so',
+			url:'${pageContext.request.contextPath}/nop-ho-so-viec-lam',
 			type: 'GET',
 			cache: false,
 			data:{
@@ -251,24 +254,15 @@
 					},
 			success: function(data){
 				// Xử lý thành công
-				alert("Xử lý thành công!!");
 				var result="";
 				 console.log(data);
-				/* if(data==0){
-					result+="<p style='color:red;font-style:italic;'>Sai mật khẩu hiện tại!!</p>";
-					$('#ajax-pass').html(result);
+				 if(data==0){
+					 alert("Nộp không thành công!! Hồ sơ này đã nộp vào rồi"); 
 				}
 				if(data==1){
-					alert("Chỉnh sửa mật khẩu tài khoản thành công!!");
-					
+					alert("Nộp  thành công!!");
 					 window.location.reload(); 
 				}
-				if(data==2){
-					//alert("Nhập xác nhận mật khẩu mới không trùng");
-					result+="<p style='color:red;font-style:italic;'>Nhập xác nhận mật khẩu mới không trùng!!</p>";
-					$('#ajax-pass').html(result);
-				}
- */				 
 			},
 			error: function (e){
 			// Xử lý nếu có lỗi
@@ -280,15 +274,7 @@
 	    </script>							      
 						      
 						      
-						      
-						      <div class="modal-footer">
-						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						      </div>
-						    </div><!-- /.modal-content -->
-						     </form>
-						  </div><!-- /.modal-dialog -->
-						</div>
-					<!-- end drop no ho so -->
+										
 								<div
 									class="clearfix col-xs-12 col-sm-12 col-md-12 col-lg-12 marginTop20 padding0 hidden-xs">
 									<a href="javascript: window.history.go(-1)"

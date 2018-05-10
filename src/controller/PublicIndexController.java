@@ -31,6 +31,7 @@ import model.bean.City;//aaaaaaaaaaaaa
 import model.bean.HoSoNhaTuyenDung;
 import model.bean.HoSoViecLam;
 import model.bean.NganhNghe;
+import model.bean.NopHoSo;
 import model.bean.User;
 import model.dao.ChucDanhDao;
 import model.dao.CiTyDao;
@@ -84,7 +85,8 @@ public class PublicIndexController {
 	private NopHoSoDAO nopHoSoDAO;
 	@Autowired
 	private SlugUtil slugUtil;
-	
+	@Autowired
+	private NopHoSoDAO nopHoSoDao;
 	 @ModelAttribute
 	public void addCommonsObject(ModelMap modelMap) {
 		modelMap.addAttribute("defines", defines);
@@ -476,16 +478,20 @@ public class PublicIndexController {
 	}
 	
 	//ajax nôp ho sơ
-	@RequestMapping(value= {"/nop-ho-so"}, method=RequestMethod.POST,produces ="application/json;charset=UTF-8")
+	@RequestMapping(value= {"/nop-ho-so-viec-lam"}, method=RequestMethod.GET,produces ="application/json;charset=UTF-8")
 	public @ResponseBody String submit( HttpServletRequest request,ModelMap modelMap,HttpSession session) {
 		int maHSTD=Integer.parseInt(request.getParameter("maHSTD"));
 		int maHSVL=Integer.parseInt(request.getParameter("maHSVL"));
-		
-				
-				
-        System.out.println(maHSTD);
+		NopHoSo nopHoSo=new NopHoSo(maHSVL, maHSTD, null, null, null, null);
 		String ajax_respone="";
-
+		
+		if(nopHoSoDao.add(nopHoSo)>0) {
+			ajax_respone="1";
+			 System.out.println(maHSTD);
+		}else{
+			ajax_respone="0";
+		}
+       
 		return ajax_respone;
 		
 	}
