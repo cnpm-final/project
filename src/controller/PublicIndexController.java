@@ -471,13 +471,10 @@ public class PublicIndexController {
 	}
 	
 	//ajax nôp ho sơ
-	@RequestMapping(value= {"/nop-ho-so"}, method=RequestMethod.POST,produces ="application/json;charset=UTF-8")
+	@RequestMapping(value= {"/nop-ho-so-viec-lam"}, method=RequestMethod.GET,produces ="application/json;charset=UTF-8")
 	public @ResponseBody String submit( HttpServletRequest request,ModelMap modelMap,HttpSession session) {
 		int maHSTD=Integer.parseInt(request.getParameter("maHSTD"));
 		int maHSVL=Integer.parseInt(request.getParameter("maHSVL"));
-		
-				
-				
         System.out.println(maHSTD);
 		String ajax_respone="";
 

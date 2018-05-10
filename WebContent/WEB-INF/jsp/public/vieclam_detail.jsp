@@ -236,12 +236,11 @@
 		                        </div>
 		                    </div>
 						      </div>
-	<!-- ajax chỉnh sửa mật khẩu -->	
+	<!-- ajax nop ho so-->	
 	<script type="text/javascript">
-		function submitHSVL(maHSTD1,maHSVL1) {
-			
+		function submitHSVL(maHSTD1, maHSVL1) {
 		$.ajax({
-			url:'${pageContext.request.contextPath}/nop-ho-so',
+			url:'${pageContext.request.contextPath}/nop-ho-so-viec-lam',
 			type: 'GET',
 			cache: false,
 			data:{
@@ -254,21 +253,6 @@
 				alert("Xử lý thành công!!");
 				var result="";
 				 console.log(data);
-				/* if(data==0){
-					result+="<p style='color:red;font-style:italic;'>Sai mật khẩu hiện tại!!</p>";
-					$('#ajax-pass').html(result);
-				}
-				if(data==1){
-					alert("Chỉnh sửa mật khẩu tài khoản thành công!!");
-					
-					 window.location.reload(); 
-				}
-				if(data==2){
-					//alert("Nhập xác nhận mật khẩu mới không trùng");
-					result+="<p style='color:red;font-style:italic;'>Nhập xác nhận mật khẩu mới không trùng!!</p>";
-					$('#ajax-pass').html(result);
-				}
- */				 
 			},
 			error: function (e){
 			// Xử lý nếu có lỗi
