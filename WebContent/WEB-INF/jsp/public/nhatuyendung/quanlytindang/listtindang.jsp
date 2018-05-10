@@ -185,10 +185,10 @@
 				var result="";
 				 console.log(data);
 				 if(data==0){
-					 alert("Xóa không thành công!!"); 
+					 alert("Nộp không thành công!!"); 
 				}
 				if(data==1){
-					alert("Xóa thành công!!");
+					alert("Nộp thành công!!");
 					
 					 window.location.reload(); 
 				}

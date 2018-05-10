@@ -29,6 +29,7 @@ import model.bean.City;//aaaaaaaaaaaaa
 import model.bean.HoSoNhaTuyenDung;
 import model.bean.HoSoViecLam;
 import model.bean.NganhNghe;
+import model.bean.NopHoSo;
 import model.bean.User;
 import model.dao.ChucDanhDao;
 import model.dao.CiTyDao;
@@ -38,6 +39,7 @@ import model.dao.LoaiHinhDoanhNghiepDao;
 import model.dao.MucLuongDao;
 import model.dao.NganhNgheDao;
 import model.dao.NhomNganhNgheDao;
+import model.dao.NopHoSoDAO;
 import model.dao.ThoiGianLamViecDao;
 import model.dao.TrinhDoChuyenMonKyThuatDao;
 import model.dao.TrinhDoNgoaiNguDao;
@@ -79,7 +81,8 @@ public class PublicIndexController {
 	private HoSoViecLamDao hoSoViecLamDao;
 	@Autowired
 	private SlugUtil slugUtil;
-	
+	@Autowired
+	private NopHoSoDAO nopHoSoDao;
 	 @ModelAttribute
 	public void addCommonsObject(ModelMap modelMap) {
 		modelMap.addAttribute("defines", defines);
@@ -105,7 +108,6 @@ public class PublicIndexController {
 		modelMap.addAttribute("chucDanhDao", chucDanhDao);
 		modelMap.addAttribute("trinhDoChuyenMonKyThuatDao", trinhDoChuyenMonKyThuatDao);
 		modelMap.addAttribute("thoiGianLamViecDao", thoiGianLamViecDao);
-		mod
 	}
 	 
 	 //controller ajax select ngành nghề theo nhóm ngành nghề nghề
@@ -476,9 +478,16 @@ public class PublicIndexController {
 	public @ResponseBody String submit( HttpServletRequest request,ModelMap modelMap,HttpSession session) {
 		int maHSTD=Integer.parseInt(request.getParameter("maHSTD"));
 		int maHSVL=Integer.parseInt(request.getParameter("maHSVL"));
-        System.out.println(maHSTD);
+		NopHoSo nopHoSo=new NopHoSo(maHSVL, maHSTD, null, null, null, null);
 		String ajax_respone="";
-
+		
+		if(nopHoSoDao.add(nopHoSo)>0) {
+			ajax_respone="1";
+			 System.out.println(maHSTD);
+		}else{
+			ajax_respone="0";
+		}
+       
 		return ajax_respone;
 		
 	}
