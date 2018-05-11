@@ -17,4 +17,8 @@ public class TrinhDoTinHocDao {
 			String sql="Select * from trinh_do_tin_hoc";
 			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<TrinhDoTinHoc>(TrinhDoTinHoc.class));
 		}
+		public TrinhDoTinHoc getItemById(int id) {
+			String sql="select * from trinh_do_tin_hoc where MaTDTH=? ";
+			return jdbcTemplate.queryForObject(sql, new Object[] {id},new BeanPropertyRowMapper<TrinhDoTinHoc>(TrinhDoTinHoc.class));
+		}
 }

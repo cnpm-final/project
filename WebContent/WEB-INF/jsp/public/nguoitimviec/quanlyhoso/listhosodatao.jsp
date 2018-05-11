@@ -8,6 +8,11 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marginBottom20 relative hidden-xs paddingTop40">
                         <a title="back" href="javascript: window.history.go(-1)" class="button-back"><span class="icon-24 icon-button-back marginRight15"></span>Quay lại</a>
                         <div class="title-content-page">Quản Lý Hồ Sơ</div>
+                        <div class="header-form">
+                             <c:if test="${not empty msg }">
+                             <div style="color: red">${msg }</div>
+                             </c:if>
+                         </div>
                     </div>
 	                    <c:forEach items="${listHoSoByMaTK}" var="hsvl">
 	     					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 box-white-content marginBottom25 marginBottom13-xs">
@@ -27,8 +32,18 @@
 	                                    <div class="col-xs-12 padding0 form-group pst-relative marginBottom0 marginTop0">
 	                                        <label for="" class="lbl-qlhs control-label textLeft paddingLeft0 marginTop0 marginBottom8-mb">Trạng thái:&nbsp</label>
 	                                        <div class="col-sm-8 padding0">
+	                                        	<c:if test="${hsvl.trangThaiPheDuyet == 0}">
+	                                        		<c:set var="tt" value="Lưu nháp"></c:set>
+	                                        	</c:if>
+	                                        	<c:if test="${hsvl.trangThaiPheDuyet == 1}">
+	                                        		<c:set var="tt" value="Đang gửi phê duyệt"></c:set>
+	                                        	</c:if>
+	                                        	<c:if test="${hsvl.trangThaiPheDuyet == 2}">
+	                                        		<c:set var="tt" value="Phê duyệt thành công"></c:set>
+	                                        	</c:if>
+	                                        	
 	                                            <p class="paddingTop0 marginBottom0">
-	                                                <span class="text-red">${hsvl.trangThaiPheDuyet }</span>
+	                                                <span class="text-red"><c:out value="${tt}"></c:out></span>
 	                                            </p>
 	                                        </div>
 	                                    </div>                                    

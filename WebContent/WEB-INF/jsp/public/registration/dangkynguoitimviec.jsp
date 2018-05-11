@@ -25,7 +25,12 @@
                    		<p class="category success">${msg1}</p>
                    	</c:if>
 					<div class="marginCenter width620">
-						<form action="${ pageContext.request.contextPath }/nguoi-tim-viec/dang-ky" method="POST" enctype="multipart/form-data" class="form-06b hidden-xs hidden-sm">
+						<form action="${ pageContext.request.contextPath }/nguoi-tim-viec/dang-ky" method="POST" enctype="multipart/form-data" class="form-06b hidden-xs hidden-sm dk-ntv">
+							<div class="header-form">
+                                <c:if test="${not empty msg }">
+                                <div class="error-info">${msg }</div>
+                                </c:if>
+                            </div>
 							<div class="col-xs-12 padding0 form-group marginBottom5">
 								<p class="col-xs-12  text-center color-363636 fontSize28 marginBottom10 fontSize20-mb marginBottom15-mb">Người tìm việc đăng ký</p>
 								<div class="col-xs-12 error-info paddingLeft0 paddingRight0"></div>
@@ -48,7 +53,7 @@
 									Mật khẩu <span class="text-red">*</span>
 								</label>
 								<div class="col-sm-8 padding0 div-input-margin-moblile">
-									<input type="password" name="matKhau" class="form-control input-register" placeholder="Mật khẩu"/>
+									<input type="password" name="matKhau" id="password" class="form-control input-register" placeholder="Mật khẩu"/>
 										<p id="error_email" class="hidden text-red error"></p>
      									<p class="text-red hidden error_submit error italic fontSize12"></p>
 								</div>
@@ -174,7 +179,7 @@
 								</label>
 								<div class="col-sm-8 padding0 div-input-margin-moblile">
 									<select class="form-control input-register" name="maTrinhDoVanHoa">
-										<option value="0" class="form-control border-input">---- Chọn Trình độ văn hóa ----</option>
+										<option value="" class="form-control border-input">---- Chọn Trình độ văn hóa ----</option>
 										<c:forEach items="${listTrinhDoVanHoa}" var="item">
                                         	<option value="${item.maTDVH }" class="form-control border-input">${item.moTaTDVH }</option>
                                        	</c:forEach>
@@ -190,7 +195,7 @@
 								</label>
 								<div class="col-sm-8 padding0 div-input-margin-moblile">
 									<select class="form-control input-register" name="maTrinhDoChuyenMonKyThuat">
-										<option value="0" class="form-control border-input">---- Chọn Trình độ chuyên môn kỹ thuật ----</option>
+										<option value="" class="form-control border-input">---- Chọn Trình độ chuyên môn kỹ thuật ----</option>
 										<c:forEach items="${listTrinhDoChuyenMonKyThuat}" var="item">
                                         	<option value="${item.maTDCMKT }" class="form-control border-input">${item.moTaTDCMKT }</option>
                                        	</c:forEach>
@@ -205,7 +210,7 @@
 								</label>
 								<div class="col-sm-8 padding0 div-input-margin-moblile">
 									<select class="form-control input-register" name="maTrinhDoNgoaiNgu">
-										<option value="0" class="form-control border-input">---- Chọn Trình độ ngoại ngữ ----</option>
+										<option value="" class="form-control border-input">---- Chọn Trình độ ngoại ngữ ----</option>
 										<c:forEach items="${listTrinhDoNgoaiNgu}" var="item">
                                         	<option value="${item.maTDNN }" class="form-control border-input">${item.moTaTDNN }</option>
                                        	</c:forEach>
@@ -220,7 +225,7 @@
 								</label>
 								<div class="col-sm-8 padding0 div-input-margin-moblile">
 									<select class="form-control input-register" name="maTrinhDoTinHoc">
-										<option value="0" class="form-control border-input">---- Chọn Trình độ tin học ----</option>
+										<option value="" class="form-control border-input">---- Chọn Trình độ tin học ----</option>
 										<c:forEach items="${listTrinhDoTinHoc}" var="item">
                                         	<option value="${item.maTDTH }" class="form-control border-input">${item.moTaTDTH }</option>
                                        	</c:forEach>
@@ -271,115 +276,139 @@
 </article>
 <!-- /article -->
 
-<!-- <script>
-	$(document).ready(function(){
-	    $("#bg-password").click(function(){
-	        $("#password").attr('type', 'text');
-	        $("#bg-password-show").show();
-	        $(this).hide();
-	    });
-	    $("#bg-password-show").click(function(){
-	    	$("#password").attr('type', 'password');
-	        $("#bg-password").show();
-	        $(this).hide();
-	    });
-
-	    $("#bg-password2").click(function(){
-	        $("#retype_password").attr('type', 'text');
-	        $("#bg-password-show2").show();
-	        $(this).hide();
-	    });
-	    $("#bg-password-show2").click(function(){
-	    	$("#retype_password").attr('type', 'password');
-	        $("#bg-password2").show();
-	        $(this).hide();
-	    });
-	});
-</script>
-<script>
-	$(document).ready(function(){
-		$("#login").click(function(event) {
-			/* Act on the event */
-			var isCheck = true;
-            $('#input-name').each(function (){
-                var verify = verifySubmit(this,'Bạn không được để trống trường này',0);
-                if(verify && isCheck){
-                	goToByScroll('input-name',70);
-                	isCheck = false;
-                }
-            });
-
-            $('#input-email').each(function (){
-                var verify = verifySubmit(this,'Bạn không được để trống trường này',0);
-                if(verify && isCheck){
-                	goToByScroll('input-email',70);
-                	isCheck = false;
-                }
-            });
-
-            $('#input-sdt').each(function (){
-                var verify = verifySubmit(this,'Bạn không được để trống trường này',0);
-                if(verify && isCheck){
-                	goToByScroll('input-sdt',70);
-                	isCheck = false;
-                }
-            });
-
-            $('#input-password').each(function (){
-                var verify = verifySubmit(this,'Bạn không được để trống trường này',0);
-                $('#input-password').parent().find('.note').addClass('hidden');
-                if(verify && isCheck){
-                    goToByScroll('input-password',70);
-                    isCheck = false;
-                }
-            });
-
-//            if($('#input-password').val() != "") {
-//                if($('#input-password').val().length < 8) {
-//                    $('#input-password').parent().find('.error_submit').removeClass('hidden');
-//                    $('#input-password').parent().find('.error_submit').html('Mật khẩu phải lớn hơn hoặc bằng 8 ký tự!');
-//                    goToByScroll('input-password',70);
-//                    isCheck = false;
-//                    $('#input-password').parent().find('.note').addClass('hidden');
-//                }
-//                re = /[0-9]/;
-//                if(!re.test($('#input-password').val())) {
-//                    $('#input-password').parent().find('.error_submit').removeClass('hidden');
-//                    $('#input-password').parent().find('.error_submit').html('Mật khẩu tối thiểu 8 ký tự, có ít nhất 1 ký tự chữ, 1 ký tự số.');
-//                    goToByScroll('input-password',70);
-//                    isCheck = false;
-//                    $('#input-password').parent().find('.note').addClass('hidden');
-//                }
-//                re = /[a-zA-Z]/;
-//                if(!re.test($('#input-password').val())) {
-//                    $('#input-password').parent().find('.error_submit').removeClass('hidden');
-//                    $('#input-password').parent().find('.error_submit').html('Mật khẩu tối thiểu 8 ký tự, có ít nhất 1 ký tự chữ, 1 ký tự số.');
-//                    goToByScroll('input-password',70);
-//                    isCheck = false;
-//                    $('#input-password').parent().find('.note').addClass('hidden');
-//                }
-//            } else {
-//                $('#input-password').parent().find('.error_submit').removeClass('hidden');
-//                $('#input-password').parent().find('.error_submit').html('Bạn không được để trống trường này!');
-//                $('#input-password').parent().find('.note').addClass('hidden');
-//                if(isCheck){
-//                    goToByScroll('input-password',70);
-//                }
-//                isCheck = false;
-//            }
-
-            $('#input-retype-password').each(function (){
-                var verify = verifySubmit(this,'Bạn không được để trống trường này',0);
-                if(verify && isCheck){
-                	goToByScroll('input-retype-password',70);
-                	isCheck = false;
-                }
-            });
-
-            if (isCheck) {
-				$("#form-register").submit();
-			}
-		});
-
-	}); 
-</script> -->
+<script type="text/javascript">
+				$(document).ready(function() {
+					$('.dk-ntv').validate({
+						ignore : [],
+						debug : false,
+						rules : {
+							"taiKhoan" : {
+								required : true,
+								maxlength : 100,
+								minlength:5
+							},
+							"matKhau" : {
+								required : true,
+								minlength:5,
+								maxlength:15
+							},
+							"re-pass" : {
+								required : true,
+								equalTo: "#password"
+							},
+							"hoTen" : {
+								required : true,
+								maxlength : 100,
+								minlength:5
+							},
+							"email" : {
+								required : true,
+								email: true
+							},
+							
+							"anhdaidien" : {
+								required : true,
+							},
+							"ngaySinh" : {
+								required : true,
+							},
+							"dienThoai" : {
+								required : true,
+							},
+							"gioiTinh" : {
+								required: true
+							},
+							"tinh" : {
+								required : true,
+							},
+							"diaChi" : {
+								required : true,
+								
+							},
+							"maTrinhDoVanHoa" : {
+								required : true,
+							},
+							"maTrinhDoChuyenMonKyTHuat" : {
+								required : true,
+							},
+							"maTrinhDoNgoaiNgu" : {
+								required : true,
+							},
+							"maTrinhDoTinHoc" : {
+								required : true,
+							},
+							"kinhNghiemLamViec" : {
+								required : true,
+							},
+							"cMND" : {
+								required : true,
+							},
+						},
+						messages : {
+							"taiKhoan" : {
+								required : "Vui lòng nhập tên tài khoản",
+								maxlength:"Tên tài khoản tối đa 100 ký tự",
+								minlength:"Tên tài khoản tối thiểu 5 ký tự"
+							},
+							"matKhau" : {
+								required : "Vui lòng  nhập mật khẩu",
+								minlength:"Độ dài mật khẩu tối thiểu 8 ký tự ",
+								maxlength:"Độ dài mật khẩu tối đa 15 ký tự"
+							},
+							"re-pass" : {
+								required : "Vui lòng nhập xác nhận mật khẩu",
+								equalTo: 'Mật khẩu không trùng',
+								
+							},
+							"email" : {
+								required : "Vui lòng nhập email",
+								email: "Vui lòng nhập đúng định dạng email",
+								
+							},
+							"hoTen" : {
+								required : "Vui lòng nhập họ và tên",
+									maxlength:"Họ và tên tối đa 100 ký tự",
+									minlength:"Họ và tên tối thiểu 5 ký tự"
+							},
+							"anhdaidien" : {
+								required : "Vui lòng chọn ảnh đại diện",
+							},
+							"ngaySinh" : {
+								required : "Vui lòng nhập năm sinh",	
+							},
+							"dienThoai" : {
+								required : "Vui lòng nhập số điện thoại",
+								
+							},
+							"gioiTinh" : {
+								required:"Vui lòng chọn giới tính",
+							},
+							"tinh" : {
+								required : "Vui lòng chọn thành phố/Tỉnh",
+							},
+							"diaChi" : {
+								required : "Vui lòng nhập vào địa chỉ chi tiết",
+							},
+							"maTrinhDoVanHoa" : {
+								required :  "Vui lòng chọn trình độ văn hóa",
+							},
+							"maTrinhDoChuyenMonKyThuat" : {
+								required : "Vui lòng chọn trình độ chuyên môn kỹ thuật",
+							},
+							"maTrinhDoNgoaiNgu" : {
+								required : "Vui lòng chọn trình độ ngoại ngữ",
+							},
+							
+							"maTrinhDoTinHoc" : {
+								required : "Vui lòng chọn trình độ tin học",
+							},
+							"kinhNghiemLamViec" : {
+								required : "Vui lòng nhập kinh nghiệm làm việc",
+							},
+							"cMND" : {
+								required : "Vui lòng nhập chứng minh nhân dân",
+							},
+						},
+					});
+				});
+			</script>

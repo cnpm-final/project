@@ -17,5 +17,8 @@ public class TrinhDoVanHoaDao {
 			String sql="Select * from trinh_do_van_hoa";
 			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<TrinhDoVanHoa>(TrinhDoVanHoa.class));
 		}
-		
+		public TrinhDoVanHoa getItemById(int id) {
+			String sql="select * from trinh_do_van_hoa where MaTDVH=? ";
+			return jdbcTemplate.queryForObject(sql, new Object[] {id},new BeanPropertyRowMapper<TrinhDoVanHoa>(TrinhDoVanHoa.class));
+		}
 }

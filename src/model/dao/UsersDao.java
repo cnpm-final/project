@@ -110,7 +110,15 @@ public class UsersDao {
 						objItem.getMaTrinhDoVanHoa(), objItem.getMaTrinhDoChuyenMonKyThuat(), objItem.getMaTrinhDoNgoaiNgu(),
 						objItem.getMaTrinhDoTinHoc(), objItem.getKinhNghiemLamViec(), objItem.getMaQuyenHan(), objItem.getTrangThaiTaiKhoan()});
 	}
-
+	public int editItemNTV(User user) {
+		String sql="UPDATE nguoi_dung SET avatar=?,hoTen=?,gioiTinh=?,diaChi=?,dienThoai=?,ngaySinh=?,cMND=?,"
+				+ "maTrinhDoVanHoa=?,maTrinhDoChuyenMonKyThuat=?,maTrinhDoNgoaiNgu=?,maTrinhDoTinHoc=?,kinhNghiemLamViec=? "
+				+ "where MaTK=?";	
+		return jdbcTemplate.update(sql,new Object[] {user.getAvatar(),user.getHoTen(),user.getGioiTinh(), user.getDiaChi(),
+				user.getDienThoai(), user.getNgaySinh(), user.getcMND(), user.getMaTrinhDoVanHoa(), 
+				user.getMaTrinhDoChuyenMonKyThuat(), user.getMaTrinhDoNgoaiNgu(), user.getMaTrinhDoTinHoc(),
+				user.getKinhNghiemLamViec(), user.getMaTK()});
+	}
 	public User getName(int MaTK) {
 		String sql="select HoTen from nguoi_dung where MaTK=?";
 		return jdbcTemplate.queryForObject(sql, new Object[] {MaTK},new  BeanPropertyRowMapper<User>(User.class));

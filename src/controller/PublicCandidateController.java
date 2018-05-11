@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -134,7 +136,7 @@ public class PublicCandidateController {
 			modelMap.addAttribute("objNTV", objItem);
 			return "redirect:/nguoi-tim-viec/dang-ky-nguoi-tim-viec-thanh-cong";
 		}else{
-			ra.addFlashAttribute("msg1", "Đăng ký không thành công! Xin mời kiểm tra lại!");
+			ra.addFlashAttribute("msg", Defines.ERROR);
 			return "redirect:/nguoi-tim-viec/dang-ky";
 		}
 	}
@@ -170,12 +172,92 @@ public class PublicCandidateController {
 		return "redirect:/nguoi-tim-viec/dang-nhap";
 	}
 	@RequestMapping(value="/quan-ly-tai-khoan", method=RequestMethod.GET)
-	public String quanlytaikhoan(){
+	public String quanlytaikhoan( HttpSession session,HttpServletRequest request, ModelMap modelMap){
+		session = request.getSession();
+		User objItem = (User)session.getAttribute("objNTV");
+		modelMap.addAttribute("objNTV", objItem);
+		modelMap.addAttribute("tdvh", trinhDoVanHoaDao.getItemById(objItem.getMaTK()).getMoTaTDVH());
+		modelMap.addAttribute("tdcmkt", trinhDoChuyenMonKyThuatDao.getItem(objItem.getMaTK()).getMoTaTDCMKT());
+		modelMap.addAttribute("tdnn",trinhDoNgoaiNguDao.getItemById(objItem.getMaTK()).getMoTaTDNN());
+		modelMap.addAttribute("tdth", trinhDoTinHocDao.getItemById(objItem.getMaTK()).getMoTaTDTH());
 		return "public.nguoitimviec.account_management";
 	}
 	@RequestMapping(value="/quan-ly-tai-khoan/edit", method=RequestMethod.GET)
-	public String nguoitimviec_edit(){
+	public String nguoitimviec_edit(ModelMap modelMap,HttpServletRequest request,HttpSession session){
+		session = request.getSession();
+		User objItem = (User)session.getAttribute("objNTV");
+		modelMap.addAttribute("objNTV", objItem);
+		modelMap.addAttribute("tdvh", trinhDoVanHoaDao.getItemById(objItem.getMaTK()).getMaTDVH());
+		modelMap.addAttribute("tdcmkt", trinhDoChuyenMonKyThuatDao.getItem(objItem.getMaTK()).getMaTDCMKT());
+		modelMap.addAttribute("tdnn",trinhDoNgoaiNguDao.getItemById(objItem.getMaTK()).getMaTDNN());
+		modelMap.addAttribute("tdth", trinhDoTinHocDao.getItemById(objItem.getMaTK()).getMaTDTH());
 		return "public.nguoitimviec.account_management.edit";
+	}
+	
+	@RequestMapping(value="/tai-khoan/edit", method=RequestMethod.POST)
+	public String nhatuyendung_account_edit(@ModelAttribute("user")	User user,@RequestParam("anhdaidien") CommonsMultipartFile cmf,RedirectAttributes ra,
+			HttpServletRequest request,HttpSession session){
+			User userInfo=(User)session.getAttribute("objNTV");
+			String fileName=cmf.getOriginalFilename();
+			if(!fileName.isEmpty()) {
+				String appPath=request.getServletContext().getRealPath("");
+				String dirPath=appPath+Defines.DIR_UPLOAD;
+				File file=new File(dirPath+ File.separator+userDao.getItemNTD(userInfo.getMaTK()).getAvatar());
+				file.delete();
+				
+				File createDir= new File(dirPath);
+				if(!createDir.exists()) {
+					createDir.mkdirs();
+				}
+					
+				user.setAvatar(fileName);
+				String filePath=dirPath + File.separator+fileName;
+				System.out.println(filePath);
+				try {
+					cmf.transferTo(new File(filePath));
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}else {
+				user.setAvatar(userDao.getItemNTD(userInfo.getMaTK()).getAvatar());
+			}
+			user.setMaTK(userInfo.getMaTK());
+			if(userDao.editItem(user)>0) {
+				session.removeAttribute("objNTV");
+				session.setAttribute("objNTV", userDao.getItemLogin(user.getTaiKhoan(), user.getMatKhau()));
+				ra.addFlashAttribute("msg", Defines.SUSSES);
+			}else {
+				ra.addFlashAttribute("msg", Defines.ERROR);
+			}
+			return "redirect:/nguoi-tim-viec/tai-khoan";
+		
+	}
+	
+	
+	//ajax edit mật khẩu nhà tuyển dụng
+	@RequestMapping(value= {"/tai-khoan/doi-mat-khau"}, method=RequestMethod.GET,produces ="application/json;charset=UTF-8")
+	public @ResponseBody String editPass_NTD(HttpServletRequest request,ModelMap modelMap,HttpSession session) {
+		session =request.getSession();
+		User user=(User)session.getAttribute("objNTV");
+		String mkHienTai=StringUtil.md5(request.getParameter("mkhientai"));
+		String mkMoi=request.getParameter("mkmoi");
+		String re_mkMoi=request.getParameter("confirmpass");
+		String ajax_respone="";
+		if(mkHienTai.equals(user.getMatKhau())) {
+			if(mkMoi.equals(re_mkMoi)) {
+				userDao.editPass(StringUtil.md5(mkMoi),user.getMaTK());
+				ajax_respone="1";
+			}else {
+				ajax_respone="2";
+			}
+			
+		}else {
+			ajax_respone="0";
+		}
+		return ajax_respone;
+		
 	}
 	@RequestMapping(value="/tao-ho-so", method=RequestMethod.GET)
 	public String taoHoSo(){
@@ -189,10 +271,10 @@ public class PublicCandidateController {
 		objItem.setMaTKTao(objUser.getMaTK());
 		objItem.setTrangThaiGuiPheDuyet(0);
 		if(hoSoViecLamDao.addItem(objItem) > 0){
-			ra.addFlashAttribute("msg_suc", "Tạo hồ sơ thành công!");
+			ra.addFlashAttribute("msg", "Tạo hồ sơ thành công!");
 			return "redirect:/nguoi-tim-viec/ho-so/view";
 		}else{
-			ra.addFlashAttribute("msg_fail", "Tạo hồ sơ không thành công! Xin mời kiểm tra lại!");
+			ra.addFlashAttribute("msg", "Tạo hồ sơ không thành công! Xin mời kiểm tra lại!");
 			return "redirect:/nguoi-tim-viec/ho-so/view";
 		}
 	}
@@ -205,10 +287,10 @@ public class PublicCandidateController {
 	public String suaHoSo( @ModelAttribute("objItem") HoSoViecLam objItem, @PathVariable("id") int id, RedirectAttributes ra){
 		objItem.setMaHSVL(id);
 		if(hoSoViecLamDao.eidtItem(objItem) > 0){
-			ra.addFlashAttribute("msg_suc", "Sửa hồ sơ thành công!");
+			ra.addFlashAttribute("msg", "Sửa hồ sơ thành công!");
 			return "redirect:/nguoi-tim-viec/ho-so/view";
 		}else{
-			ra.addFlashAttribute("msg_fail", "Sửa hồ sơ không thành công! Xin mời kiểm tra lại!");
+			ra.addFlashAttribute("msg", "Sửa hồ sơ không thành công! Xin mời kiểm tra lại!");
 			return "redirect:/nguoi-tim-viec/ho-so/view";
 		}
 	}
@@ -223,10 +305,10 @@ public class PublicCandidateController {
 	@RequestMapping(value="/ho-so/del/{id}", method=RequestMethod.GET)
 	public String delHoSo(@PathVariable("id") int id,ModelMap modelMap, RedirectAttributes ra){
 		if(hoSoViecLamDao.delItem(id) > 0){
-			ra.addFlashAttribute("msg_suc", "Xóa thành công!");
+			ra.addFlashAttribute("msg", "Xóa thành công!");
 			return "redirect:/nguoi-tim-viec/ho-so/view";
 		}else{
-			ra.addFlashAttribute("msg_fail", "Xóa không thành công! Xin mời kiểm tra lại!");
+			ra.addFlashAttribute("msg", "Xóa không thành công! Xin mời kiểm tra lại!");
 			return "redirect:/nguoi-tim-viec/ho-so/view";
 		}
 	}

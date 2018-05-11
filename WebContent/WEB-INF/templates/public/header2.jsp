@@ -506,22 +506,22 @@
                         <div class="row" id="menungang">
                             <div class="job-name job-name-not-visited list">
                                 <div class="col-xs-2 padding0" style="width: 12%;">
-                                    <a href="https://viectotnhat.com/nguoi-tim-viec"><i class="icon-sprite-new icon-profile-black"></i>&nbsp;&nbsp;Tạo Hồ sơ</a>
+                                    <a href="${pageContext.request.contextPath }/nguoi-tim-viec/tao-ho-so"><i class="icon-sprite-new icon-profile-black"></i>&nbsp;&nbsp;Tạo Hồ sơ</a>
                                 </div>
                                 <div class="col-xs-2 padding0" style="width: 17%;">
-                                    <a href="https://viectotnhat.com/nguoi-tim-viec/quan-ly-tai-khoan"><i class="icon-24 icon-user-small"></i>&nbsp;&nbsp;Quản lý tài khoản</a>
+                                    <a href="${pageContext.request.contextPath }/nguoi-tim-viec/quan-ly-tai-khoan"><i class="icon-24 icon-user-small"></i>&nbsp;&nbsp;Quản lý tài khoản</a>
                                 </div>
                                 <div class="col-xs-2 padding0" style="width: 15%;">
-                                    <a href="https://viectotnhat.com/nguoi-tim-viec"><i class="icon-24 icon-hs"></i>&nbsp;&nbsp;Quản lý hồ sơ</a>
+                                    <a href="${pageContext.request.contextPath }/nguoi-tim-viec/ho-so/view"><i class="icon-24 icon-hs"></i>&nbsp;&nbsp;Quản lý hồ sơ</a>
                                 </div>
                                 <div class="col-xs-2 padding0" style="width: 16%;">
-                                    <a href="https://viectotnhat.com/nguoi-tim-viec/viec-lam-da-luu"><i class="icon-24 icon-star-small"></i>&nbsp;&nbsp;Việc làm đã lưu</a>
+                                    <a href="#"><i class="icon-24 icon-star-small"></i>&nbsp;&nbsp;Việc làm đã lưu</a>
                                 </div>
                                 <div class="col-xs-2 padding0" style="width: 20%;">
-                                    <a href="https://viectotnhat.com/nguoi-tim-viec/viec-lam-da-ung-tuyen"><i class="icon-24 icon-ut"></i>&nbsp;&nbsp;Việc làm đã ứng tuyển</a>
+                                    <a href="#"><i class="icon-24 icon-ut"></i>&nbsp;&nbsp;Việc làm đã ứng tuyển</a>
                                 </div>
                                 <div class="col-xs-2 padding0" style="width: 19%;">
-                                    <a href="https://viectotnhat.com/viec-lam-phu-hop"><i class="fa fa-envelope-o icon-mail-shadow" style="font-size: 19px"></i>&nbsp;Thông báo việc làm</a>
+                                    <a href="#"><i class="fa fa-envelope-o icon-mail-shadow" style="font-size: 19px"></i>&nbsp;Thông báo việc làm</a>
                                 </div>
                             </div>
                         </div>

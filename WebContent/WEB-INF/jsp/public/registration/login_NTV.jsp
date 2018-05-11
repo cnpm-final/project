@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@include file="/templates/taglib.jsp" %>
   <article >
     <section id="main-content" class="bgWhite">
         <div class="container padding0-xs">
@@ -26,6 +27,11 @@
 								<input type="password" id="input-password" name="matKhau"
 									class="form-control input-login" placeholder="Mật Khẩu" />			
 							</div>
+							<div class="header-form">
+                                <c:if test="${not empty msg }">
+                                <div style="color: red">${msg }</div>
+                                </c:if>
+                            </div>
 							<div class="col-xs-12 form-group padding0 ">
 								<button type="submit"
 									class="btn btn-default button-login btn-green-ntd" id="login">ĐĂNG

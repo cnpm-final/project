@@ -308,6 +308,7 @@
             </div>
                 <div id='bttop' class="icon-totop" data-toggle="tooltip" data-placement="left" data-original-title="Đầu trang"></div>
     </div>
+    <c:if test="${ not empty UserInfo }">
     <script type="text/javascript">
 		setInterval(function(){
 			$.ajax({
@@ -323,6 +324,7 @@
 			
 		},1000);
 	</script>
+	</c:if>
     <!-- end buton top -->
 
     

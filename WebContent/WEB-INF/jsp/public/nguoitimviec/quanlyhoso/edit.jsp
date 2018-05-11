@@ -22,7 +22,7 @@
                         <hr class="margin0">
                        	<div id="box_seeker_profile">
                        		<div class="content-box-white">
-							    <form id="frm-main" name="frmMain" action="${pageContext.request.contextPath }/nguoi-tim-viec/ho-so/sua-ho-so/${objHSVL.maHSVL }" method="post">
+							    <form id="frm-main" name="frmMain" action="${pageContext.request.contextPath }/nguoi-tim-viec/ho-so/sua-ho-so/${objHSVL.maHSVL }" method="post" class="taoHS">
 							        <div class="col-xs-12 padding0 form-group pst-relative">
 							            <label for="" class="col-sm-3 col-md-3 col-lg-3 paddingRight0 paddingLeft0 control-label">Tiêu đề hồ sơ</label>
 							            <div class="col-sm-9 col-md-9 col-lg-9 paddingRight0 paddingLeft20">
@@ -217,155 +217,90 @@
 	    document.getElementById("frm-main").reset();
 	}
 </script>	
-<!-- <script>
-    $(document).ready(function() {
-        /* add icheck to checkbox and radio */
-        $('.icheck').iCheck({
-            radioClass: 'iradio_minimal-grey',
-            checkboxClass: 'icheckbox_minimal-grey',
-            increaseArea: '20%' // optional
-          });
-        /* add icheck to checkbox and radio */
+<script type="text/javascript">
+				$(document).ready(function() {
+					$('.taoHS').validate({
+						ignore : [],
+						debug : false,
+						rules : {
+							"TieuDeHoSo" : {
+								required : true,
+								maxlength : 200,
+								minlength:5
+							},
+							"NoiLamViecMongMuon" : {
+								required : true,
+								
+							},
+							"QuocGia" : {
+								required : true,
 
-        $("#day").select2({
-            placeholder: "Ngày",
-            minimumResultsForSearch: Infinity
-        });
-        $("#day").on("select2:open", function (e) {
-            set_enscroll_select2('day');
-        });
-        $("#month").select2({
-            placeholder: "Tháng",
-            minimumResultsForSearch: Infinity
-        });
-        $("#month").on("select2:open", function (e) {
-            set_enscroll_select2('month');
-        });
-        $("#year").select2({
-            placeholder: "Năm",
-            minimumResultsForSearch: Infinity
-        });
-        $("#year").on("select2:open", function (e) {
-            set_enscroll_select2('year');
-        });
+							},
+							"MaNhomNganhNgheMongMuon" : {
+								required : true,
+					
+							},
+							"MaNganhNgheMongMuon" : {
+								required : true,
+							
+							},
+							
+							"MaChucDanhMongMuon" : {
+								required : true,
+							},
+							"MaMucLuongMongMuon" : {
+								required : true,
+							},
+							"MaThoiGianLamViecMongMuon" : {
+								required : true,
+							},
+							"KinhNghiemLamViec" : {
+								required: true
+							},
+							"MongMuonVeCongViec" : {
+								required : true,
+							},
+							
+						},
+						messages : {
+							"TieuDeHoSo" : {
+								required : "Vui lòng nhập tiêu đề hồ sơ",
+								maxlength : "Tiêu đề hồ sơ tối đa 200 ký tự",
+								minlength: "Tiêu đề hồ sơ ít nhất 5 ký tự"
+							},
+							"NoiLamViecMongMuon" : {
+								required : "Vui lòng nhập nơi làm việc",
+								
+							},
+							"QuocGia" : {
+								required : "Vui lòng chọn quốc gia",
 
-        $("#province").select2({
-            placeholder: "Chọn tỉnh/Thành phố"
-        });
-        $("#province").on("select2:open", function (e) {
-            set_enscroll_select2('province');
-        });
-
-        $("#boloc").click(function(){
-            $("#filter-search").addClass("hidden");
-        });
-
-        $('#btnSaveProfile').click(function(event) {
-            var check_gender = false;
-            if ($("input[name='gender']:checked").length > 0) {
-                check_gender = true;
-            }
-            var check_marital_status = false;
-            if ($("input[name='marital_status']:checked").length > 0) {
-                check_marital_status = true;
-            }
-            var check_birthday = false;
-            var isCheck = true;
-            if ( $("#day").val() > 0 && $("#day").val() < 32  && $("#month").val() > 0 && $("#month").val() < 13 && $("#year").val() != "") {
-                check_birthday = true;
-            }
-            var isCheck = true;
-            $('#name').each(function (){
-                var verify = verifySubmit(this,'Họ tên phải lớn hơn hoặc bằng 5 ký tự',0);
-                if(verify && isCheck){
-                    goToByScroll('name',70);
-                    isCheck = false;
-                }
-            });
-            $('#box_gender').each(function (){
-                if(!check_gender){
-                    $(this).find('.error_submit').removeClass('hidden');
-                    $(this).find('.error_submit').html('Bạn không được để trống thông tin giới tính');
-                    $(this).find('.error_submit').css({"float": "left", "width": "100%"});
-                }else{
-                    $(this).find('.error_submit').addClass('hidden');
-                    $(this).find('.error_submit').html('');
-                    $(this).find('.error_submit').css('');
-                }
-                if(!check_gender && isCheck){
-                    goToByScroll('box_gender',70);
-                    isCheck = false;
-                }
-            });
-            $('#box_marital_status').each(function (){
-                if(!check_marital_status){
-                    $(this).find('.error_submit').removeClass('hidden');
-                    $(this).find('.error_submit').html('Bạn không được để trống tình trạng hôn nhân');
-                    $(this).find('.error_submit').css({"float": "left", "width": "100%"});
-                }else{
-                    $(this).find('.error_submit').addClass('hidden');
-                    $(this).find('.error_submit').html('');
-                    $(this).find('.error_submit').css('');
-                }
-                if(!check_marital_status && isCheck){
-                    goToByScroll('box_gender',70);
-                    isCheck = false;
-                }
-            });
-            $('#birthday').each(function (){
-                if(!check_birthday){
-                    $(this).find('.error_submit').removeClass('hidden');
-                    $(this).find('.error_submit').html('Bạn không được để trống thông tin ngày sinh');
-                    $(this).find('.error_submit').css({"float": "left", "width": "100%"});
-                }else{
-                    $(this).find('.error_submit').addClass('hidden');
-                    $(this).find('.error_submit').html('');
-                    $(this).find('.error_submit').css('');
-                }
-                if(!check_birthday && isCheck){
-                    goToByScroll('birthday',70);
-                    isCheck = false;
-                }
-            });
-            $('#address').each(function (){
-                var verify = verifySubmit(this,'Địa chỉ phải lớn hơn hoặc bằng 5 ký tự',0);
-                if(verify && isCheck){
-                    goToByScroll('address',70);
-                    isCheck = false;
-                }
-            });
-            $('#phone').each(function (){
-                var verify = verifySubmit(this,'Số điện thoại chỉ nhập 10 hoặc 11 số',0);
-                if(verify && isCheck){
-                    goToByScroll('phone',70);
-                    isCheck = false;
-                }
-            });
-
-            if (isCheck) {
-                var datapost = new FormData($("#frm-main")[0]);
-                $.ajax({
-                    type: 'post',
-                    dataType : 'json',
-                    url: 'https://viectotnhat.com/dang-ky/hoan-thien-dang-ky-nguoi-tim-viec?from=resume',
-                    data: datapost,
-                    processData: false,
-                    contentType: false,
-                    async: false,
-                    success: function(data, textStatus, jqXHR) {
-                        if (data.error != 0) {
-                            if (data.message != '' && typeof data.message != 'undefined') {
-                                alert(data.message);
-                            }
-                        }
-
-                        $('#box_seeker_profile').html(data.content);
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        alert('Đã có lỗi hệ thống. Vui lòng thử lại. (#' + jqXHR.status + ': ' + textStatus + ')');
-                    }
-                });
-            }
-        });
-    });
-</script> -->
+							},
+							"MaNhomNganhNgheMongMuon" : {
+								required : "Vui lòng chọn nhóm ngành nghề",
+					
+							},
+							"MaNganhNgheMongMuon" : {
+								required : "Vui lòng chọn ngành nghề",
+							
+							},
+							
+							"MaChucDanhMongMuon" : {
+								required : "Vui lòng chọn vị trí",
+							},
+							"MaMucLuongMongMuon" : {
+								required : "Vui lòng chọn mức lương",
+							},
+							"MaThoiGianLamViecMongMuon" : {
+								required : "Vui lòng chọn thời gian làm việc",
+							},
+							"KinhNghiemLamViec" : {
+								required: "Vui lòng điền kinh nghiệm làm việc"
+							},
+							"MongMuonVeCongViec" : {
+								required : "Vui lòng điền mong muốn về công việc",
+							}
+						},
+					});
+				});
+			</script>
